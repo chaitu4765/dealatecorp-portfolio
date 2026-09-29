@@ -47,7 +47,7 @@ function clientFeyCards() {
 }
 
 function home() { return `
-  <main class="home-new"><section class="hero hero--home-cinema"><div class="hero-copy"><p class="kicker">DC Creative Labs · Hyderabad</p><h1>Create your presence.<br><em>Find your audience.</em><br>Grow your business.</h1><p>Creative strategy and performance marketing, connected around your business goals.</p><a class="scroll-cue" href="#home-story">Scroll to explore <span></span></a></div></section>
+  <main class="home-new"><section class="hero hero--home-cinema"><div class="hero-copy"><p class="kicker">DC Creative Labs · Hyderabad</p><h1>Create your presence.<br><em>Find your audience.</em><br>Grow your business.</h1><p>Creative strategy and performance marketing, connected around your business goals.</p><a class="scroll-cue" href="#home-story">Scroll to explore <span></span></a></div><div class="hero-reel" aria-label="DC Creative Labs video reel"><div class="hero-reel__glow" aria-hidden="true"></div><video id="dc-reel-video" src="/assets/dc-creative-reel.mp4" poster="/assets/dc-creative-reel-poster.jpg" autoplay loop muted playsinline preload="metadata"></video><button id="dc-reel-audio" type="button" aria-label="Unmute video sound" aria-pressed="false">⌁</button></div></section>
   <section class="home-intro"><div class="interactive-grid" aria-hidden="true"></div><div><p class="kicker">Digital growth, connected</p><h2>From visibility<br>to <em>measurable outcomes.</em></h2></div><p>DC Creative Labs helps businesses create brands, connect with the right people and build a lasting online presence. Strategy, creative, media and analytics work as one system—not separate activities.</p></section>
   <section id="home-story" class="home-story"><div class="home-story__top"><div><p class="kicker">What we do</p><h2>Four movements.<br><em>One clear direction.</em></h2></div><div class="story-controls"><button type="button" class="story-prev ripple-button" aria-label="Previous capability">Prev</button><span class="story-count">01 / 04</span><button type="button" class="story-next ripple-button" aria-label="Next capability">Next</button></div></div><div class="story-viewport"><div class="story-track">
     <article class="story-panel story-panel--blue"><div class="story-panel__copy"><span>01</span><p class="kicker">Search visibility</p><h3>Be found when intent is highest.</h3><p>Technical SEO, local search and useful content improve rankings, qualified traffic, enquiries and footfall.</p><div class="tag-row"><b>SEO</b><b>Local SEO</b><b>Content</b></div></div><div class="story-panel__visual"><strong>SEARCH</strong><i>Visibility before volume</i></div></article>
@@ -202,3 +202,14 @@ document.querySelectorAll('.ripple-button').forEach(button => {
     ripple.addEventListener('animationend', () => ripple.remove(), { once: true })
   })
 })
+
+const reelVideo = document.querySelector('#dc-reel-video')
+const reelAudio = document.querySelector('#dc-reel-audio')
+if (reelVideo && reelAudio) {
+  reelAudio.addEventListener('click', () => {
+    reelVideo.muted = !reelVideo.muted
+    reelAudio.textContent = reelVideo.muted ? '⌁' : '♪'
+    reelAudio.setAttribute('aria-label', reelVideo.muted ? 'Unmute video sound' : 'Mute video sound')
+    reelAudio.setAttribute('aria-pressed', String(!reelVideo.muted))
+  })
+}

@@ -89,6 +89,66 @@
   margin-left: auto;
 }
 
+.hero-reel {
+  position: absolute;
+  right: clamp(2rem, 10vw, 11rem);
+  bottom: clamp(4rem, 10vh, 7rem);
+  z-index: 2;
+  width: clamp(11rem, 19vw, 17rem);
+  aspect-ratio: 9 / 16;
+  border: 1px solid rgba(255, 255, 255, .32);
+  border-radius: 1.9rem;
+  background: #071324;
+  box-shadow: 0 28px 70px rgba(0, 0, 0, .38), 0 0 75px rgba(20, 101, 255, .22);
+  transform: rotate(2deg);
+  isolation: isolate;
+  overflow: hidden;
+  animation: reel-float 7s ease-in-out infinite;
+}
+
+.hero-reel__glow {
+  position: absolute;
+  z-index: -1;
+  inset: -2rem;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(20, 101, 255, .42), transparent 65%);
+  filter: blur(20px);
+}
+
+.hero-reel video {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+}
+
+.hero-reel button {
+  position: absolute;
+  right: .8rem;
+  bottom: .8rem;
+  display: grid;
+  width: 2.3rem;
+  height: 2.3rem;
+  place-items: center;
+  border: 1px solid rgba(6, 16, 32, .14);
+  border-radius: 50%;
+  background: rgba(255, 255, 255, .92);
+  color: var(--ink);
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: transform .25s ease, background-color .25s ease;
+}
+
+.hero-reel button:hover {
+  transform: scale(1.08);
+  background: white;
+}
+
+@keyframes reel-float {
+  0%, 100% { transform: rotate(2deg) translateY(0); }
+  50% { transform: rotate(-1deg) translateY(-10px); }
+}
+
 .home-intro {
   position: relative;
   isolation: isolate;
@@ -434,6 +494,8 @@
 
 @media (max-width: 850px) {
   .home-intro { grid-template-columns: 1fr; }
+  .hero-reel { right: 1.3rem; bottom: 6.5rem; width: 8.5rem; border-radius: 1.1rem; }
+  .hero-reel button { right: .45rem; bottom: .45rem; width: 1.9rem; height: 1.9rem; }
   .home-story__top { align-items: flex-start; flex-direction: column; }
   .story-panel { width: 88vw; grid-template-columns: 1fr; }
   .story-panel__visual { min-height: 360px; }
@@ -443,6 +505,7 @@
 
 @media (max-width: 520px) {
   .hero--home-cinema h1 { font-size: 3rem; }
+  .hero-reel { right: 1.1rem; bottom: 4.7rem; width: 6.8rem; }
   .story-panel { width: calc(100vw - 2.5rem); }
   .story-panel__copy { padding: 2rem 1.25rem 2.5rem; }
   .home-clients > div { grid-template-columns: 1fr; }
@@ -450,7 +513,8 @@
 
 @media (prefers-reduced-motion: reduce) {
   .hero--home-cinema::before,
-  .hero--home-cinema .hero-copy { animation: none; }
+  .hero--home-cinema .hero-copy,
+  .hero-reel { animation: none; }
 }
 
 body::before {
