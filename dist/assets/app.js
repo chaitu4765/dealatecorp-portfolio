@@ -41,13 +41,13 @@ function cta() { return `<section class="cta"><p class="kicker">Your next growth
 function home() { return `
   <main class="home-new"><section class="hero hero--home-cinema"><div class="hero-copy"><p class="kicker">DC Creative Labs · Hyderabad</p><h1>Create your presence.<br><em>Find your audience.</em><br>Grow your business.</h1><p>Creative strategy and performance marketing, connected around your business goals.</p><a class="scroll-cue" href="#home-story">Scroll to explore <span></span></a></div></section>
   <section class="home-intro"><div class="interactive-grid" aria-hidden="true"></div><div><p class="kicker">Digital growth, connected</p><h2>From visibility<br>to <em>measurable outcomes.</em></h2></div><p>DC Creative Labs helps businesses create brands, connect with the right people and build a lasting online presence. Strategy, creative, media and analytics work as one system—not separate activities.</p></section>
-  <section id="home-story" class="home-story"><div class="home-story__top"><div><p class="kicker">What we do</p><h2>Four movements.<br><em>One clear direction.</em></h2></div><div class="story-controls"><button type="button" class="story-prev" aria-label="Previous capability">Prev</button><span class="story-count">01 / 04</span><button type="button" class="story-next" aria-label="Next capability">Next</button></div></div><div class="story-viewport"><div class="story-track">
+  <section id="home-story" class="home-story"><div class="home-story__top"><div><p class="kicker">What we do</p><h2>Four movements.<br><em>One clear direction.</em></h2></div><div class="story-controls"><button type="button" class="story-prev ripple-button" aria-label="Previous capability">Prev</button><span class="story-count">01 / 04</span><button type="button" class="story-next ripple-button" aria-label="Next capability">Next</button></div></div><div class="story-viewport"><div class="story-track">
     <article class="story-panel story-panel--blue"><div class="story-panel__copy"><span>01</span><p class="kicker">Search visibility</p><h3>Be found when intent is highest.</h3><p>Technical SEO, local search and useful content improve rankings, qualified traffic, enquiries and footfall.</p><div class="tag-row"><b>SEO</b><b>Local SEO</b><b>Content</b></div></div><div class="story-panel__visual"><strong>SEARCH</strong><i>Visibility before volume</i></div></article>
     <article class="story-panel story-panel--pink"><div class="story-panel__copy"><span>02</span><p class="kicker">Content and community</p><h3>Shape the voice people remember.</h3><p>Social content, video and creator partnerships build recognition, trust and meaningful audience connection.</p><div class="tag-row"><b>Social</b><b>YouTube</b><b>Influencers</b></div></div><div class="story-panel__visual"><strong>STORY</strong><i>Attention with purpose</i></div></article>
     <article class="story-panel story-panel--orange"><div class="story-panel__copy"><span>03</span><p class="kicker">Performance media</p><h3>Turn attention into qualified demand.</h3><p>Google, Meta and LinkedIn campaigns connect focused creative with the audiences most likely to act.</p><div class="tag-row"><b>Google Ads</b><b>Meta Ads</b><b>LinkedIn</b></div></div><div class="story-panel__visual"><strong>GROW</strong><i>Demand, deliberately built</i></div></article>
     <article class="story-panel story-panel--green"><div class="story-panel__copy"><span>04</span><p class="kicker">Conversion and insight</p><h3>Make every next move smarter.</h3><p>Landing-page optimization, customer journeys and clear reporting turn digital activity into business learning.</p><div class="tag-row"><b>CRO</b><b>Analytics</b><b>Reporting</b></div></div><div class="story-panel__visual"><strong>MOVE</strong><i>Evidence over assumptions</i></div></article>
   </div></div></section>
-  <section class="home-clients"><p class="kicker">Brands growing with us</p><div>${clients.map(client => `<span>${client}</span>`).join('')}</div><a class="text-link" href="/clients/">Meet our clients</a></section>
+  <section class="home-clients"><p class="kicker">Brands growing with us</p><div>${clients.map(client => `<span>${client}</span>`).join('')}</div><a class="shimmer-button" href="/clients/"><span>Meet our clients</span><i aria-hidden="true">↗</i></a></section>
   ${cta()}</main>` }
 
 function services() { return `
@@ -153,3 +153,15 @@ if (gridSection && finePointer) {
   }, { passive: true })
   gridSection.addEventListener('pointerleave', () => gridSection.classList.remove('home-intro--grid-active'))
 }
+
+document.querySelectorAll('.ripple-button').forEach(button => {
+  button.addEventListener('click', event => {
+    const rect = button.getBoundingClientRect()
+    const ripple = document.createElement('span')
+    ripple.className = 'button-ripple'
+    ripple.style.left = `${event.clientX - rect.left}px`
+    ripple.style.top = `${event.clientY - rect.top}px`
+    button.append(ripple)
+    ripple.addEventListener('animationend', () => ripple.remove(), { once: true })
+  })
+})
