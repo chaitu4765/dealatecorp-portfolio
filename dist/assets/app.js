@@ -1,9 +1,12 @@
+import { home, initHome } from './home.js'
+
 const path = location.pathname.replace(/\/$/, '') || '/'
 
 const effects = document.createElement('link')
 effects.rel = 'stylesheet'
 effects.href = '/assets/effects.css'
-document.head.append(effects)
+if (path !== '/') document.head.append(effects)
+document.body.classList.toggle('home-page', path === '/')
 
 const nav = [
   ['Home', '/'], ['Services', '/services/'], ['Clients', '/clients/'], ['About', '/about/']
@@ -19,16 +22,6 @@ const serviceLayers = [
   ['07', 'Growth intelligence', 'Clear reporting and strategic reviews that connect marketing activity to business movement.']
 ]
 
-const homeServices = [
-  ['Branding & Design', 'Brand foundation', 'Build a presence people recognise.', 'Brand strategy, identity and digital foundations that make the next stage of growth easier.'],
-  ['Websites & E-commerce', 'Digital experiences', 'Make your first impression work harder.', 'Fast, focused websites and stores designed to look sharp and turn visits into action.'],
-  ['Online Marketing', 'Performance media', 'Put your brand in front of the right people.', 'Search, social and paid campaigns built around qualified demand and measurable growth.'],
-  ['Content & Storytelling', 'Content systems', 'Shape a voice people remember.', 'Scroll-stopping narratives, video and content systems that build trust over time.'],
-  ['AI & Automation', 'Growth intelligence', 'Remove friction from everyday growth.', 'Custom AI tools and automated workflows that give your team more room to think.'],
-  ['Social Media Management', 'Community', 'Keep your brand useful and always on.', 'End-to-end social planning, publishing and creative that keeps conversations moving.'],
-  ['SEO & Analytics', 'Search visibility', 'Make every search interaction count.', 'Technical SEO, local discovery and reporting that show what is driving your results.'],
-  ['Video Production', 'Creative production', 'Make your story impossible to scroll past.', 'Reels, ads and brand films produced end-to-end for attention with purpose.']
-]
 
 const work = [
   ['Property', 'Sri Surya Infra', 'A clearer digital identity and lead journey for a growing real-estate brand.', 'Brand · Web · Performance', 'blue'],
@@ -40,14 +33,14 @@ const work = [
 const clients = ['Sri Surya Infra', 'Spark Clinic', 'SV Constructions', 'Sri Conventions', 'Ganesh Constructions', 'Aditya Sai Promoters', 'Tirumalasetty Properties', 'SSM Developers']
 
 function header() {
-  return `<header class="site-header"><a class="brand" href="/" aria-label="Dealatecorp home"><span class="brand-mark">D</span><span><b>DEALATECORP</b><small>For a better tomorrow</small></span></a><button class="menu" aria-label="Open navigation" aria-expanded="false"><i></i><i></i></button><nav>${nav.map(([label, href]) => `<a href="${href}" ${path === href.replace(/\/$/, '') || (path === '/' && href === '/') ? 'aria-current="page"' : ''}>${label}</a>`).join('')}<a class="nav-cta interactive-hover" href="mailto:hello@dealatecorp.com"><span>Start a project</span><i aria-hidden="true">↗</i></a></nav></header>`
+  return `<header class="site-header"><a class="brand" href="/" aria-label="Dealatecorp home"><span class="brand-mark">D</span><span><b>DEALATECORP</b><small>For a better tomorrow</small></span></a><button class="menu" aria-label="Open navigation" aria-expanded="false"><i></i><i></i></button><nav>${nav.map(([label, href]) => `<a href="${href}" ${path === href.replace(/\/$/, '') || (path === '/' && href === '/') ? 'aria-current="page"' : ''}>${label}</a>`).join('')}<a class="nav-cta interactive-hover" href="mailto:hr@dealatecorp.com"><span>Start a project</span><i aria-hidden="true">↗</i></a></nav></header>`
 }
 
 function footer() {
-  return `<footer><div><a class="brand brand--footer" href="/"><span class="brand-mark">D</span><span><b>DEALATECORP</b><small>For a better tomorrow</small></span></a><h2>Have an ambitious goal?<br><em>Let’s make it move.</em></h2><a class="text-link" href="mailto:hello@dealatecorp.com">hello@dealatecorp.com</a></div><div class="footer-links">${nav.map(([l,h])=>`<a href="${h}">${l}</a>`).join('')}</div><p class="copyright">© 2026 Dealatecorp. Strategy, creative and performance—connected.</p></footer>`
+  return `<footer><div><a class="brand brand--footer" href="/"><span class="brand-mark">D</span><span><b>DEALATECORP</b><small>For a better tomorrow</small></span></a><h2>Have an ambitious goal?<br><em>Let’s make it move.</em></h2><a class="text-link" href="mailto:hr@dealatecorp.com">hr@dealatecorp.com</a></div><div class="footer-links">${nav.map(([l,h])=>`<a href="${h}">${l}</a>`).join('')}</div><p class="copyright">© 2026 Dealatecorp. Strategy, creative and performance—connected.</p></footer>`
 }
 
-function cta() { return `<section class="cta"><p class="kicker">Your next growth chapter</p><h2>One partner. <em>Every moving part.</em></h2><p>Tell us where the business needs to go. We’ll map the clearest way forward.</p><a class="button button--light interactive-hover" href="mailto:hello@dealatecorp.com"><span>Start a conversation</span><i aria-hidden="true">↗</i></a></section>` }
+function cta() { return `<section class="cta"><p class="kicker">Your next growth chapter</p><h2>One partner. <em>Every moving part.</em></h2><p>Tell us where the business needs to go. We’ll map the clearest way forward.</p><a class="button button--light interactive-hover" href="mailto:hr@dealatecorp.com"><span>Start a conversation</span><i aria-hidden="true">↗</i></a></section>` }
 
 function clientFeyCards() {
   const center = (clients.length - 1) / 2
@@ -57,22 +50,9 @@ function clientFeyCards() {
   }).join('')
 }
 
-function home() { return `
-  <main class="home-new"><section class="hero hero--home-cinema"><div class="hero-copy"><p class="kicker">DC Creative Labs · Hyderabad</p><h1>Create your presence.<br><em>Find your audience.</em><br>Grow your business.</h1><p>Creative strategy and performance marketing, connected around your business goals.</p><a class="scroll-cue" href="#home-services">Scroll to explore <span></span></a></div><div class="hero-reel" aria-label="DC Creative Labs video reel"><div class="hero-reel__glow" aria-hidden="true"></div><video id="dc-reel-video" src="/assets/dc-creative-reel.mp4" poster="/assets/dc-creative-reel-poster.jpg" autoplay loop muted playsinline preload="metadata"></video><button id="dc-reel-audio" type="button" aria-label="Unmute video sound" aria-pressed="false">⌁</button></div></section>
-  <section class="home-intro"><div class="interactive-grid" aria-hidden="true"></div><div><p class="kicker">Digital growth, connected</p><h2>From visibility<br>to <em>measurable outcomes.</em></h2></div><p>DC Creative Labs helps businesses create brands, connect with the right people and build a lasting online presence. Strategy, creative, media and analytics work as one system—not separate activities.</p></section>
-  <section id="home-services" class="home-services"><div class="home-services__rail"><p class="kicker">Our services</p><h2>What we do<br><em>is what we love.</em></h2><div class="service-menu" role="tablist">${homeServices.map((s,i)=>`<button class="service-menu__item${i===0?' is-active':''}" data-service="${i}" role="tab"><span>→</span>${s[0]}</button>`).join('')}</div><small>↓ Scroll services</small></div><div class="home-services__stage"><div class="service-stage__number">01</div><div class="service-stage__word">Projects</div><div class="service-stage__image" style="--service-image:url('/assets/strategy-hero.png')"></div><div class="service-stage__copy"><p class="kicker">Brand foundation</p><h3>Build a presence people recognise.</h3><p>Brand strategy, identity and digital foundations that make the next stage of growth easier.</p><a class="button button--dark" href="/services/">Explore the service <span>↗</span></a></div><div class="service-stage__footer"><span>Brand foundation</span><i></i></div></div></section>
-  <section id="home-story" class="home-story"><div class="home-story__top"><div><p class="kicker">What we do</p><h2>Four movements.<br><em>One clear direction.</em></h2></div><div class="story-controls"><button type="button" class="story-prev ripple-button" aria-label="Previous capability">Prev</button><span class="story-count">01 / 04</span><button type="button" class="story-next ripple-button" aria-label="Next capability">Next</button></div></div><div class="story-viewport"><div class="story-track">
-    <article class="story-panel story-panel--blue"><div class="story-panel__copy"><span>01</span><p class="kicker">Search visibility</p><h3>Be found when intent is highest.</h3><p>Technical SEO, local search and useful content improve rankings, qualified traffic, enquiries and footfall.</p><div class="tag-row"><b>SEO</b><b>Local SEO</b><b>Content</b></div></div><div class="story-panel__visual"><strong>SEARCH</strong><i>Visibility before volume</i></div></article>
-    <article class="story-panel story-panel--pink"><div class="story-panel__copy"><span>02</span><p class="kicker">Content and community</p><h3>Shape the voice people remember.</h3><p>Social content, video and creator partnerships build recognition, trust and meaningful audience connection.</p><div class="tag-row"><b>Social</b><b>YouTube</b><b>Influencers</b></div></div><div class="story-panel__visual"><strong>STORY</strong><i>Attention with purpose</i></div></article>
-    <article class="story-panel story-panel--orange"><div class="story-panel__copy"><span>03</span><p class="kicker">Performance media</p><h3>Turn attention into qualified demand.</h3><p>Google, Meta and LinkedIn campaigns connect focused creative with the audiences most likely to act.</p><div class="tag-row"><b>Google Ads</b><b>Meta Ads</b><b>LinkedIn</b></div></div><div class="story-panel__visual"><strong>GROW</strong><i>Demand, deliberately built</i></div></article>
-    <article class="story-panel story-panel--green"><div class="story-panel__copy"><span>04</span><p class="kicker">Conversion and insight</p><h3>Make every next move smarter.</h3><p>Landing-page optimization, customer journeys and clear reporting turn digital activity into business learning.</p><div class="tag-row"><b>CRO</b><b>Analytics</b><b>Reporting</b></div></div><div class="story-panel__visual"><strong>MOVE</strong><i>Evidence over assumptions</i></div></article>
-  </div></div></section>
-  <section class="home-clients"><p class="kicker">Brands growing with us</p><div class="client-fey-stack">${clientFeyCards()}</div><a class="shimmer-button" href="/clients/"><span>Meet our clients</span><i aria-hidden="true">↗</i></a></section>
-  ${cta()}</main>` }
-
 function services() { return `
   <main><section class="hero hero--services"><div class="hero-copy"><p class="kicker">What we do</p><h1>Seven layers.<br><em>One growth system.</em></h1><p>Digital growth services structured to work together—from brand foundation to measurable demand.</p><a class="scroll-cue" href="#layers">Scroll to explore <span></span></a></div></section>
-  <section id="layers" class="layers"><div class="section-head"><div><p class="kicker">The system</p><h2>Strong alone.<br><em>Stronger together.</em></h2></div><p>Choose the layers your business needs now. Keep one connected strategy as you grow.</p></div><div class="layer-list">${serviceLayers.map(([n,t,d],i)=>`<article class="layer" tabindex="0"><span>${n}</span><h3>${t}</h3><p>${d}</p><b aria-hidden="true">${String(i+1).padStart(2,'0')}</b></article>`).join('')}</div></section>
+  <section id="layers" class="layers"><div class="section-head"><div><p class="kicker">The system</p><h2>Strong alone.<br><em>Stronger together.</em></h2></div><p>Choose the layers your business needs now. Keep one connected strategy as you grow.</p></div><div class="layer-list">${serviceLayers.map(([n,t,d],i)=>`<article class="layer" id="layer-${i+1}" tabindex="0"><span>${n}</span><h3>${t}</h3><p>${d}</p><b aria-hidden="true">${String(i+1).padStart(2,'0')}</b></article>`).join('')}</div></section>
   <section class="process"><p class="kicker">How we work</p><div class="process-grid"><div><span>01</span><h3>Diagnose</h3><p>We find the constraint behind the visible problem.</p></div><div><span>02</span><h3>Design</h3><p>We build the smallest connected system that can create movement.</p></div><div><span>03</span><h3>Deliver</h3><p>Specialists execute, measure and improve in one rhythm.</p></div></div></section>${cta()}</main>` }
 
 function projectCard([category,title,desc,tags,color]) { return `<article class="project ${color}"><div class="project-art"><span>${title.split(' ').map(x=>x[0]).join('').slice(0,2)}</span></div><p class="kicker">${category}</p><h3>${title}</h3><p>${desc}</p><small>${tags}</small></article>` }
@@ -87,10 +67,12 @@ const pages = {'/':home, '/services':services, '/portfolio':portfolio, '/clients
 document.querySelector('#app').innerHTML = `${header()}${(pages[path] || home)()}${footer()}`
 
 const menu = document.querySelector('.menu')
-menu.addEventListener('click', () => { const open = document.body.classList.toggle('nav-open'); menu.setAttribute('aria-expanded', String(open)) })
+menu.addEventListener('click', () => { const open = document.body.classList.toggle('nav-open'); menu.setAttribute('aria-expanded', String(open)); menu.setAttribute('aria-label', open ? 'Close navigation' : 'Open navigation') })
+document.addEventListener('keydown', event => { if(event.key === 'Escape' && document.body.classList.contains('nav-open')) {document.body.classList.remove('nav-open');menu.setAttribute('aria-expanded','false');menu.setAttribute('aria-label','Open navigation');menu.focus()} })
+document.querySelectorAll('.site-header nav a').forEach(link => link.addEventListener('click', () => {document.body.classList.remove('nav-open');menu.setAttribute('aria-expanded','false');menu.setAttribute('aria-label','Open navigation')}))
 
 const reveal = new IntersectionObserver(entries => entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('is-visible'); reveal.unobserve(entry.target) } }), {threshold:.12})
-document.querySelectorAll('main section, .project, .layer').forEach(el => { el.classList.add('reveal'); reveal.observe(el) })
+document.querySelectorAll('body:not(.home-page) main section, .project, .layer').forEach(el => { el.classList.add('reveal'); reveal.observe(el) })
 
 const storyViewport = document.querySelector('.story-viewport')
 if (storyViewport) {
@@ -114,35 +96,6 @@ if (storyViewport) {
   }, { passive: true })
 }
 
-const serviceShowcase = document.querySelector('.home-services')
-if (serviceShowcase) {
-  const menuItems = [...serviceShowcase.querySelectorAll('.service-menu__item')]
-  const stage = serviceShowcase.querySelector('.home-services__stage')
-  const image = stage.querySelector('.service-stage__image')
-  const number = stage.querySelector('.service-stage__number')
-  const word = stage.querySelector('.service-stage__word')
-  const copy = stage.querySelector('.service-stage__copy')
-  const footer = stage.querySelector('.service-stage__footer span')
-  const updateService = index => {
-    const service = homeServices[index]
-    menuItems.forEach((item, i) => item.classList.toggle('is-active', i === index))
-    number.textContent = String(index + 1).padStart(2, '0')
-    word.textContent = index % 2 ? 'Systems' : 'Projects'
-    image.style.setProperty('--service-image', "url('/assets/strategy-hero.png')")
-    image.dataset.service = index
-    copy.innerHTML = `<p class="kicker">${service[1]}</p><h3>${service[2]}</h3><p>${service[3]}</p><a class="button button--dark" href="/services/">Explore the service <span>↗</span></a>`
-    footer.textContent = service[0]
-  }
-  menuItems.forEach(item => item.addEventListener('click', () => updateService(Number(item.dataset.service))))
-  const syncServiceToScroll = () => {
-    const rect = serviceShowcase.getBoundingClientRect()
-    const progress = Math.max(0, Math.min(0.999, (window.innerHeight * .5 - rect.top) / Math.max(1, rect.height - window.innerHeight)))
-    updateService(Math.min(homeServices.length - 1, Math.floor(progress * homeServices.length)))
-  }
-  window.addEventListener('scroll', syncServiceToScroll, { passive: true })
-  syncServiceToScroll()
-}
-
 const siteHeader = document.querySelector('.site-header')
 const updateHeader = () => siteHeader.classList.toggle('site-header--scrolled', window.scrollY > 24)
 updateHeader()
@@ -151,7 +104,7 @@ window.addEventListener('scroll', updateHeader, { passive: true })
 const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
 const finePointer = window.matchMedia('(pointer: fine)').matches
 
-if (!reducedMotion && finePointer) {
+if (path !== '/' && !reducedMotion && finePointer) {
   const aura = document.createElement('div')
   aura.className = 'pointer-aura'
   document.body.append(aura)
@@ -254,3 +207,6 @@ if (reelVideo && reelAudio) {
     reelAudio.setAttribute('aria-pressed', String(!reelVideo.muted))
   })
 }
+
+
+if (path === '/') initHome()
