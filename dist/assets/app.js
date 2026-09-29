@@ -29,14 +29,14 @@ const work = [
 const clients = ['Sri Surya Infra', 'Spark Clinic', 'SV Constructions', 'Sri Conventions', 'Ganesh Constructions', 'Aditya Sai Promoters', 'Tirumalasetty Properties', 'SSM Developers']
 
 function header() {
-  return `<header class="site-header"><a class="brand" href="/" aria-label="Dealatecorp home"><span class="brand-mark">D</span><span><b>DEALATECORP</b><small>For a better tomorrow</small></span></a><button class="menu" aria-label="Open navigation" aria-expanded="false"><i></i><i></i></button><nav>${nav.map(([label, href]) => `<a href="${href}" ${path === href.replace(/\/$/, '') || (path === '/' && href === '/') ? 'aria-current="page"' : ''}>${label}</a>`).join('')}<a class="nav-cta" href="mailto:hello@dealatecorp.com">Start a project</a></nav></header>`
+  return `<header class="site-header"><a class="brand" href="/" aria-label="Dealatecorp home"><span class="brand-mark">D</span><span><b>DEALATECORP</b><small>For a better tomorrow</small></span></a><button class="menu" aria-label="Open navigation" aria-expanded="false"><i></i><i></i></button><nav>${nav.map(([label, href]) => `<a href="${href}" ${path === href.replace(/\/$/, '') || (path === '/' && href === '/') ? 'aria-current="page"' : ''}>${label}</a>`).join('')}<a class="nav-cta interactive-hover" href="mailto:hello@dealatecorp.com"><span>Start a project</span><i aria-hidden="true">↗</i></a></nav></header>`
 }
 
 function footer() {
   return `<footer><div><a class="brand brand--footer" href="/"><span class="brand-mark">D</span><span><b>DEALATECORP</b><small>For a better tomorrow</small></span></a><h2>Have an ambitious goal?<br><em>Let’s make it move.</em></h2><a class="text-link" href="mailto:hello@dealatecorp.com">hello@dealatecorp.com</a></div><div class="footer-links">${nav.map(([l,h])=>`<a href="${h}">${l}</a>`).join('')}</div><p class="copyright">© 2026 Dealatecorp. Strategy, creative and performance—connected.</p></footer>`
 }
 
-function cta() { return `<section class="cta"><p class="kicker">Your next growth chapter</p><h2>One partner. <em>Every moving part.</em></h2><p>Tell us where the business needs to go. We’ll map the clearest way forward.</p><a class="button button--light" href="mailto:hello@dealatecorp.com">Start a conversation</a></section>` }
+function cta() { return `<section class="cta"><p class="kicker">Your next growth chapter</p><h2>One partner. <em>Every moving part.</em></h2><p>Tell us where the business needs to go. We’ll map the clearest way forward.</p><a class="button button--light interactive-hover" href="mailto:hello@dealatecorp.com"><span>Start a conversation</span><i aria-hidden="true">↗</i></a></section>` }
 
 function home() { return `
   <main class="home-new"><section class="hero hero--home-cinema"><div class="hero-copy"><p class="kicker">DC Creative Labs · Hyderabad</p><h1>Create your presence.<br><em>Find your audience.</em><br>Grow your business.</h1><p>Creative strategy and performance marketing, connected around your business goals.</p><a class="scroll-cue" href="#home-story">Scroll to explore <span></span></a></div></section>
