@@ -1,26 +1,19 @@
 import { home, initHome } from './home.js'
+import { services, initServices } from './services.js'
 
 const path = location.pathname.replace(/\/$/, '') || '/'
 
 const effects = document.createElement('link')
 effects.rel = 'stylesheet'
 effects.href = '/assets/effects.css'
-if (path !== '/') document.head.append(effects)
-document.body.classList.toggle('home-page', path === '/')
+const usesEditorialTheme = path === '/' || path === '/services'
+if (!usesEditorialTheme) document.head.append(effects)
+document.body.classList.toggle('home-page', usesEditorialTheme)
 
 const nav = [
   ['Home', '/'], ['Services', '/services/'], ['Clients', '/clients/'], ['About', '/about/']
 ]
 
-const serviceLayers = [
-  ['01', 'Brand foundation', 'Positioning, identity and messaging that make every campaign feel unmistakably yours.'],
-  ['02', 'Content systems', 'A repeatable editorial engine for social, video, articles and campaign creative.'],
-  ['03', 'Search visibility', 'Technical SEO, local discovery and useful content built around real customer intent.'],
-  ['04', 'Performance media', 'Google and Meta campaigns designed around qualified demand, not empty reach.'],
-  ['05', 'Digital experiences', 'Fast, focused websites and landing pages that turn attention into action.'],
-  ['06', 'Conversion & CRM', 'Better journeys, automation and follow-up systems that help more leads become customers.'],
-  ['07', 'Growth intelligence', 'Clear reporting and strategic reviews that connect marketing activity to business movement.']
-]
 
 
 const work = [
@@ -49,11 +42,6 @@ function clientFeyCards() {
     return `<span style="--fey-stack-x:${(distance * .7).toFixed(2)}rem;--fey-fan-x:${(distance * 3.15).toFixed(2)}rem;--fey-rotate:${(distance * 1.4).toFixed(2)}deg;--fey-z:${index}"><small>${String(index + 1).padStart(2, '0')}</small><b>${client}</b><i>DC Creative Labs partner</i></span>`
   }).join('')
 }
-
-function services() { return `
-  <main><section class="hero hero--services"><div class="hero-copy"><p class="kicker">What we do</p><h1>Seven layers.<br><em>One growth system.</em></h1><p>Digital growth services structured to work together—from brand foundation to measurable demand.</p><a class="scroll-cue" href="#layers">Scroll to explore <span></span></a></div></section>
-  <section id="layers" class="layers"><div class="section-head"><div><p class="kicker">The system</p><h2>Strong alone.<br><em>Stronger together.</em></h2></div><p>Choose the layers your business needs now. Keep one connected strategy as you grow.</p></div><div class="layer-list">${serviceLayers.map(([n,t,d],i)=>`<article class="layer" id="layer-${i+1}" tabindex="0"><span>${n}</span><h3>${t}</h3><p>${d}</p><b aria-hidden="true">${String(i+1).padStart(2,'0')}</b></article>`).join('')}</div></section>
-  <section class="process"><p class="kicker">How we work</p><div class="process-grid"><div><span>01</span><h3>Diagnose</h3><p>We find the constraint behind the visible problem.</p></div><div><span>02</span><h3>Design</h3><p>We build the smallest connected system that can create movement.</p></div><div><span>03</span><h3>Deliver</h3><p>Specialists execute, measure and improve in one rhythm.</p></div></div></section>${cta()}</main>` }
 
 function projectCard([category,title,desc,tags,color]) { return `<article class="project ${color}"><div class="project-art"><span>${title.split(' ').map(x=>x[0]).join('').slice(0,2)}</span></div><p class="kicker">${category}</p><h3>${title}</h3><p>${desc}</p><small>${tags}</small></article>` }
 
@@ -104,7 +92,7 @@ window.addEventListener('scroll', updateHeader, { passive: true })
 const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
 const finePointer = window.matchMedia('(pointer: fine)').matches
 
-if (path !== '/' && !reducedMotion && finePointer) {
+if (!usesEditorialTheme && !reducedMotion && finePointer) {
   const aura = document.createElement('div')
   aura.className = 'pointer-aura'
   document.body.append(aura)
@@ -210,3 +198,4 @@ if (reelVideo && reelAudio) {
 
 
 if (path === '/') initHome()
+if (path === '/services') initServices()
