@@ -39,10 +39,16 @@ function footer() {
 function cta() { return `<section class="cta"><p class="kicker">Your next growth chapter</p><h2>One partner. <em>Every moving part.</em></h2><p>Tell us where the business needs to go. We’ll map the clearest way forward.</p><a class="button button--light" href="mailto:hello@dealatecorp.com">Start a conversation</a></section>` }
 
 function home() { return `
-  <main><section class="hero hero--home"><div class="hero-copy"><p class="kicker">Independent growth partner · Hyderabad</p><h1>Growth, <em>deliberately</em> designed.</h1><p>Dealatecorp connects strategy, creative, technology and performance marketing so ambitious businesses can move with clarity.</p><div class="actions"><a class="button" href="/services/">Explore our system</a><a class="text-link" href="/portfolio/">See selected work</a></div></div><div class="hero-index"><span>01</span><p>Think clearly<br>Build beautifully<br>Grow measurably</p></div></section>
-  <section class="statement"><p class="kicker">What makes us different</p><h2>Not a list of services.<br><em>A connected growth system.</em></h2><p class="lead">Most marketing breaks at the hand-offs. We bring the thinking, making and measuring into one room—so the brand gets stronger as performance improves.</p></section>
-  <section class="split-feature"><div class="feature-image"></div><div class="feature-copy"><p class="kicker">Seven layers · One direction</p><h2>Every discipline earns its place.</h2><p>From your first strategic decision to your next qualified lead, each layer is designed to reinforce the others.</p><a class="button button--dark" href="/services/">How the system works</a></div></section>
-  <section class="work-preview"><div class="section-head"><div><p class="kicker">Selected work</p><h2>Built around the <em>business problem.</em></h2></div><a class="text-link" href="/portfolio/">View all projects</a></div><div class="project-grid">${work.slice(0,2).map(projectCard).join('')}</div></section>${cta()}</main>` }
+  <main class="home-new"><section class="hero hero--home-cinema"><div class="hero-copy"><p class="kicker">DC Creative Labs · Hyderabad</p><h1>Create your presence.<br><em>Find your audience.</em><br>Grow your business.</h1><p>Creative strategy and performance marketing, connected around your business goals.</p><a class="scroll-cue" href="#home-story">Scroll to explore <span></span></a></div></section>
+  <section class="home-intro"><div><p class="kicker">Digital growth, connected</p><h2>From visibility<br>to <em>measurable outcomes.</em></h2></div><p>DC Creative Labs helps businesses create brands, connect with the right people and build a lasting online presence. Strategy, creative, media and analytics work as one system—not separate activities.</p></section>
+  <section id="home-story" class="home-story"><div class="home-story__top"><div><p class="kicker">What we do</p><h2>Four movements.<br><em>One clear direction.</em></h2></div><div class="story-controls"><button type="button" class="story-prev" aria-label="Previous capability">Prev</button><span class="story-count">01 / 04</span><button type="button" class="story-next" aria-label="Next capability">Next</button></div></div><div class="story-viewport"><div class="story-track">
+    <article class="story-panel story-panel--blue"><div class="story-panel__copy"><span>01</span><p class="kicker">Search visibility</p><h3>Be found when intent is highest.</h3><p>Technical SEO, local search and useful content improve rankings, qualified traffic, enquiries and footfall.</p><div class="tag-row"><b>SEO</b><b>Local SEO</b><b>Content</b></div></div><div class="story-panel__visual"><strong>SEARCH</strong><i>Visibility before volume</i></div></article>
+    <article class="story-panel story-panel--pink"><div class="story-panel__copy"><span>02</span><p class="kicker">Content and community</p><h3>Shape the voice people remember.</h3><p>Social content, video and creator partnerships build recognition, trust and meaningful audience connection.</p><div class="tag-row"><b>Social</b><b>YouTube</b><b>Influencers</b></div></div><div class="story-panel__visual"><strong>STORY</strong><i>Attention with purpose</i></div></article>
+    <article class="story-panel story-panel--orange"><div class="story-panel__copy"><span>03</span><p class="kicker">Performance media</p><h3>Turn attention into qualified demand.</h3><p>Google, Meta and LinkedIn campaigns connect focused creative with the audiences most likely to act.</p><div class="tag-row"><b>Google Ads</b><b>Meta Ads</b><b>LinkedIn</b></div></div><div class="story-panel__visual"><strong>GROW</strong><i>Demand, deliberately built</i></div></article>
+    <article class="story-panel story-panel--green"><div class="story-panel__copy"><span>04</span><p class="kicker">Conversion and insight</p><h3>Make every next move smarter.</h3><p>Landing-page optimization, customer journeys and clear reporting turn digital activity into business learning.</p><div class="tag-row"><b>CRO</b><b>Analytics</b><b>Reporting</b></div></div><div class="story-panel__visual"><strong>MOVE</strong><i>Evidence over assumptions</i></div></article>
+  </div></div></section>
+  <section class="home-clients"><p class="kicker">Brands growing with us</p><div>${clients.map(client => `<span>${client}</span>`).join('')}</div><a class="text-link" href="/clients/">Meet our clients</a></section>
+  ${cta()}</main>` }
 
 function services() { return `
   <main><section class="hero hero--services"><div class="hero-copy"><p class="kicker">What we do</p><h1>Seven layers.<br><em>One growth system.</em></h1><p>Digital growth services structured to work together—from brand foundation to measurable demand.</p><a class="scroll-cue" href="#layers">Scroll to explore <span></span></a></div></section>
@@ -65,3 +71,17 @@ menu.addEventListener('click', () => { const open = document.body.classList.togg
 
 const reveal = new IntersectionObserver(entries => entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('is-visible'); reveal.unobserve(entry.target) } }), {threshold:.12})
 document.querySelectorAll('main section, .project, .layer').forEach(el => { el.classList.add('reveal'); reveal.observe(el) })
+
+const storyViewport = document.querySelector('.story-viewport')
+if (storyViewport) {
+  const panels = [...storyViewport.querySelectorAll('.story-panel')]
+  const counter = document.querySelector('.story-count')
+  let activeStory = 0
+  const showStory = (index) => {
+    activeStory = (index + panels.length) % panels.length
+    panels[activeStory].scrollIntoView({ behavior: 'smooth', inline: 'start', block: 'nearest' })
+    counter.textContent = `${String(activeStory + 1).padStart(2, '0')} / ${String(panels.length).padStart(2, '0')}`
+  }
+  document.querySelector('.story-prev').addEventListener('click', () => showStory(activeStory - 1))
+  document.querySelector('.story-next').addEventListener('click', () => showStory(activeStory + 1))
+}
