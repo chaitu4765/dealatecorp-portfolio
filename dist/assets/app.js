@@ -6,7 +6,7 @@ effects.href = '/assets/effects.css'
 document.head.append(effects)
 
 const nav = [
-  ['Home', '/'], ['Services', '/services/'], ['Portfolio', '/portfolio/'], ['Clients', '/clients/'], ['About', '/about/']
+  ['Home', '/'], ['Services', '/services/'], ['Clients', '/clients/'], ['About', '/about/']
 ]
 
 const serviceLayers = [
