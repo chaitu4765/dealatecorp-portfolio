@@ -114,11 +114,40 @@ if (!reducedMotion && finePointer) {
   const aura = document.createElement('div')
   aura.className = 'pointer-aura'
   document.body.append(aura)
+  const cursorDot = document.createElement('div')
+  const cursorRing = document.createElement('div')
+  cursorDot.className = 'smooth-cursor smooth-cursor--dot'
+  cursorRing.className = 'smooth-cursor smooth-cursor--ring'
+  document.body.append(cursorDot, cursorRing)
+  let targetX = -40
+  let targetY = -40
+  let ringX = -40
+  let ringY = -40
+  const animateCursor = () => {
+    ringX += (targetX - ringX) * .16
+    ringY += (targetY - ringY) * .16
+    cursorDot.style.transform = `translate3d(${targetX}px, ${targetY}px, 0)`
+    cursorRing.style.transform = `translate3d(${ringX}px, ${ringY}px, 0)`
+    requestAnimationFrame(animateCursor)
+  }
+  animateCursor()
   window.addEventListener('pointermove', (event) => {
+    targetX = event.clientX
+    targetY = event.clientY
     aura.style.setProperty('--pointer-x', `${event.clientX}px`)
     aura.style.setProperty('--pointer-y', `${event.clientY}px`)
     aura.classList.add('pointer-aura--visible')
+    cursorDot.classList.add('smooth-cursor--visible')
+    cursorRing.classList.add('smooth-cursor--visible')
   }, { passive: true })
+  document.addEventListener('pointerover', event => {
+    const interactive = event.target.closest('a, button, [tabindex="0"]')
+    cursorRing.classList.toggle('smooth-cursor--interactive', Boolean(interactive))
+  })
+  document.addEventListener('pointerleave', () => {
+    cursorDot.classList.remove('smooth-cursor--visible')
+    cursorRing.classList.remove('smooth-cursor--visible')
+  })
 
   document.querySelectorAll('.button, .nav-cta, .story-controls button').forEach(control => {
     control.addEventListener('pointermove', event => {
