@@ -84,4 +84,59 @@ if (storyViewport) {
   }
   document.querySelector('.story-prev').addEventListener('click', () => showStory(activeStory - 1))
   document.querySelector('.story-next').addEventListener('click', () => showStory(activeStory + 1))
+  storyViewport.addEventListener('scroll', () => {
+    const closest = panels.reduce((best, panel, index) => {
+      const distance = Math.abs(panel.offsetLeft - storyViewport.scrollLeft)
+      return distance < best.distance ? { index, distance } : best
+    }, { index: 0, distance: Infinity })
+    activeStory = closest.index
+    counter.textContent = `${String(activeStory + 1).padStart(2, '0')} / ${String(panels.length).padStart(2, '0')}`
+  }, { passive: true })
+}
+
+const siteHeader = document.querySelector('.site-header')
+const updateHeader = () => siteHeader.classList.toggle('site-header--scrolled', window.scrollY > 24)
+updateHeader()
+window.addEventListener('scroll', updateHeader, { passive: true })
+
+const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+const finePointer = window.matchMedia('(pointer: fine)').matches
+
+if (!reducedMotion && finePointer) {
+  const aura = document.createElement('div')
+  aura.className = 'pointer-aura'
+  document.body.append(aura)
+  window.addEventListener('pointermove', (event) => {
+    aura.style.setProperty('--pointer-x', `${event.clientX}px`)
+    aura.style.setProperty('--pointer-y', `${event.clientY}px`)
+    aura.classList.add('pointer-aura--visible')
+  }, { passive: true })
+
+  document.querySelectorAll('.button, .nav-cta, .story-controls button').forEach(control => {
+    control.addEventListener('pointermove', event => {
+      const rect = control.getBoundingClientRect()
+      control.style.setProperty('--magnetic-x', `${(event.clientX - rect.left - rect.width / 2) * .12}px`)
+      control.style.setProperty('--magnetic-y', `${(event.clientY - rect.top - rect.height / 2) * .12}px`)
+    })
+    control.addEventListener('pointerleave', () => {
+      control.style.setProperty('--magnetic-x', '0px')
+      control.style.setProperty('--magnetic-y', '0px')
+    })
+  })
+
+  document.querySelectorAll('.story-panel, .project').forEach(card => {
+    card.addEventListener('pointermove', event => {
+      const rect = card.getBoundingClientRect()
+      const x = (event.clientX - rect.left) / rect.width - .5
+      const y = (event.clientY - rect.top) / rect.height - .5
+      card.style.setProperty('--tilt-x', `${(-y * 1.4).toFixed(2)}deg`)
+      card.style.setProperty('--tilt-y', `${(x * 1.4).toFixed(2)}deg`)
+      card.style.setProperty('--glow-x', `${((x + .5) * 100).toFixed(1)}%`)
+      card.style.setProperty('--glow-y', `${((y + .5) * 100).toFixed(1)}%`)
+    })
+    card.addEventListener('pointerleave', () => {
+      card.style.setProperty('--tilt-x', '0deg')
+      card.style.setProperty('--tilt-y', '0deg')
+    })
+  })
 }
