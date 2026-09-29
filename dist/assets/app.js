@@ -40,7 +40,7 @@ function cta() { return `<section class="cta"><p class="kicker">Your next growth
 
 function home() { return `
   <main class="home-new"><section class="hero hero--home-cinema"><div class="hero-copy"><p class="kicker">DC Creative Labs · Hyderabad</p><h1>Create your presence.<br><em>Find your audience.</em><br>Grow your business.</h1><p>Creative strategy and performance marketing, connected around your business goals.</p><a class="scroll-cue" href="#home-story">Scroll to explore <span></span></a></div></section>
-  <section class="home-intro"><div><p class="kicker">Digital growth, connected</p><h2>From visibility<br>to <em>measurable outcomes.</em></h2></div><p>DC Creative Labs helps businesses create brands, connect with the right people and build a lasting online presence. Strategy, creative, media and analytics work as one system—not separate activities.</p></section>
+  <section class="home-intro"><div class="interactive-grid" aria-hidden="true"></div><div><p class="kicker">Digital growth, connected</p><h2>From visibility<br>to <em>measurable outcomes.</em></h2></div><p>DC Creative Labs helps businesses create brands, connect with the right people and build a lasting online presence. Strategy, creative, media and analytics work as one system—not separate activities.</p></section>
   <section id="home-story" class="home-story"><div class="home-story__top"><div><p class="kicker">What we do</p><h2>Four movements.<br><em>One clear direction.</em></h2></div><div class="story-controls"><button type="button" class="story-prev" aria-label="Previous capability">Prev</button><span class="story-count">01 / 04</span><button type="button" class="story-next" aria-label="Next capability">Next</button></div></div><div class="story-viewport"><div class="story-track">
     <article class="story-panel story-panel--blue"><div class="story-panel__copy"><span>01</span><p class="kicker">Search visibility</p><h3>Be found when intent is highest.</h3><p>Technical SEO, local search and useful content improve rankings, qualified traffic, enquiries and footfall.</p><div class="tag-row"><b>SEO</b><b>Local SEO</b><b>Content</b></div></div><div class="story-panel__visual"><strong>SEARCH</strong><i>Visibility before volume</i></div></article>
     <article class="story-panel story-panel--pink"><div class="story-panel__copy"><span>02</span><p class="kicker">Content and community</p><h3>Shape the voice people remember.</h3><p>Social content, video and creator partnerships build recognition, trust and meaningful audience connection.</p><div class="tag-row"><b>Social</b><b>YouTube</b><b>Influencers</b></div></div><div class="story-panel__visual"><strong>STORY</strong><i>Attention with purpose</i></div></article>
@@ -139,4 +139,17 @@ if (!reducedMotion && finePointer) {
       card.style.setProperty('--tilt-y', '0deg')
     })
   })
+}
+
+const gridSection = document.querySelector('.home-intro')
+if (gridSection && finePointer) {
+  gridSection.addEventListener('pointermove', event => {
+    const rect = gridSection.getBoundingClientRect()
+    gridSection.style.setProperty('--grid-x', `${event.clientX - rect.left}px`)
+    gridSection.style.setProperty('--grid-y', `${event.clientY - rect.top}px`)
+    gridSection.style.setProperty('--grid-cell-x', `${Math.floor((event.clientX - rect.left) / 54) * 54}px`)
+    gridSection.style.setProperty('--grid-cell-y', `${Math.floor((event.clientY - rect.top) / 54) * 54}px`)
+    gridSection.classList.add('home-intro--grid-active')
+  }, { passive: true })
+  gridSection.addEventListener('pointerleave', () => gridSection.classList.remove('home-intro--grid-active'))
 }
