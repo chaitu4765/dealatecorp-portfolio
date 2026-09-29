@@ -1,0 +1,60 @@
+.hero--services {
+  overflow: hidden;
+}
+
+.hero--services::before {
+  filter: blur(1.5px) brightness(.92);
+  transform-origin: center 58%;
+  animation: services-cinematic 16s ease-in-out infinite alternate;
+}
+
+.hero--services::after {
+  background:
+    linear-gradient(rgba(3, 10, 23, .30), rgba(3, 10, 23, .83)),
+    linear-gradient(90deg, rgba(3, 10, 23, .22), transparent 50%, rgba(3, 10, 23, .22));
+}
+
+.hero--services .hero-copy {
+  animation: services-copy-in 1s cubic-bezier(.2, .8, .2, 1) both;
+}
+
+.scroll-cue span {
+  position: relative;
+}
+
+.scroll-cue span::after {
+  position: absolute;
+  top: .38rem;
+  left: 50%;
+  width: 2px;
+  height: .35rem;
+  border-radius: 2px;
+  content: '';
+  transform: translateX(-50%);
+  background: #fff;
+  animation: scroll-dot 1.8s ease-in-out infinite;
+}
+
+@keyframes services-cinematic {
+  from { transform: scale(1.03) translate3d(-.4%, 0, 0); }
+  to { transform: scale(1.12) translate3d(.7%, -.8%, 0); }
+}
+
+@keyframes services-copy-in {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: none; }
+}
+
+@keyframes scroll-dot {
+  0% { opacity: 0; transform: translate(-50%, 0); }
+  35% { opacity: 1; }
+  100% { opacity: 0; transform: translate(-50%, .75rem); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero--services::before,
+  .hero--services .hero-copy,
+  .scroll-cue span::after {
+    animation: none;
+  }
+}
