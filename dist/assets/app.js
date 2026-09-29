@@ -19,6 +19,17 @@ const serviceLayers = [
   ['07', 'Growth intelligence', 'Clear reporting and strategic reviews that connect marketing activity to business movement.']
 ]
 
+const homeServices = [
+  ['Branding & Design', 'Brand foundation', 'Build a presence people recognise.', 'Brand strategy, identity and digital foundations that make the next stage of growth easier.'],
+  ['Websites & E-commerce', 'Digital experiences', 'Make your first impression work harder.', 'Fast, focused websites and stores designed to look sharp and turn visits into action.'],
+  ['Online Marketing', 'Performance media', 'Put your brand in front of the right people.', 'Search, social and paid campaigns built around qualified demand and measurable growth.'],
+  ['Content & Storytelling', 'Content systems', 'Shape a voice people remember.', 'Scroll-stopping narratives, video and content systems that build trust over time.'],
+  ['AI & Automation', 'Growth intelligence', 'Remove friction from everyday growth.', 'Custom AI tools and automated workflows that give your team more room to think.'],
+  ['Social Media Management', 'Community', 'Keep your brand useful and always on.', 'End-to-end social planning, publishing and creative that keeps conversations moving.'],
+  ['SEO & Analytics', 'Search visibility', 'Make every search interaction count.', 'Technical SEO, local discovery and reporting that show what is driving your results.'],
+  ['Video Production', 'Creative production', 'Make your story impossible to scroll past.', 'Reels, ads and brand films produced end-to-end for attention with purpose.']
+]
+
 const work = [
   ['Property', 'Sri Surya Infra', 'A clearer digital identity and lead journey for a growing real-estate brand.', 'Brand · Web · Performance', 'blue'],
   ['Healthcare', 'Spark Clinic', 'Local discovery and trust-led content shaped around patient questions.', 'Local SEO · Content · Social', 'copper'],
@@ -47,8 +58,9 @@ function clientFeyCards() {
 }
 
 function home() { return `
-  <main class="home-new"><section class="hero hero--home-cinema"><div class="hero-copy"><p class="kicker">DC Creative Labs · Hyderabad</p><h1>Create your presence.<br><em>Find your audience.</em><br>Grow your business.</h1><p>Creative strategy and performance marketing, connected around your business goals.</p><a class="scroll-cue" href="#home-story">Scroll to explore <span></span></a></div><div class="hero-reel" aria-label="DC Creative Labs video reel"><div class="hero-reel__glow" aria-hidden="true"></div><video id="dc-reel-video" src="/assets/dc-creative-reel.mp4" poster="/assets/dc-creative-reel-poster.jpg" autoplay loop muted playsinline preload="metadata"></video><button id="dc-reel-audio" type="button" aria-label="Unmute video sound" aria-pressed="false">⌁</button></div></section>
+  <main class="home-new"><section class="hero hero--home-cinema"><div class="hero-copy"><p class="kicker">DC Creative Labs · Hyderabad</p><h1>Create your presence.<br><em>Find your audience.</em><br>Grow your business.</h1><p>Creative strategy and performance marketing, connected around your business goals.</p><a class="scroll-cue" href="#home-services">Scroll to explore <span></span></a></div><div class="hero-reel" aria-label="DC Creative Labs video reel"><div class="hero-reel__glow" aria-hidden="true"></div><video id="dc-reel-video" src="/assets/dc-creative-reel.mp4" poster="/assets/dc-creative-reel-poster.jpg" autoplay loop muted playsinline preload="metadata"></video><button id="dc-reel-audio" type="button" aria-label="Unmute video sound" aria-pressed="false">⌁</button></div></section>
   <section class="home-intro"><div class="interactive-grid" aria-hidden="true"></div><div><p class="kicker">Digital growth, connected</p><h2>From visibility<br>to <em>measurable outcomes.</em></h2></div><p>DC Creative Labs helps businesses create brands, connect with the right people and build a lasting online presence. Strategy, creative, media and analytics work as one system—not separate activities.</p></section>
+  <section id="home-services" class="home-services"><div class="home-services__rail"><p class="kicker">Our services</p><h2>What we do<br><em>is what we love.</em></h2><div class="service-menu" role="tablist">${homeServices.map((s,i)=>`<button class="service-menu__item${i===0?' is-active':''}" data-service="${i}" role="tab"><span>→</span>${s[0]}</button>`).join('')}</div><small>↓ Scroll services</small></div><div class="home-services__stage"><div class="service-stage__number">01</div><div class="service-stage__word">Projects</div><div class="service-stage__image" style="--service-image:url('/assets/strategy-hero.png')"></div><div class="service-stage__copy"><p class="kicker">Brand foundation</p><h3>Build a presence people recognise.</h3><p>Brand strategy, identity and digital foundations that make the next stage of growth easier.</p><a class="button button--dark" href="/services/">Explore the service <span>↗</span></a></div><div class="service-stage__footer"><span>Brand foundation</span><i></i></div></div></section>
   <section id="home-story" class="home-story"><div class="home-story__top"><div><p class="kicker">What we do</p><h2>Four movements.<br><em>One clear direction.</em></h2></div><div class="story-controls"><button type="button" class="story-prev ripple-button" aria-label="Previous capability">Prev</button><span class="story-count">01 / 04</span><button type="button" class="story-next ripple-button" aria-label="Next capability">Next</button></div></div><div class="story-viewport"><div class="story-track">
     <article class="story-panel story-panel--blue"><div class="story-panel__copy"><span>01</span><p class="kicker">Search visibility</p><h3>Be found when intent is highest.</h3><p>Technical SEO, local search and useful content improve rankings, qualified traffic, enquiries and footfall.</p><div class="tag-row"><b>SEO</b><b>Local SEO</b><b>Content</b></div></div><div class="story-panel__visual"><strong>SEARCH</strong><i>Visibility before volume</i></div></article>
     <article class="story-panel story-panel--pink"><div class="story-panel__copy"><span>02</span><p class="kicker">Content and community</p><h3>Shape the voice people remember.</h3><p>Social content, video and creator partnerships build recognition, trust and meaningful audience connection.</p><div class="tag-row"><b>Social</b><b>YouTube</b><b>Influencers</b></div></div><div class="story-panel__visual"><strong>STORY</strong><i>Attention with purpose</i></div></article>
@@ -100,6 +112,35 @@ if (storyViewport) {
     activeStory = closest.index
     counter.textContent = `${String(activeStory + 1).padStart(2, '0')} / ${String(panels.length).padStart(2, '0')}`
   }, { passive: true })
+}
+
+const serviceShowcase = document.querySelector('.home-services')
+if (serviceShowcase) {
+  const menuItems = [...serviceShowcase.querySelectorAll('.service-menu__item')]
+  const stage = serviceShowcase.querySelector('.home-services__stage')
+  const image = stage.querySelector('.service-stage__image')
+  const number = stage.querySelector('.service-stage__number')
+  const word = stage.querySelector('.service-stage__word')
+  const copy = stage.querySelector('.service-stage__copy')
+  const footer = stage.querySelector('.service-stage__footer span')
+  const updateService = index => {
+    const service = homeServices[index]
+    menuItems.forEach((item, i) => item.classList.toggle('is-active', i === index))
+    number.textContent = String(index + 1).padStart(2, '0')
+    word.textContent = index % 2 ? 'Systems' : 'Projects'
+    image.style.setProperty('--service-image', "url('/assets/strategy-hero.png')")
+    image.dataset.service = index
+    copy.innerHTML = `<p class="kicker">${service[1]}</p><h3>${service[2]}</h3><p>${service[3]}</p><a class="button button--dark" href="/services/">Explore the service <span>↗</span></a>`
+    footer.textContent = service[0]
+  }
+  menuItems.forEach(item => item.addEventListener('click', () => updateService(Number(item.dataset.service))))
+  const syncServiceToScroll = () => {
+    const rect = serviceShowcase.getBoundingClientRect()
+    const progress = Math.max(0, Math.min(0.999, (window.innerHeight * .5 - rect.top) / Math.max(1, rect.height - window.innerHeight)))
+    updateService(Math.min(homeServices.length - 1, Math.floor(progress * homeServices.length)))
+  }
+  window.addEventListener('scroll', syncServiceToScroll, { passive: true })
+  syncServiceToScroll()
 }
 
 const siteHeader = document.querySelector('.site-header')

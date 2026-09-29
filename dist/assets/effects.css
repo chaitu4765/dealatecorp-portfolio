@@ -64,6 +64,10 @@
   overflow: hidden;
   text-align: center;
 }
+.hero--home-cinema .hero-copy{width:min(62%,760px);margin-right:auto;text-align:left}
+.hero--home-cinema h1{max-width:760px;font-size:clamp(3.2rem,6.2vw,6.8rem)}
+.hero--home-cinema .hero-copy>p:not(.kicker){max-width:610px}
+@media(max-width:850px){.hero--home-cinema .hero-copy{width:100%;padding-right:5rem}.hero--home-cinema h1{font-size:clamp(2.7rem,9vw,4.8rem)}}
 
 .hero--home-cinema::before {
   filter: blur(1px) brightness(.88);
@@ -143,6 +147,26 @@
   transform: scale(1.08);
   background: white;
 }
+
+/* Scroll-led service showcase inspired by the reference layout. */
+.home-services{position:relative;display:grid;grid-template-columns:minmax(230px,.7fr) minmax(0,1.45fr);gap:clamp(2rem,6vw,7rem);min-height:800vh;padding:0 var(--pad);background:#f4f6f9;color:var(--ink)}
+.home-services__rail{position:sticky;top:0;display:flex;height:100svh;flex-direction:column;justify-content:center;padding:5rem 0 3rem;z-index:2}
+.home-services__rail h2{margin:.8rem 0 2.5rem;font-size:clamp(2.3rem,4.5vw,5rem)}
+.service-menu{display:flex;flex-direction:column;gap:.28rem}
+.service-menu__item{display:flex;align-items:center;gap:.45rem;border:0;padding:.15rem 0;background:none;color:#8a929e;text-align:left;font:500 clamp(1rem,1.45vw,1.35rem) 'DM Sans';cursor:pointer;transition:color .25s,transform .25s}
+.service-menu__item span{width:1.1rem;color:transparent;transition:color .25s}.service-menu__item.is-active{color:var(--ink);transform:translateX(.15rem)}.service-menu__item.is-active span{color:var(--ink)}
+.home-services__rail small{margin-top:3rem;color:#6a7482;font:.65rem 'DM Sans';letter-spacing:.18em;text-transform:uppercase}
+.home-services__stage{position:sticky;top:0;height:100svh;align-self:start;overflow:hidden;display:flex;align-items:center;isolation:isolate}
+.home-services__stage:before{position:absolute;z-index:-2;inset:10% -8% 12%;content:'';background:radial-gradient(circle at 50% 50%,rgba(20,101,255,.18),transparent 62%)}
+.service-stage__image{position:absolute;z-index:1;top:21%;right:8%;width:min(68%,680px);aspect-ratio:1.65;border-radius:1.25rem;background:linear-gradient(135deg,rgba(7,19,36,.1),rgba(7,19,36,.35)),var(--service-image) 72% center/cover;box-shadow:0 30px 60px rgba(6,16,32,.2);transition:filter .4s,transform .4s}
+.service-stage__image:after{position:absolute;inset:0;content:'';border:1px solid rgba(255,255,255,.35);border-radius:inherit}
+.service-stage__number{position:absolute;z-index:0;top:17%;left:4%;font:700 clamp(8rem,20vw,18rem)/.8 'Manrope';letter-spacing:-.12em;color:#050b15}
+.service-stage__word{position:absolute;z-index:0;top:43%;left:0;font:700 clamp(7rem,17vw,16rem)/.8 'Manrope';letter-spacing:-.12em;color:#050b15;opacity:.98}
+.service-stage__copy{position:absolute;z-index:3;right:0;bottom:24%;width:min(36%,340px)}
+.service-stage__copy h3{margin:.7rem 0 1rem;font-size:clamp(1.35rem,2vw,2rem)}.service-stage__copy>p:not(.kicker){color:#536070}.service-stage__copy .button{margin-top:1rem;font-size:.72rem}.service-stage__copy .button span{margin-left:1rem}
+.service-stage__footer{position:absolute;right:0;bottom:8%;left:0;display:flex;align-items:center;gap:1rem;font-size:1.1rem}.service-stage__footer i{display:block;height:2px;flex:1;background:linear-gradient(90deg,var(--ink) 0 22%,rgba(6,16,32,.2) 22%)}
+.service-stage__image[data-service="1"]{filter:hue-rotate(35deg) saturate(1.15)}.service-stage__image[data-service="2"]{filter:sepia(.35) saturate(1.3)}.service-stage__image[data-service="3"]{filter:hue-rotate(110deg) saturate(.9)}.service-stage__image[data-service="4"]{filter:grayscale(.3) hue-rotate(160deg)}.service-stage__image[data-service="5"]{filter:contrast(1.1) saturate(.7)}.service-stage__image[data-service="6"]{filter:grayscale(.75) contrast(1.15)}.service-stage__image[data-service="7"]{filter:sepia(.5) hue-rotate(180deg)}
+@media(max-width:850px){.home-services{display:block;min-height:auto;padding:5rem var(--pad)}.home-services__rail{position:relative;height:auto;padding:0}.service-menu{margin-bottom:3rem}.home-services__rail small{display:none}.home-services__stage{position:relative;height:70svh;min-height:520px}.service-stage__image{top:18%;right:0;width:84%}.service-stage__copy{right:0;bottom:8%;width:75%}.service-stage__number{top:11%;left:0}.service-stage__word{top:40%;left:-8%}.service-stage__footer{bottom:0}}
 
 @keyframes reel-float {
   0%, 100% { transform: rotate(2deg) translateY(0); }
