@@ -1,3 +1,5 @@
+import { studio, initStudio } from './studio.js'
+
 const services = [
   {name:'Branding & Design', title:'A brand that feels unmistakably yours.', text:'Positioning, visual identity and campaign design that give your business a clear, consistent presence.', image:'branding', alt:'Brand design and creative materials', detail:1},
   {name:'Websites & E-commerce', title:'A better experience, from the first click.', text:'Fast websites, focused landing pages and online stores that make it easy for people to explore, enquire and buy.', image:'websites', alt:'A digital design workspace', detail:5},
@@ -46,7 +48,7 @@ export function home() {
 
     <section id="selected-work" class="dc-work dc-wrap" aria-labelledby="work-title"><div class="dc-section-heading"><div><p class="dc-eyebrow">02 / Selected creative</p><h2 id="work-title">Let the work<br><span>do the talking.</span></h2></div><p>A selection of campaign design and social creative from DC Creative Labs.</p></div><div class="dc-work-grid">${selectedWork.map(([file,name,type],i)=>`<figure class="dc-work-item"><div class="dc-work-item__image"><img src="/assets/work/${file}.jpg" alt="${name} ${type.toLowerCase()} by DC Creative Labs" loading="lazy" width="1080" height="1080"></div><figcaption><h3>${name}</h3><span>${type}</span></figcaption></figure>`).join('')}</div></section>
 
-    <section class="dc-approach dc-wrap" aria-labelledby="approach-title"><div><p class="dc-eyebrow">03 / How we think</p><h2 id="approach-title">Creative at heart.<br><span>Clear in purpose.</span></h2><a class="dc-button dc-button--outline" href="/about/">Get to know us</a></div><div class="dc-principles"><article><span>01</span><div><h3>Start with understanding.</h3><p>Your audience, your business and the next result you need. Good work starts with good questions.</p></div></article><article><span>02</span><div><h3>Make the pieces connect.</h3><p>Brand, creative and media follow one direction, giving every customer touchpoint a consistent voice.</p></div></article><article><span>03</span><div><h3>Learn. Refine. Move forward.</h3><p>We review what’s working, share what we learn and use that insight to shape the next move.</p></div></article></div></section>
+    ${studio()}
 
     <section class="dc-clients dc-wrap" aria-labelledby="clients-title"><div class="dc-section-heading"><div><p class="dc-eyebrow">04 / Our clients</p><h2 id="clients-title">Good work starts<br><span>with a good partnership.</span></h2></div><a class="dc-service-link" href="/clients/">Meet our clients</a></div><div class="dc-client-grid">${['Sri Surya Infra','Spark Clinic','SV Constructions','Sri Conventions','Ganesh Constructions','Aditya Sai Promoters','Tirumalasetty Properties','SSM Developers'].map(c=>`<span>${c}</span>`).join('')}</div></section>
 
@@ -55,6 +57,7 @@ export function home() {
 }
 
 export function initHome() {
+  initStudio()
   const section = document.querySelector('.dc-showcase')
   if (!section) return
   const reduced = window.matchMedia('(prefers-reduced-motion: reduce)')
