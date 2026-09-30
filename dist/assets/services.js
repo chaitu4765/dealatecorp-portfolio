@@ -16,6 +16,13 @@ export const serviceCatalog = [
   {id:'analytics',name:'Marketing Analytics & Reporting',short:'Analytics',group:'Measurement & insight',icon:'analytics',color:'#e37400',description:'Clear campaign reporting and actionable insights that explain performance and help you decide what to improve next.',includes:['Campaign analytics','Performance reports','Actionable insights'],alias:7}
 ]
 
+const supportingCapabilities = [
+  {id:'branding',name:'Branding & Design',description:'Positioning, visual identity and campaign design that give your business a clear, consistent presence.'},
+  {id:'websites',name:'Websites & E-commerce',description:'Fast websites, focused landing pages and online stores that make it easy for people to explore, enquire and buy.'},
+  {id:'automation',name:'AI & Automation',description:'Practical workflows that connect enquiries, follow-ups and reporting, helping your team move with clarity.'},
+  {id:'video',name:'Video Production',description:'Reels, product stories and campaign films, brought together with purposeful editing and a clear creative direction.'}
+]
+
 const symbolPaths = {
   search:'<circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 5 5"/>',
   pin:'<path d="M20 10c0 6-8 11-8 11S4 16 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/>',
@@ -52,6 +59,7 @@ export function services() {
       <div class="service-focus" id="service-focus" style="--selected-color:${selected.color}"><span class="service-focus__number" aria-hidden="true">03 <small>/ 14</small></span><div class="service-focus__copy" aria-live="polite" aria-atomic="true"><p class="dc-eyebrow">${selected.group}</p><h3>${selected.name}</h3><p class="service-focus__description">${selected.description}</p><ul>${selected.includes.map(t=>`<li>${t}</li>`).join('')}</ul></div><a class="dc-button service-focus__cta" href="mailto:hr@dealatecorp.com?subject=${encodeURIComponent('Enquiry: '+selected.name)}">Discuss this service</a></div>
     </section>
     <section class="service-directory dc-wrap" id="service-directory" aria-labelledby="directory-title"><div class="dc-section-heading"><div><p class="dc-eyebrow">The full service suite</p><h2 id="directory-title">A clear role<br><span>for every channel.</span></h2></div><p>Choose the services your business needs today. Build on them as your priorities evolve.</p></div><div class="service-directory__grid">${serviceCatalog.map((s,i)=>`<article id="service-${s.id}">${s.alias?`<span class="service-anchor" id="layer-${s.alias}"></span>`:''}<div class="service-directory__title"><span class="service-directory__icon" style="color:${s.color}">${icon(s)}</span><span class="dc-eyebrow">${String(i+1).padStart(2,'0')} / ${s.group}</span></div><h3>${s.name}</h3>${s.subtitle?`<p class="service-directory__subtitle">${s.subtitle}</p>`:''}<p>${s.description}</p><ul>${s.includes.map(t=>`<li>${t}</li>`).join('')}</ul></article>`).join('')}</div></section>
+    <section class="service-directory service-capabilities dc-wrap" aria-labelledby="capabilities-title"><div class="dc-section-heading"><div><p class="dc-eyebrow">Supporting capabilities</p><h2 id="capabilities-title">Brand, digital<br><span>and creative.</span></h2></div><p>Branding, websites, practical automation and video production complement the marketing services above.</p></div><div class="service-directory__grid">${supportingCapabilities.map(s=>`<article id="capability-${s.id}"><h3>${s.name}</h3><p>${s.description}</p></article>`).join('')}</div></section>
     <section class="services-next dc-wrap"><div><p class="dc-eyebrow">Not sure where to begin?</p><h2>Start with your goal.<br><span>We’ll connect the pieces.</span></h2></div><div><p>Tell us about your business, your audience and what you want to achieve next.</p><a class="dc-button" href="tel:+919550548811">Talk to our team</a></div></section>
   </main>`
 }

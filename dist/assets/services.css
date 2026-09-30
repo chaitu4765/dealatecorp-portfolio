@@ -63,6 +63,10 @@
 .service-directory article>p{max-width:540px;color:var(--dc-muted);font-size:16px;line-height:1.75;margin:0 0 20px}
 .service-directory article>.service-directory__subtitle{font-size:13px;color:var(--dc-blue);margin:-6px 0 14px}
 .service-directory ul{gap:8px 14px}
+.service-capabilities{padding-top:65px;padding-bottom:65px;background:var(--dc-paper)}
+.service-capabilities .dc-section-heading{margin-bottom:35px}
+.service-capabilities .service-directory__grid>article{padding-bottom:20px}
+.service-capabilities article>p{margin-bottom:0}
 .services-next{display:grid;grid-template-columns:1.4fr 1fr;gap:8vw;padding-top:95px;padding-bottom:95px}
 .services-next>div:last-child{align-self:end}
 .services-next p:not(.dc-eyebrow){font-size:17px;color:var(--dc-muted);margin:0 0 25px;max-width:410px}
