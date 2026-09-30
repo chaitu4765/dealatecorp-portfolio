@@ -1,4 +1,5 @@
 import { studio, initStudio } from './studio.js'
+import { clientBrands } from './client-brands.js'
 
 const services = [
   {name:'Branding & Design', title:'A brand that feels unmistakably yours.', text:'Positioning, visual identity and campaign design that give your business a clear, consistent presence.', image:'branding', alt:'Brand design and creative materials', detail:1},
@@ -50,7 +51,7 @@ export function home() {
 
     ${studio()}
 
-    <section class="dc-clients dc-wrap" aria-labelledby="clients-title"><div class="dc-section-heading"><div><p class="dc-eyebrow">04 / Our clients</p><h2 id="clients-title">Good work starts<br><span>with a good partnership.</span></h2></div><a class="dc-service-link" href="/clients/">Meet our clients</a></div><div class="dc-client-grid">${[['Sri Surya Infra','/assets/logo/sree surya.jpeg'],['Spark Clinic','/assets/logo/spark-clinic.png'],['SV Constructions','/assets/logo/sv-constructions.png'],['Sri Conventions','/assets/logo/sri-conventions (1).png'],['Ganesh Constructions','/assets/logo/ganesh.jpeg'],['Aditya Sai Promoters','/assets/logo/adithya sai.jpeg'],['Tirumalasetty Properties','/assets/logo/tirumalsetty.jpeg'],['SSM Developers','/assets/logo/ssm.jpeg']].map(([name,logo],i)=>`<article class="dc-client-card" style="--float-delay:${i * -0.45}s"><span>${String(i+1).padStart(2,'0')}</span><div><img src="${logo}" alt="${name} logo" loading="lazy" decoding="async"><b>${name}</b></div></article>`).join('')}</div></section>
+    <section class="dc-clients dc-wrap" aria-labelledby="clients-title"><div class="dc-section-heading"><div><p class="dc-eyebrow">04 / Our clients</p><h2 id="clients-title">Good work starts<br><span>with a good partnership.</span></h2></div><div class="dc-client-actions"><a class="dc-service-link" href="/clients/">Meet our clients</a><button class="dc-client-motion" type="button" aria-pressed="false">Pause motion</button></div></div><div class="dc-client-grid">${clientBrands.map(([name,logo],i)=>`<article class="dc-client-card" style="--float-delay:${i * -0.6}s"><span class="dc-client-card__number" aria-hidden="true">${String(i+1).padStart(2,'0')}</span><div class="dc-client-card__logo"><img src="${logo}" alt="${name} logo" loading="lazy" decoding="async" width="180" height="140"></div><h3>${name}</h3></article>`).join('')}</div></section>
 
     <section class="dc-contact dc-wrap" id="contact"><p class="dc-eyebrow">Have something in mind?</p><h2>Let’s make<br><span>your next move count.</span></h2><div><a class="dc-button" href="tel:+919550548811">Start a conversation</a><a href="mailto:hr@dealatecorp.com">hr@dealatecorp.com</a></div><p>Hyderabad, India <span>+91 95505 48811</span></p></section>
   </main>`
@@ -58,6 +59,13 @@ export function home() {
 
 export function initHome() {
   initStudio()
+  const clientSection = document.querySelector('.dc-clients')
+  const motionToggle = clientSection?.querySelector('.dc-client-motion')
+  motionToggle?.addEventListener('click', () => {
+    const paused = clientSection.classList.toggle('is-paused')
+    motionToggle.setAttribute('aria-pressed', String(paused))
+    motionToggle.textContent = paused ? 'Resume motion' : 'Pause motion'
+  })
   const section = document.querySelector('.dc-showcase')
   if (!section) return
   const reduced = window.matchMedia('(prefers-reduced-motion: reduce)')

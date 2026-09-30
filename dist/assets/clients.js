@@ -1,6 +1,4 @@
-const clientBrands = [
-  ['Adhithya Sai Promoters','/assets/logo/adithya sai.jpeg'],['Spark Clinic','/assets/logo/spark-clinic.png'],['Sree Surya Infra','/assets/logo/sree surya.jpeg'],['Ganesh Constructions','/assets/logo/ganesh.jpeg'],['Sri Conventions','/assets/logo/sri-conventions (1).png'],['Sri Parasakthi Peetam','/assets/logo/sri-parasakthi-peetam.png'],['SSM','/assets/logo/ssm.jpeg'],['SV Constructions','/assets/logo/sv-constructions.png'],['Tirumalsetty','/assets/logo/tirumalsetty.jpeg'],['UBIC','/assets/logo/UBIC_Primary_Square(Black).png']
-]
+import { clientBrands } from './client-brands.js'
 
 const media = [
   ['/assets/poster2/look.jpeg','Fashion campaign'],['/assets/poster2/dc.jpg','Brand campaign'],['/assets/poster2/dc1.jpg','Creative campaign'],['/assets/poster2/e.jpg','Editorial campaign'],['/assets/poster2/intrior.jpg','Interior campaign'],['/assets/poster2/unwrap.jpeg','Jewellery campaign'],['/assets/poster2/WhatsApp Image 2026-09-29 at 2.25.18 PM.jpeg','Hospitality campaign'],['/assets/poster2/plan.jpeg','Launch campaign'],['/assets/poster2/plan.jpeg','Campaign planning'],['/assets/poster2/saree.jpg','Fashion campaign'],['/assets/poster2/today.jpg','Performance creative'],['/assets/poster2/tree.jpeg','Brand story'],['/assets/postors/ganesh.jpg','Client campaign'],['/assets/postors/ts2.jpg','Property campaign']
