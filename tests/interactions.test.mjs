@@ -336,6 +336,68 @@ test("Client campaigns, gallery keyboard wrapping and linked brand stories work"
     51,
   );
   assert.equal(document.querySelectorAll(".client-brand-card").length, 10);
+  const tiltCard = document.querySelector(".aceternity-client-card");
+  tiltCard.getBoundingClientRect = () => ({
+    left: 0,
+    top: 0,
+    width: 200,
+    height: 200,
+  });
+  const moveOverCard = async () =>
+    act(async () => {
+      tiltCard.dispatchEvent(
+        new window.MouseEvent("pointermove", {
+          bubbles: true,
+          clientX: 1000,
+          clientY: 1000,
+        }),
+      );
+    });
+  await moveOverCard();
+  assert.equal(tiltCard.dataset.tiltActive, "true");
+  assert.equal(
+    tiltCard.style.getPropertyValue("--ace-rotate-y"),
+    "4.00deg",
+    "Tilt remains bounded",
+  );
+  await act(async () =>
+    tiltCard.dispatchEvent(
+      new window.Event("pointercancel", { bubbles: true }),
+    ),
+  );
+  assert.equal(tiltCard.dataset.tiltActive, undefined);
+  assert.equal(tiltCard.style.getPropertyValue("--ace-rotate-y"), "");
+  await moveOverCard();
+  const reduced = matchMedia("(prefers-reduced-motion: reduce)");
+  await act(async () => {
+    reduced.matches = true;
+    reduced.dispatchEvent(new window.Event("change"));
+  });
+  await moveOverCard();
+  assert.equal(
+    tiltCard.dataset.tiltActive,
+    undefined,
+    "Reduced motion resets and disables tilt",
+  );
+  await act(async () => {
+    reduced.matches = false;
+    reduced.dispatchEvent(new window.Event("change"));
+    const fine = matchMedia("(hover: hover) and (pointer: fine)");
+    fine.matches = false;
+    fine.dispatchEvent(new window.Event("change"));
+  });
+  await moveOverCard();
+  assert.equal(
+    tiltCard.dataset.tiltActive,
+    undefined,
+    "Coarse pointer does not tilt",
+  );
+  assert.equal(
+    document
+      .querySelector("article.aceternity-client-card")
+      .getAttribute("tabindex"),
+    null,
+  );
   assert.equal(document.querySelectorAll(".featured-media-slide").length, 13);
   await click(".featured-media-arrow--next");
   assert.equal(

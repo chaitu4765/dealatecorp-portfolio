@@ -11,7 +11,9 @@
   },
   "dependencies": {
     "react": "19.3.0",
-    "react-dom": "19.3.0"
+    "react-dom": "19.3.0",
+    "three": "0.184.0",
+    "threejs-particle-fluids": "0.2.0"
   },
   "devDependencies": {
     "@vitejs/plugin-react": "6.1.1",

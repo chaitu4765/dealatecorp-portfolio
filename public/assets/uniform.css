@@ -1006,3 +1006,78 @@ body .copyright {
     transition: none;
   }
 }
+
+/* Aceternity 3D Card Effect, scoped to the local Clients-page trial. */
+body.is-clients-page .client-brand-showcase {
+  background: var(--dc-paper);
+  scroll-margin-top: 90px;
+}
+body.is-clients-page .client-brand-showcase::before {
+  display: none;
+}
+body.is-clients-page .client-brand-head .kicker {
+  color: var(--dc-blue);
+}
+body.is-clients-page .client-brand-head > p:last-child {
+  font-weight: 400;
+}
+.client-brand-card.aceternity-client-card {
+  overflow: visible;
+  min-width: 0;
+  border: 1px solid #d8dee8;
+  border-radius: 14px;
+  background: #fff;
+  box-shadow: 0 8px 24px #16294208;
+  transform: perspective(1000px) rotateX(var(--ace-rotate-x, 0deg))
+    rotateY(var(--ace-rotate-y, 0deg));
+  transform-style: preserve-3d;
+  transition:
+    transform 0.22s ease-out,
+    border-color 0.22s,
+    box-shadow 0.22s;
+}
+.aceternity-client-card > span {
+  font-size: 12px;
+  font-weight: 500;
+}
+.aceternity-client-card .brand-logo-panel {
+  background: #f5f7fb;
+  border: 1px solid #edf0f5;
+  border-radius: 10px;
+  box-shadow: none;
+  transform: translateZ(0);
+  transition:
+    transform 0.25s ease-out,
+    box-shadow 0.25s ease-out;
+}
+.aceternity-client-card b {
+  font-weight: 600;
+  line-height: 1.4;
+  transform: translateZ(0);
+  transition: transform 0.25s ease-out;
+}
+.aceternity-client-card[data-tilt-active] {
+  z-index: 2;
+  border-color: #91b4ed;
+  box-shadow: 0 18px 38px #16294214;
+}
+.aceternity-client-card[data-tilt-active] .brand-logo-panel {
+  transform: translateZ(26px);
+  box-shadow: 0 12px 24px #176bf512;
+}
+.aceternity-client-card[data-tilt-active] b {
+  transform: translateZ(14px);
+}
+a.aceternity-client-card:focus-visible {
+  border-color: var(--dc-blue);
+  box-shadow: 0 0 0 5px #176bf51a;
+}
+@media (prefers-reduced-motion: reduce), (hover: none), (pointer: coarse) {
+  .client-brand-card.aceternity-client-card,
+  .client-brand-card.aceternity-client-card:hover,
+  .aceternity-client-card .brand-logo-panel,
+  .aceternity-client-card b {
+    transform: none;
+    transition: none;
+  }
+}

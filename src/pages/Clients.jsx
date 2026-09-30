@@ -1,6 +1,7 @@
 import { Fragment } from "react";
 import { useAnimationEffect } from "../hooks/useAnimationEffect.js";
 import { clientBrands, clientHeroMedia } from "../data/client-brands.js";
+import { AceternityClientCard } from "../components/AceternityClientCard.jsx";
 const media = clientHeroMedia.map((src) => [src, "Client campaign"]);
 function mediaCard([src, label], i) {
   return (
@@ -26,15 +27,15 @@ function clientBrandCard([name, logo, href], i) {
     </>
   );
   return href ? (
-    <a
-      className="client-brand-card"
+    <AceternityClientCard
+      as="a"
       href={href}
       aria-label={"View " + name + " case study"}
     >
       {content}
-    </a>
+    </AceternityClientCard>
   ) : (
-    <article className="client-brand-card">{content}</article>
+    <AceternityClientCard>{content}</AceternityClientCard>
   );
 }
 export function Clients({ featuredMedia }) {
