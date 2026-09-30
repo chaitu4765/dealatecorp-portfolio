@@ -1,2 +1,7 @@
 *.tar.gz
 .docx-review/
+node_modules/
+dist/
+playwright-report/
+test-results/
+.migration/

@@ -1,0 +1,23 @@
+{
+  "name": "dealatecorp-website",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host localhost --port 4173 --strictPort",
+    "build": "vite build && node scripts/build-routes.mjs",
+    "preview": "vite preview --host localhost --port 4173 --strictPort",
+    "test": "npm run build && node --test --test-concurrency=1 tests/*.test.mjs"
+  },
+  "dependencies": {
+    "react": "19.3.0",
+    "react-dom": "19.3.0"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "6.1.1",
+    "jsdom": "^29.1.1",
+    "parse5": "^8.0.0",
+    "prettier": "^3.6.0",
+    "vite": "8.3.1"
+  }
+}
