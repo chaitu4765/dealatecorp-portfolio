@@ -1,5 +1,6 @@
 import { home, initHome } from './home.js'
 import { services, initServices } from './services.js'
+import { clientsPage, initClients } from './clients.js'
 
 const path = location.pathname.replace(/\/$/, '') || '/'
 
@@ -8,7 +9,9 @@ effects.rel = 'stylesheet'
 effects.href = '/assets/effects.css'
 const usesEditorialTheme = path === '/' || path === '/services'
 if (!usesEditorialTheme) document.head.append(effects)
+if (path === '/clients') { const clientsStyles = document.createElement('link'); clientsStyles.rel = 'stylesheet'; clientsStyles.href = '/assets/clients.css'; document.head.append(clientsStyles) }
 document.body.classList.toggle('home-page', usesEditorialTheme)
+document.body.classList.toggle('is-clients-page', path === '/clients')
 
 const nav = [
   ['Home', '/'], ['Services', '/services/'], ['Clients', '/clients/'], ['About', '/about/']
@@ -46,8 +49,6 @@ function clientFeyCards() {
 function projectCard([category,title,desc,tags,color]) { return `<article class="project ${color}"><div class="project-art"><span>${title.split(' ').map(x=>x[0]).join('').slice(0,2)}</span></div><p class="kicker">${category}</p><h3>${title}</h3><p>${desc}</p><small>${tags}</small></article>` }
 
 function portfolio() { return `<main><section class="page-intro"><p class="kicker">Selected work</p><h1>Work that moves<br><em>business forward.</em></h1><p>Different sectors. Different constraints. One standard: make the work useful, memorable and measurable.</p></section><section class="portfolio-grid">${work.map(projectCard).join('')}</section>${cta()}</main>` }
-
-function clientsPage() { return `<main><section class="page-intro page-intro--center"><p class="kicker">Our clients</p><h1>Built on trust.<br><em>Measured in momentum.</em></h1><p>We work alongside founders and teams who care about the quality of the journey—not just the speed of the result.</p></section><section class="client-wall">${clients.map((c,i)=>`<article><span>${String(i+1).padStart(2,'0')}</span><b>${c}</b></article>`).join('')}</section><section class="quote"><blockquote>“The best client relationships feel less like outsourcing and more like adding a sharper, faster growth team.”</blockquote><p>Our partnership principle</p></section>${cta()}</main>` }
 
 function about() { return `<main><section class="page-intro"><p class="kicker">About Dealatecorp</p><h1>Built for the gap between<br><em>ideas and outcomes.</em></h1><p>We are an independent growth partner in Hyderabad, bringing business thinking and digital craft under one roof.</p></section><section class="about-manifesto"><div class="about-number">D<span>→</span></div><div><p class="kicker">Our point of view</p><h2>Clarity is the beginning of good growth.</h2><p>More activity is rarely the answer. Better alignment is. We help teams decide what matters, build it with care, and learn quickly from what the market says next.</p><p>That means fewer disconnected campaigns, fewer vanity reports and more useful conversations about customers, conversion and long-term brand value.</p></div></section><section class="values"><article><span>01</span><h3>Think commercially</h3><p>Creative work must understand the business it serves.</p></article><article><span>02</span><h3>Make with care</h3><p>Details shape trust before a sales conversation begins.</p></article><article><span>03</span><h3>Measure honestly</h3><p>Good reporting explains what changed and what to do next.</p></article></section>${cta()}</main>` }
 
@@ -199,3 +200,4 @@ if (reelVideo && reelAudio) {
 
 if (path === '/') initHome()
 if (path === '/services') initServices()
+if (path === '/clients') initClients()
