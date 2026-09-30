@@ -165,6 +165,116 @@ test("All 14 services update React state, selected beam and enquiry target", asy
   assert.equal(document.querySelectorAll(".service-beams animate").length, 0);
 });
 
+test("Two departments keep complete capabilities, comparisons and keyboard selection", async () => {
+  window.history.replaceState(null, "", "/services/");
+  await mount("/services");
+  const departmentTabs = document.querySelectorAll(
+    '.department-tabs [role="tab"]',
+  );
+  assert.equal(departmentTabs.length, 2);
+  assert.deepEqual(
+    [...departmentTabs].map((node) => node.querySelector("strong").textContent),
+    ["IT Department", "Digital Marketing"],
+  );
+  assert.ok(!document.querySelector("main").textContent.includes("Finance"));
+  for (const [id, count] of [
+    ["it", 6],
+    ["digital", 14],
+  ]) {
+    await click(`#department-${id}`);
+    const buttons = document.querySelectorAll(
+      '.capability-nav [role="group"] button',
+    );
+    assert.equal(buttons.length, count);
+    assert.equal(
+      document.querySelectorAll("#capability-choice option").length,
+      count,
+    );
+    for (const button of buttons) {
+      await act(async () => button.click());
+      assert.equal(document.querySelectorAll(".capability-scope li").length, 3);
+      assert.equal(document.querySelectorAll(".implementation li").length, 3);
+      assert.equal(document.querySelectorAll(".comparison-step").length, 6);
+      assert.equal(document.querySelector('input[type="range"]').value, "50");
+      assert.match(
+        document.querySelector(".comparison-disclaimer").textContent,
+        /Illustrative workflow/,
+      );
+      assert.ok(
+        decodeURIComponent(
+          document.querySelector(".capability-scope a").href,
+        ).includes(document.querySelector(".capability-detail h3").textContent),
+      );
+      await click(".comparison-controls button:last-child");
+      assert.equal(document.querySelector('input[type="range"]').value, "0");
+      assert.equal(
+        document
+          .querySelector(".comparison-canvas")
+          .style.getPropertyValue("--split"),
+        "0%",
+      );
+      await click(".comparison-controls button:first-of-type");
+      assert.equal(document.querySelector('input[type="range"]').value, "100");
+      assert.match(
+        document
+          .querySelector('input[type="range"]')
+          .getAttribute("aria-valuetext"),
+        /100 percent before/,
+      );
+    }
+  }
+  await press(document.querySelector("#department-digital"), "ArrowRight");
+  assert.equal(document.activeElement.id, "department-it");
+  assert.equal(location.hash, "#department-it");
+  await press(document.activeElement, "End");
+  assert.equal(document.activeElement.id, "department-digital");
+  const canvas = document.querySelector(".comparison-canvas");
+  canvas.getBoundingClientRect = () => ({ left: 0, width: 400 });
+  await act(async () =>
+    canvas.dispatchEvent(
+      new window.MouseEvent("pointerdown", {
+        bubbles: true,
+        button: 0,
+        clientX: 100,
+      }),
+    ),
+  );
+  assert.equal(document.querySelector('input[type="range"]').value, "25");
+  await act(async () => {
+    const select = document.querySelector("#capability-choice");
+    select.value = "4";
+    select.dispatchEvent(new window.Event("change", { bubbles: true }));
+  });
+  assert.equal(
+    document.querySelector(".capability-detail h3").textContent,
+    "Meta Ads",
+  );
+  assert.equal(document.querySelector('input[type="range"]').value, "50");
+  window.history.replaceState(null, "", "/");
+});
+
+test("Department deep links restore the selected panel", async () => {
+  window.history.replaceState(null, "", "/services/#department-digital");
+  await mount("/services");
+  assert.equal(
+    document.querySelector("#department-digital").getAttribute("aria-selected"),
+    "true",
+  );
+  assert.equal(
+    document.querySelector(".capability-detail h3").textContent,
+    "Search Engine Optimization",
+  );
+  await act(async () => {
+    window.history.replaceState(null, "", "/services/#department-it");
+    window.dispatchEvent(new window.HashChangeEvent("hashchange"));
+  });
+  assert.equal(
+    document.querySelector("#department-it").getAttribute("aria-selected"),
+    "true",
+  );
+  window.history.replaceState(null, "", "/");
+});
+
 test("Navigation uses React state and Escape restores focus", async () => {
   await mount("/about");
   await click(".menu");
@@ -179,12 +289,21 @@ test("Navigation uses React state and Escape restores focus", async () => {
     "false",
   );
   assert.equal(document.activeElement, document.querySelector(".menu"));
-  await click('.menu');
-  const cta=document.querySelector('.nav-cta');
-  cta.addEventListener('click', event=>event.preventDefault(), {once:true});
-  await act(async()=>cta.dispatchEvent(new window.MouseEvent('click',{bubbles:true,cancelable:true})));
-  assert.ok(!document.body.classList.contains('nav-open'));
-  assert.equal(document.querySelector('.menu').getAttribute('aria-expanded'),'false');
+  await click(".menu");
+  const cta = document.querySelector(".nav-cta");
+  cta.addEventListener("click", (event) => event.preventDefault(), {
+    once: true,
+  });
+  await act(async () =>
+    cta.dispatchEvent(
+      new window.MouseEvent("click", { bubbles: true, cancelable: true }),
+    ),
+  );
+  assert.ok(!document.body.classList.contains("nav-open"));
+  assert.equal(
+    document.querySelector(".menu").getAttribute("aria-expanded"),
+    "false",
+  );
 });
 
 test("Home keeps all logos, studio cards, working video and pause controls", async () => {

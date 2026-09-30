@@ -85,6 +85,23 @@ const text = (tree) =>
     .join("")
     .replace(/\s/g, "");
 const digest = (bytes) => createHash("sha256").update(bytes).digest("hex");
+// Department sections are intentional additions. Continue comparing all the
+// established page content independently of the new explorer and link panels.
+const preservedCopy = (node, path) => {
+  // The header monogram was intentionally replaced with the supplied logo.
+  if (
+    attr(node, "class")?.split(" ").includes("brand-mark") &&
+    node.parentNode?.parentNode?.tagName === "header"
+  )
+    return "";
+  if (attr(node, "data-department-addition") !== undefined) return "";
+  if (path === "/services" && attr(node, "id") === "layer-1") return "";
+  return node.nodeName === "#text"
+    ? node.value
+    : (node.childNodes || [])
+        .map((child) => preservedCopy(child, path))
+        .join("");
+};
 
 for (const [path, name] of Object.entries(pages)) {
   test(`React preserves text, media, links and section IDs: ${path}`, () => {
@@ -94,18 +111,30 @@ for (const [path, name] of Object.entries(pages)) {
     assert.ok(!output.includes("[object Object]"));
     assert.ok(!output.includes("&lt;span"));
     const actual = parseFragment(output);
+    const brandLogos = elements(actual, "img").filter(
+      (node) => attr(node, "class") === "brand-logo",
+    );
+    assert.equal(brandLogos.length, 1);
+    assert.equal(attr(brandLogos[0], "src"), "/assets/logo.png");
     assert.equal(
-      text(actual),
-      text(expected),
-      "Visible and hidden page copy must remain unchanged",
+      preservedCopy(actual, path).replace(/\s/g, ""),
+      preservedCopy(expected, path)
+        .replace(/\s/g, "")
+        .replace(
+          path === "/services" ? "Theconnectedapproach" : "__no_change__",
+          "02/DigitalMarketing·DCCreativeLabs",
+        ),
+      "Established copy remains intact outside the updated Services introduction",
     );
     for (const tag of ["img", "video", "source"]) {
       const media = (tree) =>
-        elements(tree, tag).map((node) => [
-          attr(node, "src"),
-          attr(node, "poster"),
-          attr(node, "alt"),
-        ]);
+        elements(tree, tag)
+          .filter((node) => attr(node, "class") !== "brand-logo")
+          .map((node) => [
+            attr(node, "src"),
+            attr(node, "poster"),
+            attr(node, "alt"),
+          ]);
       assert.deepEqual(
         media(actual),
         media(expected),
@@ -114,13 +143,24 @@ for (const [path, name] of Object.entries(pages)) {
     }
     const links = (tree) =>
       elements(tree, "a").map((node) => attr(node, "href"));
-    assert.deepEqual(links(actual), links(expected));
+    const remainingLinks = links(actual);
+    for (const href of links(expected)) {
+      const index = remainingLinks.indexOf(href);
+      assert.ok(index >= 0, `Preserved link: ${href}`);
+      remainingLinks.splice(index, 1);
+    }
     const ids = (tree) =>
       walk(tree)
         .map((node) => attr(node, "id"))
         .filter(Boolean)
         .filter((id) => id !== "site-navigation");
-    assert.deepEqual(ids(actual), ids(expected));
+    for (const id of ids(expected))
+      assert.ok(ids(actual).includes(id), `Preserved anchor: ${id}`);
+    assert.equal(
+      new Set(ids(actual)).size,
+      ids(actual).length,
+      "No duplicate section IDs",
+    );
   });
 }
 

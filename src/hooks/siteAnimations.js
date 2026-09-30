@@ -19,6 +19,8 @@ export function initSite(scope, usesEditorialTheme) {
       const target = document.getElementById(
         decodeURIComponent(location.hash.slice(1)),
       );
+      // The department explorer owns its hash navigation and tab selection.
+      if (target?.matches(".department-tabs [role='tab']")) return;
       if (target)
         target.scrollIntoView({
           block: "start",

@@ -2,6 +2,7 @@ import { Fragment } from "react";
 import { useAnimationEffect } from "../hooks/useAnimationEffect.js";
 import { Studio } from "./Studio.jsx";
 import { clientBrands } from "../data/client-brands.js";
+import { DepartmentLinks } from "../components/DepartmentLinks.jsx";
 const services = [
   {
     name: "Branding & Design",
@@ -174,6 +175,10 @@ export function Home() {
           </p>
         </div>
       </section>
+
+      <div className="department-links-wrap">
+        <DepartmentLinks />
+      </div>
 
       <section className="dc-showcase" aria-label="Explore our eight services">
         <div className="dc-showcase__sticky">

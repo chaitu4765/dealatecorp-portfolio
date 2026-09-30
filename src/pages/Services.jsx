@@ -1,4 +1,5 @@
 import { ServiceNetwork } from "../components/ServiceNetwork.jsx";
+import { DepartmentExplorer } from "../components/DepartmentExplorer.jsx";
 import { Fragment, useState, useRef } from "react";
 // Native SVG adaptation of Inspira UI Animated Beam. See third-party-notices.txt.
 export const serviceCatalog = [
@@ -310,34 +311,47 @@ export function Services() {
   return (
     <main className="dc-services-page" id="main-content">
       <section className="services-heading dc-wrap" id="layer-1">
-        <p className="dc-eyebrow">DC Creative Labs / Our services</p>
+        <p className="dc-eyebrow">Dealatecorp / Our services</p>
         <h1>
-          Every channel.
+          Two disciplines.
           <br />
-          <em>One connected strategy.</em>
+          <em>One shared direction.</em>
         </h1>
         <div>
           <p>
-            Fourteen digital marketing services, built around your business
-            goals. Explore how each one connects to the bigger picture.
+            Technology and digital marketing—connected around your business.
+            Explore the expertise, the implementation and the difference a
+            considered approach can make.
           </p>
-          <a className="dc-service-link" href="#service-directory">
-            View every service
+          <a className="dc-service-link" href="#departments">
+            Find your starting point
           </a>
         </div>
       </section>
 
+      <DepartmentExplorer services={serviceCatalog} />
+
       <section
         className="service-network-section dc-wrap"
+        id="digital-network"
         aria-labelledby="network-title"
       >
         <div className="network-heading">
           <div>
-            <p className="dc-eyebrow">The connected approach</p>
+            <p className="dc-eyebrow">
+              02 / Digital Marketing · DC Creative Labs
+            </p>
             <h2 id="network-title">Your growth, at the centre.</h2>
           </div>
           <p id="network-help">
             Select a service to explore what it can do for your business.
+            <a
+              className="dc-service-link"
+              href="#service-directory"
+              data-department-addition
+            >
+              View every service
+            </a>
           </p>
         </div>
 
@@ -467,6 +481,11 @@ export function Services() {
         <div className="service-directory__grid">
           {supportingCapabilities.map((s, index) => (
             <article id={"capability-" + s.id} key={index}>
+              <p className="dc-eyebrow" data-department-addition>
+                {["websites", "automation"].includes(s.id)
+                  ? "IT Department"
+                  : "Digital Marketing"}
+              </p>
               <h3>{s.name}</h3>
               <p>{s.description}</p>
             </article>

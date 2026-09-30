@@ -27,6 +27,7 @@ document.querySelector('meta[name="description"]').content = route.description;
 const sheets = editorial
   ? ["home", path === "/" ? "studio" : "services"]
   : ["effects", ...(path === "/clients" ? ["clients"] : [])];
+sheets.push("uniform");
 const stylesReady = sheets.map(
   (name) =>
     new Promise((resolve) => {

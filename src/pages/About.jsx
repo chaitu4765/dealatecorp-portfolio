@@ -1,5 +1,6 @@
 import { Fragment } from "react";
 import { CallToAction } from "../components/CallToAction.jsx";
+import { DepartmentLinks } from "../components/DepartmentLinks.jsx";
 export function About() {
   return (
     <main>
@@ -50,6 +51,19 @@ export function About() {
           <h3>Measure honestly</h3>
           <p>Good reporting explains what changed and what to do next.</p>
         </article>
+      </section>
+      <section
+        className="shared-departments"
+        aria-labelledby="about-departments"
+        data-department-addition
+      >
+        <p className="kicker">Our departments</p>
+        <h2 id="about-departments">
+          One partner.
+          <br />
+          Two connected disciplines.
+        </h2>
+        <DepartmentLinks />
       </section>
       <CallToAction />
     </main>

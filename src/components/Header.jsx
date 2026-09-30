@@ -25,7 +25,15 @@ export function Header({ path }) {
   return (
     <header className="site-header">
       <a className="brand" href="/" aria-label="Dealatecorp home">
-        <span className="brand-mark">D</span>
+        <span className="brand-mark brand-mark--logo" aria-hidden="true">
+          <img
+            className="brand-logo"
+            src="/assets/logo.png"
+            alt=""
+            width="44"
+            height="44"
+          />
+        </span>
         <span>
           <b>DEALATECORP</b>
           <small>For a better tomorrow</small>
