@@ -11,10 +11,7 @@ export function CallToAction() {
         Tell us where the business needs to go. We’ll map the clearest way
         forward.
       </p>
-      <a
-        className="button button--light interactive-hover"
-        href="mailto:hr@dealatecorp.com"
-      >
+      <a className="button button--light interactive-hover" href="/contact/" data-project-enquiry>
         <span>Start a conversation</span>
         <i aria-hidden="true">↗</i>
       </a>

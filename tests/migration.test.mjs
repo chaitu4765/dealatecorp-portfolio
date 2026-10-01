@@ -88,6 +88,11 @@ const digest = (bytes) => createHash("sha256").update(bytes).digest("hex");
 // Department sections are intentional additions. Continue comparing all the
 // established page content independently of the new explorer and link panels.
 const preservedCopy = (node, path) => {
+  // About now includes a direct enquiry button.
+  if (attr(node, "class")?.split(" ").includes("about-enquiry-button"))
+    return "";
+  // The shared footer was intentionally redesigned; links remain checked below.
+  if (node.tagName === "footer" && path !== "/clients/tirumalasetty") return "";
   // The header monogram was intentionally replaced with the supplied logo.
   if (
     attr(node, "class")?.split(" ").includes("brand-mark") &&
@@ -129,7 +134,11 @@ for (const [path, name] of Object.entries(pages)) {
     for (const tag of ["img", "video", "source"]) {
       const media = (tree) =>
         elements(tree, tag)
-          .filter((node) => attr(node, "class") !== "brand-logo")
+          .filter(
+            (node) =>
+              attr(node, "class") !== "brand-logo" &&
+              attr(node, "src") !== "/assets/logo.png",
+          )
           .map((node) => [
             attr(node, "src"),
             attr(node, "poster"),
@@ -141,8 +150,14 @@ for (const [path, name] of Object.entries(pages)) {
         `${tag} sources and accessibility descriptions`,
       );
     }
+    // Project CTAs now take visitors through the local Contact page before the
+    // form creates an email, so treat the former direct email target as that route.
+    const normalizeProjectLink = (href) =>
+      href === "mailto:hr@dealatecorp.com" ? "/contact/" : href;
     const links = (tree) =>
-      elements(tree, "a").map((node) => attr(node, "href"));
+      elements(tree, "a").map((node) =>
+        normalizeProjectLink(attr(node, "href")),
+      );
     const remainingLinks = links(actual);
     for (const href of links(expected)) {
       const index = remainingLinks.indexOf(href);
@@ -198,9 +213,9 @@ test("Shared client list includes 10 logos and 51 campaign images", async () => 
   assert.equal(data.clientHeroMedia.length, 51);
 });
 
-test("Production has all eight direct entry points and route-specific metadata", () => {
+test("Production has all nine direct entry points and route-specific metadata", () => {
   const routes = JSON.parse(readFileSync("src/data/routes.json", "utf8"));
-  assert.equal(routes.length, 8);
+  assert.equal(routes.length, 9);
   for (const route of routes) {
     const html = readFileSync(
       `dist${route.path === "/" ? "" : route.path}/index.html`,

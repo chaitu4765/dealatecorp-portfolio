@@ -1,20 +1,33 @@
-import { Fragment } from "react";
 import { CallToAction } from "../components/CallToAction.jsx";
 import { DepartmentLinks } from "../components/DepartmentLinks.jsx";
 export function About() {
   return (
-    <main>
+    <main className="dc-about">
       <section className="page-intro">
-        <p className="kicker">About Dealatecorp</p>
-        <h1>
-          Built for the gap between
-          <br />
-          <em>ideas and outcomes.</em>
-        </h1>
-        <p>
-          We are an independent growth partner in Hyderabad, bringing business
-          thinking and digital craft under one roof.
-        </p>
+        <div className="dc-about__hero-copy">
+          <p className="kicker">About Dealatecorp</p>
+          <h1>
+            Built for the gap between
+            <br />
+            <em>ideas and outcomes.</em>
+          </h1>
+          <a className="button about-enquiry-button" href="/contact/">
+            Enquire now <span aria-hidden="true">↗</span>
+          </a>
+        </div>
+        <div className="dc-about__hero-summary">
+          <p>
+            We are an independent growth partner in Hyderabad, bringing business
+            thinking and digital craft under one roof.
+          </p>
+        </div>
+        <div
+          className="dc-about__visual"
+          aria-hidden="true"
+          data-about-addition
+        >
+          <span className="dc-about__orb" />
+        </div>
       </section>
       <section className="about-manifesto">
         <div className="about-number">
@@ -35,21 +48,23 @@ export function About() {
           </p>
         </div>
       </section>
-      <section className="values">
+      <section className="values dc-about__values">
+        <h2 data-department-addition>What guides us</h2>
         <article>
-          <span>01</span>
           <h3>Think commercially</h3>
           <p>Creative work must understand the business it serves.</p>
         </article>
         <article>
-          <span>02</span>
           <h3>Make with care</h3>
           <p>Details shape trust before a sales conversation begins.</p>
         </article>
         <article>
-          <span>03</span>
           <h3>Measure honestly</h3>
           <p>Good reporting explains what changed and what to do next.</p>
+        </article>
+        <article data-department-addition>
+          <h3>Work as one team</h3>
+          <p>Clear collaboration keeps every decision close to the work.</p>
         </article>
       </section>
       <section

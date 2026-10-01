@@ -111,7 +111,7 @@ export function Clients({ featuredMedia }) {
             Bring the ambition. We will shape the creative system around it with
             focus, restraint and momentum.
           </p>
-          <a className="button button--light" href="mailto:hr@dealatecorp.com">
+          <a className="button button--light" href="/contact/" data-project-enquiry>
             Start a project
           </a>
         </div>

@@ -20,6 +20,11 @@
     "description": "Meet Dealatecorp, an independent growth partner built for ambitious businesses."
   },
   {
+    "path": "/contact",
+    "title": "Contact — Dealatecorp",
+    "description": "Start a project with Dealatecorp. Share your details and request a free consultation."
+  },
+  {
     "path": "/portfolio",
     "title": "Portfolio — Dealatecorp",
     "description": "Selected Dealatecorp work across property, healthcare and consumer brands."

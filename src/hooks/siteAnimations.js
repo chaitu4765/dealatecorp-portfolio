@@ -346,7 +346,7 @@ export function initSite(scope, usesEditorialTheme) {
     "(prefers-reduced-motion: reduce)",
   ).matches;
   const finePointer = window.matchMedia("(pointer: fine)").matches;
-  if (!usesEditorialTheme && !reducedMotion && finePointer) {
+  if (!reducedMotion && finePointer) {
     const aura = document.createElement("div");
     aura.className = "pointer-aura";
     document.body.append(aura);

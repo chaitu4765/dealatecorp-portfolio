@@ -70,7 +70,8 @@ export function Header({ path }) {
         ))}
         <a
           className="nav-cta interactive-hover"
-          href="mailto:hr@dealatecorp.com"
+          href="/contact/"
+          data-project-enquiry
           onClick={() => setOpen(false)}
         >
           <span>Start a project</span>

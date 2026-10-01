@@ -1,18 +1,18 @@
 // Shared client identities for the homepage and Clients page.
 export const clientBrands = [
+  ["Ganesh Constructions", "/assets/logo/ganesh.jpeg"],
+  ["Tirumalsetty", "/assets/logo/tirumalsetty.jpeg", "/clients/tirumalasetty/"],
+  ["Sri Parasakthi Peetam", "/assets/logo/sri-parasakthi-peetam.png"],
+  ["Sri Conventions", "/assets/logo/sri-conventions (1).png"],
+  ["SV Constructions", "/assets/logo/sv-constructions.png"],
+  ["Spark Clinic", "/assets/logo/spark-clinic.png"],
+  ["Sree Surya Infra", "/assets/logo/sree surya.jpeg"],
+  ["SSM", "/assets/logo/ssm.jpeg"],
   [
     "Adhithya Sai Promoters",
     "/assets/logo/adithya sai.jpeg",
     "/clients/adhithya-sai-promoters/",
   ],
-  ["Spark Clinic", "/assets/logo/spark-clinic.png"],
-  ["Sree Surya Infra", "/assets/logo/sree surya.jpeg"],
-  ["Ganesh Constructions", "/assets/logo/ganesh.jpeg"],
-  ["Sri Conventions", "/assets/logo/sri-conventions (1).png"],
-  ["Sri Parasakthi Peetam", "/assets/logo/sri-parasakthi-peetam.png"],
-  ["SSM", "/assets/logo/ssm.jpeg"],
-  ["SV Constructions", "/assets/logo/sv-constructions.png"],
-  ["Tirumalsetty", "/assets/logo/tirumalsetty.jpeg", "/clients/tirumalasetty/"],
   ["UBIC", "/assets/logo/UBIC_Primary_Square(Black).png"],
 ];
 
