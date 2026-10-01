@@ -42,10 +42,18 @@ const clientBrands = [
 ]
 
 const tirumalasettyWork = [
-  { src: '/assets/postors/ts2.jpg', alt: 'Tirumalasetty Projects LLP creative work - TS2 artwork' },
-  { src: '/assets/postors/ts1.jpg', alt: 'Tirumalasetty Projects LLP creative work - TS1 artwork' },
-  { src: '/assets/postors/tg.png', alt: 'Tirumalasetty Projects LLP creative work - TG artwork' },
-  { src: '/assets/poster2/tsin.jpeg', alt: 'Tirumalasetty Projects LLP creative work - TSIN artwork' }
+  { type: 'video', src: '/assets/postors/tvideo.MP4', alt: 'Tirumalasetty Projects LLP showcase video' },
+  { type: 'image', src: '/assets/postors/t1-web.jpg', alt: 'Tirumalasetty Projects LLP additional poster 1' },
+  { type: 'image', src: '/assets/postors/t2-web.jpg', alt: 'Tirumalasetty Projects LLP additional poster 2' },
+  { type: 'image', src: '/assets/postors/t3-web.jpg', alt: 'Tirumalasetty Projects LLP additional poster 3' },
+  { type: 'image', src: '/assets/postors/t4-web.jpg', alt: 'Tirumalasetty Projects LLP additional poster 4' },
+  { type: 'image', src: '/assets/postors/t5-web.jpg', alt: 'Tirumalasetty Projects LLP additional poster 5' },
+  { type: 'image', src: '/assets/postors/t6-web.jpg', alt: 'Tirumalasetty Projects LLP additional poster 6' },
+  { type: 'image', src: '/assets/postors/t7-web.jpg', alt: 'Tirumalasetty Projects LLP additional poster 7' },
+  { type: 'image', src: '/assets/postors/ts2.jpg', alt: 'Tirumalasetty Projects LLP creative work - TS2 artwork' },
+  { type: 'image', src: '/assets/postors/ts1.jpg', alt: 'Tirumalasetty Projects LLP creative work - TS1 artwork' },
+  { type: 'image', src: '/assets/postors/tg.png', alt: 'Tirumalasetty Projects LLP creative work - TG artwork' },
+  { type: 'image', src: '/assets/poster2/tsin.jpeg', alt: 'Tirumalasetty Projects LLP creative work - TSIN artwork' }
 ]
 
 const adhithyaGallery = [
@@ -72,8 +80,8 @@ const sparkVideos = [
 
 const sreeSuryaHero = '/assets/poster2/sree surya.png'
 const sreeSuryaWork = [
-  { type: 'video', src: '/clients/videos/sri surya.mp4', poster: '/assets/postors/sg.png', label: 'Sree Surya Infra campaign video' },
-  { type: 'video', src: '/clients/videos/sri surya.mp4', poster: '/assets/postors/sg.png', label: 'Sree Surya Infra campaign video' }
+  { type: 'image', src: '/assets/postors/sg.jpg', alt: 'Sree Surya Infra campaign artwork' },
+  { type: 'video', src: '/clients/videos/sri surya.mp4', label: 'Sree Surya Infra campaign video' }
 ]
 
 const ganeshHero = '/assets/poster2/ganeshhome.png'
@@ -113,6 +121,124 @@ const svcWork = [
 const ssmVideo = '/clients/videos/ssm video.mp4'
 const ssmWorkVideo = '/clients/videos/ssm.mp4'
 const ssmPoster = '/assets/postors/ssmg.png'
+
+const industryPortfolio = [
+  {
+    id: 'real-estate',
+    label: 'Real Estate',
+    icon: '&#8962;',
+    summary: 'Property websites, residential launch creatives, and campaign visuals for construction-led brands.',
+    websites: [
+      { title: 'Ganesh Constructions', url: 'https://ganesh-constructionsweb-w331.vercel.app/' },
+      { title: 'Visionary Builds', url: 'https://visionary-builds-iyhh.vercel.app/' }
+    ],
+    media: [
+      { type: 'image', src: '/assets/postors/ganesh.jpg', alt: 'Ganesh Constructions brand campaign artwork' },
+      { type: 'image', src: '/assets/postors/gr.jpg', alt: 'Ganesh Constructions promotional artwork' },
+      { type: 'image', src: '/assets/postors/go.jpg', alt: 'Ganesh Constructions real estate visual artwork' },
+      { type: 'image', src: '/assets/postors/svc1.jpg', alt: 'Sri Venkateswara Constructions artwork' },
+      { type: 'image', src: '/assets/postors/svc2.jpg', alt: 'Sri Venkateswara Constructions campaign artwork' },
+      { type: 'video', src: '/clients/videos/aditya.mp4', alt: 'Adhithya Sai Promoters campaign video' }
+    ]
+  },
+  {
+    id: 'hospital',
+    label: 'Hospital',
+    icon: '+',
+    summary: 'Healthcare, dental, physiotherapy, and health education experiences with trust-first presentation.',
+    websites: [
+      { title: 'Sanjeevi Digital Health', url: 'https://sanjeevi-digital-health-7vzs.vercel.app/' },
+      { title: 'SS Dental', url: 'https://ssdental-six.vercel.app/' },
+      { title: 'Physiotherapy', url: 'https://physiotherapy1.vercel.app/' },
+      { title: 'DC College', url: 'https://dc-college.vercel.app/' }
+    ],
+    media: [
+      { type: 'image', src: '/assets/poster2/sp1.jpg', alt: 'Healthcare creative poster 01' },
+      { type: 'image', src: '/assets/poster2/sp2.jpg', alt: 'Healthcare creative poster 02' },
+      { type: 'image', src: '/assets/poster2/sp3.jpg', alt: 'Healthcare creative poster 03' },
+      { type: 'video', src: '/clients/videos/spark1.mp4', alt: 'Healthcare campaign video 01' },
+      { type: 'video', src: '/clients/videos/spark2.mp4', alt: 'Healthcare campaign video 02' },
+      { type: 'video', src: '/clients/videos/spark3.mp4', alt: 'Healthcare campaign video 03' }
+    ]
+  },
+  {
+    id: 'fashion-jewellery',
+    label: 'Fashion & Jewellery',
+    icon: '&#9671;',
+    summary: 'Retail-led visual systems for jewellery, saree, launch, lifestyle, and product storytelling.',
+    websites: [
+      { title: 'DC Radiant Dreams', url: 'https://dc-radiant-dreams-website.vercel.app/' }
+    ],
+    media: [
+      { type: 'image', src: '/assets/poster2/jew.jpg', alt: 'Jewellery campaign creative' },
+      { type: 'image', src: '/assets/poster2/j2.jpeg', alt: 'Jewellery launch campaign creative' },
+      { type: 'image', src: '/assets/poster2/saree.jpg', alt: 'Saree campaign creative' },
+      { type: 'image', src: '/assets/poster2/look.jpeg', alt: 'Fashion look campaign creative' },
+      { type: 'image', src: '/assets/poster2/lux.jpeg', alt: 'Luxury retail campaign creative' },
+      { type: 'image', src: '/assets/poster2/open.jpeg', alt: 'Retail opening campaign creative' }
+    ]
+  },
+  {
+    id: 'divine',
+    label: 'Divine',
+    icon: '&#10022;',
+    summary: 'Devotional brand presence with calm digital storytelling and complete website access.',
+    websites: [
+      { title: 'Sri Parasakthi Peetam', url: 'https://www.sriparasakthipeetam.com/' }
+    ],
+    media: [
+      { type: 'image', src: '/assets/poster2/sp12.png', alt: 'Sri Parasakthi Peetam devotional artwork' },
+      { type: 'image', src: '/assets/logo/sri-parasakthi-peetam.png', alt: 'Sri Parasakthi Peetam brand logo' },
+      { type: 'image', src: '/assets/postors/sg.png', alt: 'Devotional campaign artwork' },
+      { type: 'image', src: '/assets/poster2/tree.jpeg', alt: 'Devotional visual creative' }
+    ]
+  },
+  {
+    id: 'hotel',
+    label: 'Hotel',
+    icon: '&#9638;',
+    summary: 'Hospitality and venue pages framed for atmosphere, booking clarity, and polished browsing.',
+    websites: [
+      { title: 'Lumi Re Lumina', url: 'https://lumi-re-lumina.vercel.app/' }
+    ],
+    media: [
+      { type: 'image', src: '/assets/poster2/sc2.jpg', alt: 'Hospitality venue creative 01' },
+      { type: 'image', src: '/assets/poster2/sc3.jpg', alt: 'Hospitality venue creative 02' },
+      { type: 'video', src: '/assets/poster2/sc4.mp4', alt: 'Hospitality venue campaign video' },
+      { type: 'image', src: '/assets/poster2/sc5.jpg', alt: 'Hospitality venue creative 03' }
+    ]
+  },
+  {
+    id: 'logistics',
+    label: 'Logistics',
+    icon: '&#8594;',
+    summary: 'Import, export, and logistics web presence with direct live previews and campaign-ready cards.',
+    websites: [
+      { title: 'DC Imports and Exports', url: 'https://dc-importsandexports.vercel.app/' }
+    ],
+    media: [
+      { type: 'image', src: '/assets/poster2/dc.jpg', alt: 'Logistics campaign creative 01' },
+      { type: 'image', src: '/assets/poster2/dc1.jpg', alt: 'Logistics campaign creative 02' },
+      { type: 'image', src: '/assets/poster2/dc2.jpg', alt: 'Logistics campaign creative 03' },
+      { type: 'image', src: '/assets/postors/dg.png', alt: 'Logistics digital creative' }
+    ]
+  },
+  {
+    id: 'education',
+    label: 'Education',
+    icon: '&#9651;',
+    summary: 'Education and institution-ready website work with clear structure and responsive previews.',
+    websites: [
+      { title: 'Lumi Re Lumina', url: 'https://lumi-re-lumina.vercel.app/' }
+    ],
+    media: [
+      { type: 'image', src: '/assets/poster2/e.jpg', alt: 'Education campaign creative' },
+      { type: 'image', src: '/assets/postors/ts.jpg', alt: 'Education visual artwork' },
+      { type: 'image', src: '/assets/poster2/plan.jpeg', alt: 'Education planning creative' },
+      { type: 'image', src: '/assets/poster2/today.jpg', alt: 'Education announcement creative' }
+    ]
+  }
+]
 
 const clientHeroMedia = [
   '/assets/poster2/cut.jpeg',
@@ -364,7 +490,7 @@ function projectCard([category,title,desc,tags,color]) { return `<article class=
 
 function portfolio() { return `<main><section class="page-intro"><p class="kicker">Selected work</p><h1>Work that moves<br><em>business forward.</em></h1><p>Different sectors. Different constraints. One standard: make the work useful, memorable and measurable.</p></section><section class="portfolio-grid">${work.map(projectCard).join('')}</section>${cta()}</main>` }
 
-function clientsHero() {
+function clientsArcHeroLegacy() {
   const heroCards = clientHeroMedia.map((src, index) => `<figure class="clients-hero-card">
     <img src="${src}" alt="Client creative showcase image ${index + 1}" loading="${index < 10 ? 'eager' : 'lazy'}" decoding="async">
   </figure>`).join('')
@@ -420,29 +546,47 @@ function featuredMediaSlide(slide, index) {
 function featuredMediaCarousel() {
   return `<section id="featured-media" class="featured-media-carousel" aria-label="Featured client media carousel" tabindex="0">
     <div class="featured-media-shell">
-      <div class="featured-media-slides">${clientCampaignRevealSlides.map(featuredMediaSlide).join('')}</div>
-      <button class="featured-media-arrow featured-media-arrow--prev" type="button" aria-label="Previous featured media">&larr;</button>
-      <button class="featured-media-arrow featured-media-arrow--next" type="button" aria-label="Next featured media">&rarr;</button>
+      <div class="featured-media-slides">
+        <article class="featured-media-slide is-active" data-featured-slide="0" aria-hidden="false">
+          <div class="featured-media-column featured-media-column--left">
+            <figure class="featured-media-card featured-media-card--left">
+              <img data-featured-image="left" src="${clientCampaignRevealMedia[0].src}" alt="${clientCampaignRevealMedia[0].alt}" loading="eager" decoding="async">
+            </figure>
+          </div>
+          <div class="featured-media-copy">
+            <p class="kicker">Campaign reveals</p>
+            <h2>Launch<br>Section</h2>
+            <p>Reveal-led client creatives arranged as a polished first showcase after the hero.</p>
+          </div>
+          <div class="featured-media-column featured-media-column--right">
+            <figure class="featured-media-card featured-media-card--right">
+              <img data-featured-image="right" src="${(clientCampaignRevealMedia[1] || clientCampaignRevealMedia[0]).src}" alt="${(clientCampaignRevealMedia[1] || clientCampaignRevealMedia[0]).alt}" loading="eager" decoding="async">
+            </figure>
+          </div>
+        </article>
+      </div>
+      <button class="featured-media-arrow featured-media-arrow--prev" type="button" aria-label="Previous campaign images">&larr;</button>
+      <button class="featured-media-arrow featured-media-arrow--next" type="button" aria-label="Next campaign images">&rarr;</button>
       <p class="featured-media-status" aria-live="polite">1 of ${clientCampaignRevealSlides.length}</p>
     </div>
   </section>`
 }
 
-function clientBrandCard(client, index) {
+function clientBrandCardLegacy(client, index) {
   const content = `<span>${String(index + 1).padStart(2, '0')}</span><div class="brand-logo-panel"><img src="${client.logo}" alt="${client.name} logo" loading="lazy" decoding="async"></div><b>${client.name}</b>`
   return client.href
     ? `<a class="client-brand-card" href="${client.href}" aria-label="View ${client.name} case study">${content}</a>`
     : `<article class="client-brand-card">${content}</article>`
 }
 
-function clientBrandShowcase() {
+function clientBrandShowcaseLegacy() {
   return `<section id="client-brands" class="client-brand-showcase" aria-labelledby="client-brands-title">
     <div class="client-brand-head">
       <p class="kicker">Our Branding</p>
       <h2 id="client-brands-title">Brands we have worked with</h2>
       <p>A curated wall of client identities, preserved in their original colors and presented inside refined glass display cards.</p>
     </div>
-    <div class="client-brand-grid">${clientBrands.map(clientBrandCard).join('')}</div>
+    <div class="client-brand-grid">${clientBrands.map(clientBrandCardLegacy).join('')}</div>
   </section>`
 }
 
@@ -457,16 +601,19 @@ function clientsProjectCta() {
   </section>`
 }
 
-function clientsPage() { return `<main><div id="clients-react-root">${clientsHero()}${featuredMediaCarousel()}${clientBrandShowcase()}${clientsProjectCta()}</div></main>` }
+function clientsPageLegacy() { return `<main><div id="clients-react-root">${clientsArcHeroLegacy()}${featuredMediaCarousel()}${clientBrandShowcaseLegacy()}${industriesWorkedWithSection()}${clientsProjectCta()}</div></main>` }
 
 function clientsHero() {
   const total = clientsShowcaseArtworks.length
   const heroCards = clientsShowcaseArtworks.map((media, index) => `<figure class="clients-artwork-card${index === 0 ? ' is-active' : ''}" data-clients-art="${index}" aria-hidden="${index === 0 ? 'false' : 'true'}">
     <img src="${media.src}" alt="${media.alt || `Client creative artwork ${index + 1}`}" loading="${index < 5 ? 'eager' : 'lazy'}" decoding="async">
   </figure>`).join('')
+  const heroClones = clientsShowcaseArtworks.map((media, index) => `<figure class="clients-artwork-card" data-clients-art-clone="${index}" aria-hidden="true">
+    <img src="${media.src}" alt="" loading="lazy" decoding="async">
+  </figure>`).join('')
   return `<section class="clients-editorial-hero" aria-labelledby="clients-hero-title">
     <div class="clients-artwork-carousel" data-clients-art-carousel tabindex="0" aria-label="Selected creative artwork carousel">
-      <div class="clients-artwork-track">${heroCards}</div>
+      <div class="clients-artwork-track"><div class="clients-artwork-sequence">${heroCards}</div><div class="clients-artwork-sequence" aria-hidden="true">${heroClones}</div></div>
     </div>
     <div class="clients-artwork-footer">
       <p class="clients-artwork-count">SELECTED CREATIVE / <span data-clients-art-count>01 &mdash; ${String(total).padStart(2, '0')}</span></p>
@@ -505,7 +652,7 @@ function clientBrandShowcase() {
   </section>`
 }
 
-function clientsPage() { return `<main><div id="clients-react-root">${clientsHero()}${featuredMediaCarousel()}${clientBrandShowcase()}</div></main>` }
+function clientsPage() { return `<main><div id="clients-react-root">${clientsHero()}${featuredMediaCarousel()}${clientBrandShowcase()}${industriesWorkedWithSection()}</div></main>` }
 
 function sparkClientPage() {
   const posterItems = sparkPosters.map((poster, index) => `<button class="spark-poster" type="button" data-spark-poster="${index}" aria-label="Open Poster ${String(index + 1).padStart(2, '0')}">
@@ -601,15 +748,8 @@ function sreeSuryaInfraPage() {
       <p>A closer look at the visual content created for the Sree Surya Infra brand.</p>
     </div>
     <div class="sree-surya-showcase" data-sree-active="0">
-      <button class="sree-surya-media sree-surya-media--video is-active" type="button" data-sree-panel="0" data-sree-open="video" aria-label="Open Sree Surya video">
-        <video autoplay muted loop playsinline preload="metadata" poster="${sreeSuryaWork[0].poster}">
-          <source src="${sreeSuryaWork[0].src}" type="video/mp4">
-        </video>
-        <span class="sree-surya-frame-controls">
-          <span class="sree-surya-frame-control sree-surya-frame-play" role="button" tabindex="0" aria-pressed="false" aria-label="Pause Sree Surya video">Pause</span>
-          <span class="sree-surya-frame-control sree-surya-frame-sound" role="button" tabindex="0" aria-pressed="true" aria-label="Turn Sree Surya sound on">Sound off</span>
-          <label class="sree-surya-volume-label">Volume <input class="sree-surya-volume" type="range" min="0" max="1" step="0.05" value="0" aria-label="Sree Surya video volume"></label>
-        </span>
+      <button class="sree-surya-media sree-surya-media--video is-active" type="button" data-sree-panel="0" data-sree-open="image" aria-label="Open Sree Surya artwork">
+        <img src="${sreeSuryaWork[0].src}" alt="${sreeSuryaWork[0].alt}" loading="eager" decoding="async">
         <span class="sree-surya-media__shine" aria-hidden="true"></span>
       </button>
       <div class="sree-surya-showcase__copy">
@@ -623,7 +763,7 @@ function sreeSuryaInfraPage() {
         </div>
       </div>
       <button class="sree-surya-media sree-surya-media--image" type="button" data-sree-panel="1" data-sree-open="video" aria-label="Open Sree Surya video">
-        <video muted loop playsinline preload="metadata" poster="${sreeSuryaWork[1].poster}" aria-label="${sreeSuryaWork[1].label}">
+        <video muted loop playsinline preload="metadata" aria-label="${sreeSuryaWork[1].label}">
           <source src="${sreeSuryaWork[1].src}" type="video/mp4">
         </video>
         <span class="sree-surya-media__shine" aria-hidden="true"></span>
@@ -860,10 +1000,13 @@ function sriParasakthiPeetamPage() {
 }
 
 function sriVenkateswaraConstructionsPage() {
-  const showcaseItems = svcWork.map((item, index) => `
-      <button class="svc-showcase-card${index === 0 ? ' is-active' : ''}" type="button" data-svc-slide="${index}" aria-label="Open Sri Venkateswara showcase artwork ${index + 1}">
-        <img src="${item.src}" alt="${item.alt}" loading="${index === 0 ? 'eager' : 'lazy'}" decoding="async">
-      </button>`).join('')
+  const showcaseItems = [...svcWork, ...svcWork].map((item, index) => {
+    const realIndex = index % svcWork.length
+    const cloneAttrs = index >= svcWork.length ? ` src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" data-svc-src="${item.src}" alt=""` : ` src="${item.src}" alt="${item.alt}"`
+    return `<button class="svc-showcase-card${index === 0 ? ' is-active' : ''}" type="button" data-svc-slide="${realIndex}" data-svc-track="${index}" aria-label="Open Sri Venkateswara showcase artwork ${realIndex + 1}"${index >= svcWork.length ? ' aria-hidden="true" tabindex="-1"' : ''}>
+        <img${cloneAttrs} loading="${index === 0 ? 'eager' : 'lazy'}" decoding="async">
+      </button>`
+  }).join('')
   const dots = svcWork.map((_, index) => `<button type="button" data-svc-dot="${index}" aria-label="Show Sri Venkateswara artwork ${index + 1}"${index === 0 ? ' aria-current="true"' : ''}></button>`).join('')
   return `<main class="svc-case">
   <section class="svc-hero" aria-label="Sri Venkateswara Constructions hero artwork">
@@ -887,8 +1030,8 @@ function sriVenkateswaraConstructionsPage() {
   <section class="svc-work" aria-labelledby="svc-work-title">
     <div class="svc-work__head">
       <p class="kicker">Our Work</p>
-      <h2 id="svc-work-title">Our work for Sri Venkateswara</h2>
-      <p>Explore the creative work developed for the Sri Venkateswara Constructions brand.</p>
+      <h2 id="svc-work-title">Our work for Sri Venkateswara Constructions</h2>
+      <p>A closer look at the creative work developed for the client.</p>
     </div>
     <div class="svc-showcase" tabindex="0" aria-label="Sri Venkateswara Constructions creative showcase">
       <div class="svc-showcase-track">${showcaseItems}</div>
@@ -897,12 +1040,24 @@ function sriVenkateswaraConstructionsPage() {
       <button class="svc-prev" type="button" aria-label="Previous Sri Venkateswara artwork">&larr;</button>
       <span class="svc-count" aria-live="polite">01 / 04</span>
       <div class="svc-dots">${dots}</div>
+      <button class="svc-toggle" type="button" aria-label="Pause Sri Venkateswara poster autoplay" aria-pressed="false">Pause</button>
       <button class="svc-next" type="button" aria-label="Next Sri Venkateswara artwork">&rarr;</button>
     </div>
-    <div class="svc-work__actions">
-      <p><span>Live Website</span> Open the Sri Venkateswara Constructions website in a new tab.</p>
-      <a class="svc-site-button" href="${svcWebsite}" target="_blank" rel="noopener noreferrer">View Website <span aria-hidden="true">&nearr;</span></a>
-    </div>
+    <section class="svc-website-showcase" aria-labelledby="svc-website-title">
+      <div class="svc-website-head">
+        <p class="kicker">Website showcase</p>
+        <h3 id="svc-website-title">Website showcase</h3>
+        <p>Explore the website developed for Sri Venkateswara Constructions.</p>
+      </div>
+      <div class="svc-browser" data-preview-url="${svcWebsite}">
+        <div class="svc-browser__bar" aria-hidden="true"><span></span><span></span><span></span><b>visionary-builds-iyhh.vercel.app</b></div>
+        <div class="svc-browser__stage">
+          <iframe src="${svcWebsite}" title="Sri Venkateswara Constructions website preview" loading="lazy"></iframe>
+          <div class="svc-browser__fallback"><p>Website preview may be unavailable here. Open the live website to view it directly.</p></div>
+        </div>
+      </div>
+      <a class="svc-site-button" href="${svcWebsite}" target="_blank" rel="noopener noreferrer">Website</a>
+    </section>
     <div class="svc-lightbox" role="dialog" aria-modal="true" aria-label="Sri Venkateswara artwork preview" hidden>
       <button class="svc-lightbox-close" type="button" aria-label="Close artwork preview">&times;</button>
       <button class="svc-lightbox-prev" type="button" aria-label="Previous artwork">&larr;</button>
@@ -985,7 +1140,7 @@ function ssmConstructionPage() {
 </main>`
 }
 
-function adhithyaSaiPromotersPage() {
+function adhithyaSaiPromotersPageLegacy() {
   const mapsUrl = 'https://www.google.com/maps/search/?api=1&query=D%20No.%201-168%2F5%2C%20Sanyal%20Villa%2C%20Gopalapatnam%20Main%20Road%2C%20Susarla%20Colony%2C%20Baji%20Junction%2C%20Gopalapatnam%2C%20Visakhapatnam%20530027%2C%20Andhra%20Pradesh%2C%20India'
   return `<main class="adhithya-case">
   <section class="adhithya-hero" aria-labelledby="adhithya-title">
@@ -1050,10 +1205,105 @@ function adhithyaSaiPromotersPage() {
 </main>`
 }
 
+function renderIndustryWebsiteFrame(site) {
+  const host = site.url.replace(/^https?:\/\//, '').replace(/\/$/, '')
+  return `<article class="industry-browser-card">
+    <div class="industry-browser" data-industry-browser>
+      <div class="industry-browser__bar" aria-hidden="true"><span></span><span></span><span></span><b>${host}</b></div>
+      <div class="industry-browser__stage">
+        <iframe title="${site.title} website preview" src="${site.url}" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        <div class="industry-browser__loading">Loading live preview</div>
+        <div class="industry-browser__fallback"><p>Preview may be blocked by the website. Open the live site to view it directly.</p></div>
+      </div>
+    </div>
+    <div class="industry-browser-card__foot">
+      <h4>${site.title}</h4>
+      <a class="industry-visit" href="${site.url}" target="_blank" rel="noopener noreferrer">Website</a>
+    </div>
+  </article>`
+}
+
+function renderIndustryMediaCard(item, index) {
+  const isVideo = item.type === 'video'
+  return `<figure class="industry-media-card industry-media-card--${index % 5}${isVideo ? ' industry-media-card--video' : ''}">
+    ${isVideo
+      ? `<video muted loop playsinline preload="metadata" controls aria-label="${item.alt}"><source src="${item.src}" type="video/mp4"></video>`
+      : `<img src="${item.src}" alt="${item.alt}" loading="lazy" decoding="async">`}
+  </figure>`
+}
+
+function renderIndustryPanel(industry, index) {
+  return `<article class="industry-panel${index === 0 ? ' is-active' : ''}" id="industry-panel-${industry.id}" data-industry-panel="${industry.id}" ${index === 0 ? '' : 'hidden'} role="tabpanel" aria-labelledby="industry-tab-${industry.id}">
+    <div class="industry-panel__intro">
+      <p class="kicker">Selected Industry</p>
+      <h3>${industry.label}</h3>
+      <p>${industry.summary}</p>
+    </div>
+    <div class="industry-showcase-block">
+      <div class="industry-subhead">
+        <span>01</span>
+        <div><h4>Website Showcase</h4><p>Live responsive previews in compact browser frames.</p></div>
+      </div>
+      <div class="industry-browser-grid">${industry.websites.map(renderIndustryWebsiteFrame).join('')}</div>
+    </div>
+    <div class="industry-showcase-block">
+      <div class="industry-subhead">
+        <span>02</span>
+        <div><h4>Posters &amp; Videos Showcase</h4><p>A flowing media carousel built from existing campaign assets.</p></div>
+      </div>
+      <div class="industry-media-viewport" aria-label="${industry.label} posters and videos carousel">
+        <div class="industry-media-track">
+          <div class="industry-media-sequence">${industry.media.map(renderIndustryMediaCard).join('')}</div>
+          <div class="industry-media-sequence" aria-hidden="true">${industry.media.map(renderIndustryMediaCard).join('')}</div>
+        </div>
+      </div>
+    </div>
+  </article>`
+}
+
+function industriesWorkedWithSection() {
+  return `<section id="industries-worked-with" class="industries-worked" aria-labelledby="industries-worked-title">
+    <div class="industries-worked__head">
+      <p class="kicker">Industries We Worked With</p>
+      <h2 id="industries-worked-title">Browse the portfolio by industry.</h2>
+      <p>Select a sector to view live website previews, posters, images, and videos without leaving this client page.</p>
+    </div>
+    <div class="industry-selector" role="tablist" aria-label="Industry selector">
+      ${industryPortfolio.map((industry, index) => `<button class="industry-card${index === 0 ? ' is-active' : ''}" type="button" role="tab" id="industry-tab-${industry.id}" data-industry-target="${industry.id}"${industry.id === 'real-estate' ? ' data-industry-href="/clients/industries/real-estate/"' : ''} aria-selected="${index === 0 ? 'true' : 'false'}" aria-controls="industry-panel-${industry.id}">
+        <span class="industry-card__icon" aria-hidden="true">${industry.icon}</span>
+        <b>${industry.label}</b>
+      </button>`).join('')}
+    </div>
+    <div class="industry-panels">
+      ${industryPortfolio.map(renderIndustryPanel).join('')}
+    </div>
+  </section>`
+}
+
+function realEstateIndustryPage() {
+  const industry = industryPortfolio.find(item => item.id === 'real-estate') || industryPortfolio[0]
+  return `<main class="industry-detail-page">
+  <section class="page-intro page-intro--center">
+    <p class="kicker">Industries We Worked With</p>
+    <h1>Real Estate<br><em>Portfolio</em></h1>
+    <p>Live website previews, posters, and video work for real estate and construction brands.</p>
+    <div class="actions"><a class="button interactive-hover" href="/clients/#industries-worked-with"><span>Back to Industries</span><i aria-hidden="true">-&gt;</i></a></div>
+  </section>
+  <section class="industries-worked industries-worked--single" aria-labelledby="real-estate-industry-title">
+    <div class="industries-worked__head">
+      <p class="kicker">Selected Industry</p>
+      <h2 id="real-estate-industry-title">Real estate work in one place.</h2>
+      <p>Browse the real estate websites, campaign posters, and video assets from the portfolio.</p>
+    </div>
+    <div class="industry-panels">${renderIndustryPanel(industry, 0)}</div>
+  </section>
+</main>`
+}
+
 function adhithyaSaiPromotersPage() {
   return `<main class="adhithya-case adhithya-case--refresh">
   <section class="adhithya-hero" aria-labelledby="adhithya-title">
-    <video class="adhithya-hero__video" autoplay muted loop playsinline preload="metadata" poster="/assets/postors/aditya.png">
+    <video class="adhithya-hero__video" autoplay muted loop playsinline preload="auto">
       <source src="/clients/videos/aditya.mp4" type="video/mp4">
     </video>
     <div class="adhithya-hero__overlay"></div>
@@ -1063,7 +1313,6 @@ function adhithyaSaiPromotersPage() {
       <p class="kicker">About the client</p>
       <h2 id="adhithya-about-title" class="client-about-logo-heading"><img src="/assets/logo/adithya sai.jpeg" alt="Adhithya Sai Promoters logo" loading="lazy" decoding="async"></h2>
       <p>Residential promotions and property development</p>
-      <img src="/assets/logo/adithya sai.jpeg" alt="Adhithya Sai Promoters logo" loading="lazy" decoding="async">
       <a class="adhithya-back" href="/clients/">Back to Clients</a>
     </div>
     <div class="adhithya-card__right">
@@ -1098,7 +1347,7 @@ function adhithyaSaiPromotersPage() {
     </div>
     <div class="adhithya-showcase">
       <figure class="adhithya-showcase__main">
-        <video autoplay muted loop playsinline preload="metadata" aria-label="Adhithya Sai Promoters work showcase video">
+        <video autoplay muted loop playsinline preload="auto" aria-label="Adhithya Sai Promoters work showcase video">
           <source src="/clients/videos/aditya.mp4" type="video/mp4">
         </video>
       </figure>
@@ -1109,6 +1358,7 @@ function adhithyaSaiPromotersPage() {
       </div>
     </div>
   </section>
+  ${industriesWorkedWithSection()}
   <section class="adhithya-cta">
     <p class="kicker">Next collaboration</p>
     <h2>Building visibility for brands that shape neighbourhoods.</h2>
@@ -1156,20 +1406,22 @@ function tirumalasettyPage() { return `<main class="tirumalasetty-case">
       <p>A closer look at the creative work developed for Tirumalasetty Projects LLP.</p>
     </div>
     <div class="tirumalasetty-stage" aria-live="polite">
-      ${tirumalasettyWork.map((item, index) => `<button class="tirumalasetty-panel tirumalasetty-panel--${index}" type="button" data-tiru-panel="${index}" aria-label="Open Tirumalasetty artwork ${index + 1}">
-        <img src="${item.src}" alt="${item.alt}" loading="${index === 0 ? 'eager' : 'lazy'}" decoding="async">
+      ${tirumalasettyWork.map((item, index) => `<button class="tirumalasetty-panel tirumalasetty-panel--${index}${item.type === 'video' ? ' tirumalasetty-panel--video' : ''}" type="button" data-tiru-panel="${index}" aria-label="Open Tirumalasetty artwork ${index + 1}">
+        ${item.type === 'video'
+          ? `<video muted loop playsinline preload="metadata" aria-label="${item.alt}"><source src="${item.src}" type="video/mp4"></video><span class="tiru-video-badge">Video</span>`
+          : `<img src="${item.src}" alt="${item.alt}" loading="${index === 0 ? 'eager' : 'lazy'}" decoding="async">`}
       </button>`).join('')}
     </div>
     <div class="tirumalasetty-controls">
       <button class="tiru-prev" type="button" aria-label="Previous Tirumalasetty artwork">&larr;</button>
-      <span class="tiru-count">01 / 03</span>
+      <span class="tiru-count">01 / ${String(tirumalasettyWork.length).padStart(2, '0')}</span>
       <div class="tiru-dots" aria-label="Tirumalasetty artwork pagination">${tirumalasettyWork.map((_, index) => `<button type="button" data-tiru-dot="${index}" aria-label="Show artwork ${index + 1}" ${index === 0 ? 'aria-current="true"' : ''}></button>`).join('')}</div>
       <button class="tiru-next" type="button" aria-label="Next Tirumalasetty artwork">&rarr;</button>
     </div>
     <div class="tiru-lightbox" role="dialog" aria-modal="true" aria-label="Tirumalasetty artwork preview" hidden>
       <button class="tiru-lightbox-close" type="button" aria-label="Close artwork preview">&times;</button>
       <button class="tiru-lightbox-prev" type="button" aria-label="Previous artwork">&larr;</button>
-      <img src="${tirumalasettyWork[0].src}" alt="${tirumalasettyWork[0].alt}">
+      <div class="tiru-lightbox-media"></div>
       <button class="tiru-lightbox-next" type="button" aria-label="Next artwork">&rarr;</button>
     </div>
   </section>
@@ -1418,7 +1670,7 @@ if (sparkCase) {
       activeSparkPoster = (index + posters.length) % posters.length
       posters.forEach((poster, posterIndex) => {
         const raw = posterIndex - activeSparkPoster
-        const wrapped = raw > posters.length / 2 ? raw - posters.length : raw < -posters.length / 2 ? raw + posters.length : raw
+        const wrapped = raw >= posters.length / 2 ? raw - posters.length : raw < -posters.length / 2 ? raw + posters.length : raw
         poster.dataset.position = String(wrapped)
         poster.classList.toggle('is-active', wrapped === 0)
         poster.setAttribute('aria-pressed', String(wrapped === 0))
@@ -1619,17 +1871,100 @@ if (adhithyaHero) {
   }
 }
 
+const industriesWorked = document.querySelector('.industries-worked')
+if (industriesWorked) {
+  const tabs = [...industriesWorked.querySelectorAll('[data-industry-target]')]
+  const panels = [...industriesWorked.querySelectorAll('[data-industry-panel]')]
+  const motionQuery = window.matchMedia('(prefers-reduced-motion: reduce)')
+
+  const syncIndustryVideos = () => {
+    panels.forEach(panel => {
+      const isActive = !panel.hidden
+      panel.querySelectorAll('video').forEach(video => {
+        if (isActive && !document.hidden && !motionQuery.matches) video.play().catch(() => {})
+        else video.pause()
+      })
+    })
+  }
+
+  const selectIndustry = (id, shouldFocus = false) => {
+    tabs.forEach(tab => {
+      const active = tab.dataset.industryTarget === id
+      tab.classList.toggle('is-active', active)
+      tab.setAttribute('aria-selected', String(active))
+      tab.tabIndex = active ? 0 : -1
+      if (active && shouldFocus) tab.focus()
+    })
+    panels.forEach(panel => {
+      const active = panel.dataset.industryPanel === id
+      panel.hidden = !active
+      panel.classList.toggle('is-active', active)
+    })
+    syncIndustryVideos()
+  }
+
+  tabs.forEach((tab, index) => {
+    tab.tabIndex = index === 0 ? 0 : -1
+    tab.addEventListener('click', () => selectIndustry(tab.dataset.industryTarget))
+    tab.addEventListener('keydown', event => {
+      if (!['ArrowRight', 'ArrowLeft', 'Home', 'End'].includes(event.key)) return
+      event.preventDefault()
+      const current = tabs.indexOf(tab)
+      const next = event.key === 'Home'
+        ? 0
+        : event.key === 'End'
+          ? tabs.length - 1
+          : (current + (event.key === 'ArrowRight' ? 1 : -1) + tabs.length) % tabs.length
+      selectIndustry(tabs[next].dataset.industryTarget, true)
+    })
+  })
+
+  industriesWorked.querySelectorAll('[data-industry-browser]').forEach(browser => {
+    const iframe = browser.querySelector('iframe')
+    if (!iframe) return
+    const markLoaded = () => {
+      browser.classList.remove('is-fallback')
+      browser.classList.add('is-loaded')
+    }
+    const markFallback = () => {
+      if (!browser.classList.contains('is-loaded')) browser.classList.add('is-fallback')
+    }
+    const fallbackTimer = window.setTimeout(markFallback, 6500)
+    iframe.addEventListener('load', () => {
+      window.clearTimeout(fallbackTimer)
+      markLoaded()
+    }, { once: true })
+    iframe.addEventListener('error', () => {
+      window.clearTimeout(fallbackTimer)
+      markFallback()
+    }, { once: true })
+  })
+
+  if ('IntersectionObserver' in window) {
+    const mediaObserver = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) syncIndustryVideos()
+        else entry.target.querySelectorAll('video').forEach(video => video.pause())
+      })
+    }, { threshold: .18 })
+    mediaObserver.observe(industriesWorked)
+  }
+  document.addEventListener('visibilitychange', syncIndustryVideos)
+  motionQuery.addEventListener('change', syncIndustryVideos)
+  syncIndustryVideos()
+}
+
 const sreeSuryaWorkSection = document.querySelector('.sree-surya-work')
 if (sreeSuryaWorkSection) {
   const showcase = sreeSuryaWorkSection.querySelector('.sree-surya-showcase')
   const panels = [...sreeSuryaWorkSection.querySelectorAll('[data-sree-panel]')]
-  const video = sreeSuryaWorkSection.querySelector('.sree-surya-media--video video')
+  const video = sreeSuryaWorkSection.querySelector('.sree-surya-media video')
   const playButton = sreeSuryaWorkSection.querySelector('.sree-surya-frame-play')
   const muteButton = sreeSuryaWorkSection.querySelector('.sree-surya-frame-sound')
   const volumeSlider = sreeSuryaWorkSection.querySelector('.sree-surya-volume')
   const count = sreeSuryaWorkSection.querySelector('.sree-surya-count')
   const lightbox = sreeSuryaWorkSection.querySelector('.sree-surya-lightbox')
-  if (!showcase || !panels.length || !video || !playButton || !muteButton || !volumeSlider || !count || !lightbox || !sreeSuryaWorkSection.querySelector('.sree-surya-prev') || !sreeSuryaWorkSection.querySelector('.sree-surya-next')) {
+  if (!showcase || !panels.length || !count || !lightbox || !sreeSuryaWorkSection.querySelector('.sree-surya-prev') || !sreeSuryaWorkSection.querySelector('.sree-surya-next')) {
     console.warn('Sree Surya controls skipped: required carousel elements missing.')
   } else {
   const lightboxBody = lightbox.querySelector('.sree-surya-lightbox__body')
@@ -1646,7 +1981,7 @@ if (sreeSuryaWorkSection) {
   let touchStartY = 0
   let lastVolume = .7
 
-  video.volume = 0
+  if (video) video.volume = 0
   const setSreeActive = (index) => {
     activeSree = (index + panels.length) % panels.length
     showcase.dataset.sreeActive = String(activeSree)
@@ -1654,12 +1989,14 @@ if (sreeSuryaWorkSection) {
     count.textContent = `${String(activeSree + 1).padStart(2, '0')} / 02`
   }
   const syncSreeVideo = () => {
+    if (!video) return
     const shouldPlay = sectionVisible && !userPaused && !motionQuery.matches && !document.hidden
     if (shouldPlay) video.play().catch(() => {})
     else video.pause()
     syncSreeControls()
   }
   const syncSreeControls = () => {
+    if (!video || !playButton || !muteButton || !volumeSlider) return
     const paused = video.paused || userPaused
     playButton.textContent = paused ? 'Play' : 'Pause'
     playButton.setAttribute('aria-label', `${paused ? 'Play' : 'Pause'} Sree Surya video`)
@@ -1680,9 +2017,9 @@ if (sreeSuryaWorkSection) {
   const openSreeLightbox = (type, trigger) => {
     const item = sreeSuryaWork[Number(trigger.dataset.sreePanel)] || sreeSuryaWork[0]
     lastFocus = trigger
-    video.pause()
+    if (video) video.pause()
     lightboxBody.innerHTML = item.type === 'video'
-      ? `<video controls autoplay playsinline src="${item.src}" poster="${item.poster}" aria-label="${item.label}"></video>`
+      ? `<video controls autoplay playsinline src="${item.src}" aria-label="${item.label}"></video>`
       : `<img src="${item.src}" alt="${item.alt}">`
     lightbox.hidden = false
     document.body.classList.add('lightbox-open')
@@ -1691,44 +2028,46 @@ if (sreeSuryaWorkSection) {
 
   sreeSuryaWorkSection.querySelector('.sree-surya-prev').addEventListener('click', () => setSreeActive(activeSree - 1))
   sreeSuryaWorkSection.querySelector('.sree-surya-next').addEventListener('click', () => setSreeActive(activeSree + 1))
-  playButton.addEventListener('click', event => {
-    event.stopPropagation()
-    userPaused = !userPaused
-    syncSreeVideo()
-  })
-  muteButton.addEventListener('click', event => {
-    event.stopPropagation()
-    const shouldUnmute = video.muted || video.volume === 0
-    if (shouldUnmute) {
-      video.muted = false
-      video.volume = lastVolume || .7
-      userPaused = false
-      video.play().catch(() => {})
-    } else {
-      if (video.volume > 0) lastVolume = video.volume
-      video.muted = true
-    }
-    syncSreeVideo()
-  })
-  volumeSlider.addEventListener('input', event => {
-    event.stopPropagation()
-    const nextVolume = Number(volumeSlider.value)
-    video.volume = nextVolume
-    if (nextVolume > 0) {
-      lastVolume = nextVolume
-      video.muted = false
-      userPaused = false
-      video.play().catch(() => {})
-    } else {
-      video.muted = true
-    }
-    syncSreeControls()
-  })
-  ;[playButton, muteButton].forEach(button => button.addEventListener('keydown', event => {
-    if (event.key !== 'Enter' && event.key !== ' ') return
-    event.preventDefault()
-    button.click()
-  }))
+  if (video && playButton && muteButton && volumeSlider) {
+    playButton.addEventListener('click', event => {
+      event.stopPropagation()
+      userPaused = !userPaused
+      syncSreeVideo()
+    })
+    muteButton.addEventListener('click', event => {
+      event.stopPropagation()
+      const shouldUnmute = video.muted || video.volume === 0
+      if (shouldUnmute) {
+        video.muted = false
+        video.volume = lastVolume || .7
+        userPaused = false
+        video.play().catch(() => {})
+      } else {
+        if (video.volume > 0) lastVolume = video.volume
+        video.muted = true
+      }
+      syncSreeVideo()
+    })
+    volumeSlider.addEventListener('input', event => {
+      event.stopPropagation()
+      const nextVolume = Number(volumeSlider.value)
+      video.volume = nextVolume
+      if (nextVolume > 0) {
+        lastVolume = nextVolume
+        video.muted = false
+        userPaused = false
+        video.play().catch(() => {})
+      } else {
+        video.muted = true
+      }
+      syncSreeControls()
+    })
+    ;[playButton, muteButton].forEach(button => button.addEventListener('keydown', event => {
+      if (event.key !== 'Enter' && event.key !== ' ') return
+      event.preventDefault()
+      button.click()
+    }))
+  }
   panels.forEach(panel => panel.addEventListener('click', () => openSreeLightbox(panel.dataset.sreeOpen, panel)))
   sreeSuryaWorkSection.addEventListener('keydown', event => {
     if (event.key === 'ArrowLeft') { event.preventDefault(); setSreeActive(activeSree - 1) }
@@ -1748,10 +2087,12 @@ if (sreeSuryaWorkSection) {
   closeLightboxButton.addEventListener('click', closeSreeLightbox)
   lightbox.addEventListener('click', event => { if (event.target === lightbox) closeSreeLightbox() })
   document.addEventListener('visibilitychange', syncSreeVideo)
-  video.addEventListener('play', syncSreeControls)
-  video.addEventListener('pause', syncSreeControls)
-  video.addEventListener('volumechange', syncSreeControls)
-  video.addEventListener('ended', syncSreeControls)
+  if (video) {
+    video.addEventListener('play', syncSreeControls)
+    video.addEventListener('pause', syncSreeControls)
+    video.addEventListener('volumechange', syncSreeControls)
+    video.addEventListener('ended', syncSreeControls)
+  }
   document.addEventListener('keydown', event => {
     if (lightbox.hidden) return
     if (event.key === 'Escape') closeSreeLightbox()
@@ -1786,35 +2127,79 @@ if (ganeshCarousel) {
     console.warn('Ganesh carousel skipped: required carousel elements missing.')
   } else {
   const motionQuery = window.matchMedia('(prefers-reduced-motion: reduce)')
+  cards.forEach(card => {
+    const clone = card.cloneNode(true)
+    clone.setAttribute('aria-hidden', 'true')
+    clone.dataset.ganeshClone = 'true'
+    track.appendChild(clone)
+  })
+  const allCards = [...track.querySelectorAll('.ganesh-campaign-card')]
   let userPaused = false
+  let interactionPaused = false
+  let carouselVisible = true
   let activeGanesh = 0
-  let ganeshTimer = null
+  let ganeshFrame = null
+  let ganeshObserver = null
+  let scrollX = 0
+  let lastFrameTime = 0
+  let loopWidth = 0
+  const scrollSpeed = .045
+
+  const measureGanesh = () => {
+    loopWidth = Math.max(0, track.scrollWidth / 2)
+  }
+
+  const applyGaneshTransform = () => {
+    if (loopWidth > 0) {
+      scrollX = ((scrollX % loopWidth) + loopWidth) % loopWidth
+    }
+    track.style.transform = `translate3d(${-scrollX}px,0,0)`
+    const viewportCenter = scrollX + (ganeshCarousel.clientWidth / 2)
+    const closest = cards.reduce((best, card, index) => {
+      const center = card.offsetLeft + (card.offsetWidth / 2)
+      const distance = Math.abs(center - viewportCenter)
+      return distance < best.distance ? { index, distance } : best
+    }, { index: 0, distance: Infinity })
+    activeGanesh = closest.index
+    allCards.forEach(card => {
+      const cardIndex = Number(card.dataset.ganeshCard || 0)
+      card.classList.toggle('is-active', cardIndex === activeGanesh)
+    })
+  }
 
   const setGaneshSlide = (index) => {
     if (!cards.length) return
+    measureGanesh()
     activeGanesh = (index + cards.length) % cards.length
     const card = cards[activeGanesh]
-    const maxOffset = Math.max(0, track.scrollWidth - ganeshCarousel.clientWidth)
     const centeredOffset = card.offsetLeft - ((ganeshCarousel.clientWidth - card.offsetWidth) / 2)
-    const offset = Math.min(Math.max(0, centeredOffset), maxOffset)
-    track.style.transform = `translate3d(${-offset}px,0,0)`
-    cards.forEach((item, itemIndex) => item.classList.toggle('is-active', itemIndex === activeGanesh))
+    scrollX = Math.max(0, centeredOffset)
+    applyGaneshTransform()
   }
   const stopGaneshAuto = () => {
-    if (ganeshTimer) window.clearInterval(ganeshTimer)
-    ganeshTimer = null
+    if (ganeshFrame) window.cancelAnimationFrame(ganeshFrame)
+    ganeshFrame = null
+    lastFrameTime = 0
   }
   const startGaneshAuto = () => {
     stopGaneshAuto()
-    if (userPaused || motionQuery.matches) return
-    ganeshTimer = window.setInterval(() => setGaneshSlide(activeGanesh + 1), 2600)
+    if (userPaused || motionQuery.matches || document.hidden || !carouselVisible || cards.length < 2) return
+    const tick = time => {
+      if (!lastFrameTime) lastFrameTime = time
+      const delta = Math.min(48, time - lastFrameTime)
+      lastFrameTime = time
+      scrollX += delta * scrollSpeed
+      applyGaneshTransform()
+      ganeshFrame = window.requestAnimationFrame(tick)
+    }
+    ganeshFrame = window.requestAnimationFrame(tick)
   }
   const setGaneshState = () => {
-    const paused = userPaused || motionQuery.matches
-    ganeshCarousel.classList.toggle('is-paused', paused)
-    toggle.textContent = paused ? 'Resume' : 'Pause'
+    const paused = userPaused || interactionPaused || motionQuery.matches || document.hidden || !carouselVisible
+    ganeshCarousel.classList.toggle('is-paused', userPaused || motionQuery.matches)
+    toggle.textContent = userPaused || motionQuery.matches ? 'Resume' : 'Pause'
     toggle.setAttribute('aria-pressed', String(userPaused))
-    toggle.setAttribute('aria-label', `${paused ? 'Resume' : 'Pause'} Ganesh campaign carousel`)
+    toggle.setAttribute('aria-label', `${userPaused || motionQuery.matches ? 'Resume' : 'Pause'} Ganesh campaign carousel`)
     if (paused) stopGaneshAuto()
     else startGaneshAuto()
   }
@@ -1833,15 +2218,35 @@ if (ganeshCarousel) {
     if (event.key === 'ArrowLeft') { event.preventDefault(); nudgeGanesh(-1) }
     if (event.key === 'ArrowRight') { event.preventDefault(); nudgeGanesh(1) }
   })
-  ganeshCarousel.addEventListener('mouseenter', setGaneshState)
-  ganeshCarousel.addEventListener('mouseleave', setGaneshState)
-  ganeshCarousel.addEventListener('focusin', setGaneshState)
-  ganeshCarousel.addEventListener('focusout', setGaneshState)
-  window.addEventListener('resize', () => setGaneshSlide(activeGanesh))
+  ganeshCarousel.addEventListener('mouseenter', () => { interactionPaused = true; setGaneshState() })
+  ganeshCarousel.addEventListener('mouseleave', () => { interactionPaused = false; setGaneshState() })
+  ganeshCarousel.addEventListener('focusin', () => { interactionPaused = true; setGaneshState() })
+  ganeshCarousel.addEventListener('focusout', () => { interactionPaused = false; setGaneshState() })
+  document.addEventListener('visibilitychange', setGaneshState)
+  window.addEventListener('pagehide', () => {
+    stopGaneshAuto()
+    if (ganeshObserver) ganeshObserver.disconnect()
+  }, { once: true })
+  window.addEventListener('resize', () => {
+    measureGanesh()
+    setGaneshSlide(activeGanesh)
+  })
   motionQuery.addEventListener('change', () => {
     setGaneshSlide(activeGanesh)
     setGaneshState()
   })
+  if ('IntersectionObserver' in window) {
+    ganeshObserver = new IntersectionObserver(entries => {
+      carouselVisible = entries[0]?.isIntersecting ?? true
+      setGaneshState()
+    }, { threshold: .18 })
+    ganeshObserver.observe(ganeshCarousel)
+  }
+  cards.forEach(card => {
+    const image = card.querySelector('img')
+    if (image) image.addEventListener('load', () => { measureGanesh(); setGaneshSlide(activeGanesh) }, { once: true })
+  })
+  measureGanesh()
   setGaneshSlide(0)
   setGaneshState()
   }
@@ -1865,8 +2270,18 @@ if (parasakthiBrowser) {
 document.querySelectorAll('.ganesh-browser, .svc-browser').forEach(browser => {
   const iframe = browser.querySelector('iframe')
   if (!iframe) return
-  iframe.addEventListener('load', () => browser.classList.add('is-preview-loaded'), { once: true })
-  iframe.addEventListener('error', () => browser.classList.add('is-fallback'), { once: true })
+  let previewSettled = false
+  const markLoaded = () => {
+    previewSettled = true
+    browser.classList.add('is-preview-loaded')
+  }
+  const markFallback = () => {
+    if (previewSettled) return
+    browser.classList.add('is-fallback')
+  }
+  iframe.addEventListener('load', markLoaded, { once: true })
+  iframe.addEventListener('error', markFallback, { once: true })
+  window.setTimeout(markFallback, 5500)
 })
 
 const svcShowcase = document.querySelector('.svc-showcase')
@@ -1877,8 +2292,9 @@ if (svcShowcase) {
   const count = document.querySelector('.svc-count')
   const prev = document.querySelector('.svc-prev')
   const next = document.querySelector('.svc-next')
+  const toggle = document.querySelector('.svc-toggle')
   const lightbox = document.querySelector('.svc-lightbox')
-  if (!track || !cards.length || !count || !prev || !next || !lightbox) {
+  if (!track || !cards.length || !count || !prev || !next || !toggle || !lightbox) {
     console.warn('Sri Venkateswara showcase skipped: required elements missing.')
   } else {
     const lightboxImage = lightbox.querySelector('img')
@@ -1886,38 +2302,96 @@ if (svcShowcase) {
     const lightPrev = lightbox.querySelector('.svc-lightbox-prev')
     const lightNext = lightbox.querySelector('.svc-lightbox-next')
     const motionQuery = window.matchMedia('(prefers-reduced-motion: reduce)')
+    const realCount = dots.length || Math.max(1, Math.ceil(cards.length / 2))
     let activeSvc = 0
+    let activeTrack = 0
     let svcTimer = null
+    let wrapTimer = null
+    let svcObserver = null
     let lastFocus = null
     let userPausedSvc = false
+    let showcaseVisible = true
+    let touchStartX = 0
+    let touchStartY = 0
 
-    const setSvcSlide = (index) => {
-      activeSvc = (index + cards.length) % cards.length
-      const card = cards[activeSvc]
+    const normalizeSvc = index => ((index % realCount) + realCount) % realCount
+    const setTransition = enabled => {
+      track.style.transition = enabled && !motionQuery.matches ? '' : 'none'
+    }
+
+    const hydrateSvcCard = card => {
+      const image = card?.querySelector('img[data-svc-src]')
+      if (image?.dataset.svcSrc) {
+        image.src = image.dataset.svcSrc
+        image.removeAttribute('data-svc-src')
+      }
+    }
+
+    const setSvcSlide = (index, animate = true) => {
+      if (wrapTimer) window.clearTimeout(wrapTimer)
+      activeTrack = index
+      activeSvc = normalizeSvc(index)
+      const card = cards[activeTrack] || cards[activeSvc]
+      if (!card) return
+      hydrateSvcCard(card)
+      const nextCard = cards[activeTrack + 1] || cards[normalizeSvc(activeTrack + 1)]
+      hydrateSvcCard(nextCard)
+      setTransition(animate)
       const maxOffset = Math.max(0, track.scrollWidth - svcShowcase.clientWidth)
       const centeredOffset = card.offsetLeft - ((svcShowcase.clientWidth - card.offsetWidth) / 2)
       const offset = Math.min(Math.max(0, centeredOffset), maxOffset)
       track.style.transform = `translate3d(${-offset}px,0,0)`
-      cards.forEach((item, itemIndex) => item.classList.toggle('is-active', itemIndex === activeSvc))
+      cards.forEach(item => {
+        const itemTrack = Number(item.dataset.svcTrack || item.dataset.svcSlide || 0)
+        item.classList.toggle('is-active', itemTrack === activeTrack)
+      })
       dots.forEach((dot, dotIndex) => dot.setAttribute('aria-current', String(dotIndex === activeSvc)))
-      count.textContent = `${String(activeSvc + 1).padStart(2, '0')} / ${String(cards.length).padStart(2, '0')}`
+      count.textContent = `${String(activeSvc + 1).padStart(2, '0')} / ${String(realCount).padStart(2, '0')}`
       if (lightboxImage && !lightbox.hidden) {
         lightboxImage.src = svcWork[activeSvc].src
         lightboxImage.alt = svcWork[activeSvc].alt
       }
+      if (animate && activeTrack >= realCount) {
+        wrapTimer = window.setTimeout(() => setSvcSlide(activeSvc, false), motionQuery.matches ? 0 : 720)
+      }
     }
+
+    const goSvc = direction => {
+      if (direction < 0 && activeTrack === 0) {
+        setSvcSlide(realCount, false)
+        window.requestAnimationFrame(() => setSvcSlide(realCount - 1))
+        return
+      }
+      setSvcSlide(activeTrack + direction)
+    }
+
     const stopSvcAuto = () => {
       if (svcTimer) window.clearInterval(svcTimer)
       svcTimer = null
     }
+
+    const canAutoPlay = () => !userPausedSvc && !motionQuery.matches && !document.hidden && showcaseVisible && lightbox.hidden && realCount > 1
+
     const startSvcAuto = () => {
       stopSvcAuto()
-      if (userPausedSvc || motionQuery.matches || document.hidden) return
-      svcTimer = window.setInterval(() => setSvcSlide(activeSvc + 1), 4000)
+      if (!canAutoPlay()) return
+      svcTimer = window.setInterval(() => goSvc(1), 3500)
     }
+
+    const syncSvcToggle = () => {
+      toggle.textContent = userPausedSvc ? 'Resume' : 'Pause'
+      toggle.setAttribute('aria-pressed', String(userPausedSvc))
+      toggle.setAttribute('aria-label', `${userPausedSvc ? 'Resume' : 'Pause'} Sri Venkateswara poster autoplay`)
+    }
+
+    const refreshSvcAuto = () => {
+      syncSvcToggle()
+      startSvcAuto()
+    }
+
     const openSvcLightbox = (index, trigger) => {
       lastFocus = trigger
-      setSvcSlide(index)
+      setSvcSlide(index, false)
       if (lightboxImage) {
         lightboxImage.src = svcWork[activeSvc].src
         lightboxImage.alt = svcWork[activeSvc].alt
@@ -1931,36 +2405,65 @@ if (svcShowcase) {
       lightbox.hidden = true
       document.body.classList.remove('lightbox-open')
       if (lastFocus) lastFocus.focus()
-      startSvcAuto()
+      refreshSvcAuto()
     }
 
-    prev.addEventListener('click', () => { setSvcSlide(activeSvc - 1); startSvcAuto() })
-    next.addEventListener('click', () => { setSvcSlide(activeSvc + 1); startSvcAuto() })
-    dots.forEach(dot => dot.addEventListener('click', () => { setSvcSlide(Number(dot.dataset.svcDot)); startSvcAuto() }))
+    prev.addEventListener('click', () => { goSvc(-1); refreshSvcAuto() })
+    next.addEventListener('click', () => { goSvc(1); refreshSvcAuto() })
+    toggle.addEventListener('click', () => {
+      userPausedSvc = !userPausedSvc
+      refreshSvcAuto()
+    })
+    dots.forEach(dot => dot.addEventListener('click', () => { setSvcSlide(Number(dot.dataset.svcDot)); refreshSvcAuto() }))
     cards.forEach(card => card.addEventListener('click', () => openSvcLightbox(Number(card.dataset.svcSlide), card)))
     svcShowcase.addEventListener('mouseenter', stopSvcAuto)
-    svcShowcase.addEventListener('mouseleave', startSvcAuto)
+    svcShowcase.addEventListener('mouseleave', refreshSvcAuto)
     svcShowcase.addEventListener('focusin', stopSvcAuto)
-    svcShowcase.addEventListener('focusout', startSvcAuto)
+    svcShowcase.addEventListener('focusout', refreshSvcAuto)
+    svcShowcase.addEventListener('touchstart', event => {
+      touchStartX = event.changedTouches[0].clientX
+      touchStartY = event.changedTouches[0].clientY
+      stopSvcAuto()
+    }, { passive: true })
+    svcShowcase.addEventListener('touchend', event => {
+      const deltaX = event.changedTouches[0].clientX - touchStartX
+      const deltaY = event.changedTouches[0].clientY - touchStartY
+      if (Math.abs(deltaX) > 42 && Math.abs(deltaX) > Math.abs(deltaY) * 1.3) {
+        goSvc(deltaX < 0 ? 1 : -1)
+      }
+      refreshSvcAuto()
+    }, { passive: true })
     if (close) close.addEventListener('click', closeSvcLightbox)
-    if (lightPrev) lightPrev.addEventListener('click', () => setSvcSlide(activeSvc - 1))
-    if (lightNext) lightNext.addEventListener('click', () => setSvcSlide(activeSvc + 1))
+    if (lightPrev) lightPrev.addEventListener('click', () => goSvc(-1))
+    if (lightNext) lightNext.addEventListener('click', () => goSvc(1))
     lightbox.addEventListener('click', event => { if (event.target === lightbox) closeSvcLightbox() })
     svcShowcase.addEventListener('keydown', event => {
-      if (event.key === 'ArrowLeft') { event.preventDefault(); setSvcSlide(activeSvc - 1); startSvcAuto() }
-      if (event.key === 'ArrowRight') { event.preventDefault(); setSvcSlide(activeSvc + 1); startSvcAuto() }
+      if (event.key === 'ArrowLeft') { event.preventDefault(); goSvc(-1); refreshSvcAuto() }
+      if (event.key === 'ArrowRight') { event.preventDefault(); goSvc(1); refreshSvcAuto() }
     })
     document.addEventListener('keydown', event => {
       if (lightbox.hidden) return
       if (event.key === 'Escape') closeSvcLightbox()
-      if (event.key === 'ArrowLeft') setSvcSlide(activeSvc - 1)
-      if (event.key === 'ArrowRight') setSvcSlide(activeSvc + 1)
+      if (event.key === 'ArrowLeft') goSvc(-1)
+      if (event.key === 'ArrowRight') goSvc(1)
     })
-    document.addEventListener('visibilitychange', startSvcAuto)
-    window.addEventListener('resize', () => setSvcSlide(activeSvc))
-    motionQuery.addEventListener('change', startSvcAuto)
-    setSvcSlide(0)
-    startSvcAuto()
+    if ('IntersectionObserver' in window) {
+      svcObserver = new IntersectionObserver(entries => {
+        showcaseVisible = entries[0]?.isIntersecting ?? true
+        refreshSvcAuto()
+      }, { threshold: .28 })
+      svcObserver.observe(svcShowcase)
+    }
+    document.addEventListener('visibilitychange', refreshSvcAuto)
+    window.addEventListener('resize', () => setSvcSlide(activeSvc, false))
+    window.addEventListener('pagehide', () => {
+      stopSvcAuto()
+      if (wrapTimer) window.clearTimeout(wrapTimer)
+      if (svcObserver) svcObserver.disconnect()
+    }, { once: true })
+    motionQuery.addEventListener('change', refreshSvcAuto)
+    setSvcSlide(0, false)
+    refreshSvcAuto()
   }
 }
 
@@ -1992,7 +2495,7 @@ if (storyViewport) {
   }
 }
 
-const clientsArtworkCarousel = document.querySelector('[data-clients-art-carousel]')
+const clientsArtworkCarousel = document.querySelector('[data-clients-art-carousel-disabled]')
 if (clientsArtworkCarousel) {
   const track = clientsArtworkCarousel.querySelector('.clients-artwork-track')
   const cards = [...clientsArtworkCarousel.querySelectorAll('[data-clients-art]')]
@@ -2098,6 +2601,158 @@ if (clientsArtworkCarousel) {
   }
 }
 
+const clientsEndlessCarousel = document.querySelector('[data-clients-art-carousel]')
+if (clientsEndlessCarousel) {
+  const track = clientsEndlessCarousel.querySelector('.clients-artwork-track')
+  const sequence = clientsEndlessCarousel.querySelector('.clients-artwork-sequence')
+  const cards = [...clientsEndlessCarousel.querySelectorAll('[data-clients-art]')]
+  const allCards = [...clientsEndlessCarousel.querySelectorAll('.clients-artwork-card')]
+  const prev = document.querySelector('[data-clients-art-prev]')
+  const next = document.querySelector('[data-clients-art-next]')
+  const toggle = document.querySelector('[data-clients-art-toggle]')
+  const count = document.querySelector('[data-clients-art-count]')
+  const motionQuery = window.matchMedia('(prefers-reduced-motion: reduce)')
+  let active = 0
+  let offset = 0
+  let loopWidth = 0
+  let frame = null
+  let lastTime = 0
+  let userPaused = false
+  let inView = true
+  let touchStartX = 0
+  let touchStartY = 0
+
+  const measureLoop = () => {
+    loopWidth = sequence ? sequence.scrollWidth : 0
+  }
+  const normalizeOffset = () => {
+    if (!loopWidth) return
+    offset = ((offset % loopWidth) + loopWidth) % loopWidth
+  }
+  const updatePausedLabel = () => {
+    if (!toggle) return
+    const paused = userPaused || motionQuery.matches
+    toggle.textContent = paused ? 'Play' : 'Pause'
+    toggle.setAttribute('aria-pressed', String(userPaused))
+    toggle.setAttribute('aria-label', `${paused ? 'Play' : 'Pause'} artwork carousel`)
+  }
+  const updateActiveCard = () => {
+    if (!cards.length || !loopWidth) return
+    const carouselCenter = clientsEndlessCarousel.clientWidth / 2
+    let nearest = active
+    let bestDistance = Infinity
+    cards.forEach((card, index) => {
+      const baseCenter = card.offsetLeft - offset + (card.offsetWidth / 2)
+      const centers = [baseCenter, baseCenter + loopWidth, baseCenter - loopWidth]
+      const distance = Math.min(...centers.map(center => Math.abs(center - carouselCenter)))
+      if (distance < bestDistance) {
+        nearest = index
+        bestDistance = distance
+      }
+    })
+    active = nearest
+    cards.forEach((card, index) => {
+      const isActive = index === active
+      card.classList.toggle('is-active', isActive)
+      card.setAttribute('aria-hidden', String(!isActive))
+    })
+    allCards.forEach(card => {
+      card.classList.toggle('is-clone-active', Number(card.dataset.clientsArtClone) === active)
+    })
+    if (count) {
+      count.textContent = `${String(active + 1).padStart(2, '0')} - ${String(cards.length).padStart(2, '0')}`
+    }
+  }
+  const renderEndless = () => {
+    if (!track || !loopWidth) return
+    normalizeOffset()
+    track.style.transform = `translate3d(${-offset}px,0,0)`
+    updateActiveCard()
+  }
+  const centerCard = index => {
+    if (!cards.length) return
+    measureLoop()
+    active = (index + cards.length) % cards.length
+    const card = cards[active]
+    offset = card.offsetLeft - ((clientsEndlessCarousel.clientWidth - card.offsetWidth) / 2)
+    renderEndless()
+  }
+  const shouldMove = () => !userPaused && !motionQuery.matches && !document.hidden && inView
+  const tick = time => {
+    if (!lastTime) lastTime = time
+    const delta = Math.min(48, time - lastTime)
+    lastTime = time
+    if (shouldMove()) {
+      offset += delta * 0.045
+      renderEndless()
+    }
+    frame = window.requestAnimationFrame(tick)
+  }
+  const startEndless = () => {
+    if (frame) return
+    frame = window.requestAnimationFrame(tick)
+  }
+  const stopEndless = () => {
+    if (frame) window.cancelAnimationFrame(frame)
+    frame = null
+    lastTime = 0
+  }
+  const nudgeEndless = direction => {
+    centerCard(active + direction)
+  }
+
+  if (!track || !sequence || !cards.length || !prev || !next || !toggle) {
+    console.warn('Clients endless carousel skipped: required elements missing.')
+  } else {
+    prev.addEventListener('click', () => nudgeEndless(-1))
+    next.addEventListener('click', () => nudgeEndless(1))
+    toggle.addEventListener('click', () => {
+      userPaused = !userPaused
+      updatePausedLabel()
+    })
+    clientsEndlessCarousel.addEventListener('keydown', event => {
+      if (event.key !== 'ArrowRight' && event.key !== 'ArrowLeft') return
+      event.preventDefault()
+      nudgeEndless(event.key === 'ArrowRight' ? 1 : -1)
+    })
+    clientsEndlessCarousel.addEventListener('touchstart', event => {
+      const touch = event.changedTouches[0]
+      touchStartX = touch.clientX
+      touchStartY = touch.clientY
+    }, { passive: true })
+    clientsEndlessCarousel.addEventListener('touchend', event => {
+      const touch = event.changedTouches[0]
+      const dx = touch.clientX - touchStartX
+      const dy = touch.clientY - touchStartY
+      if (Math.abs(dx) > 42 && Math.abs(dx) > Math.abs(dy)) nudgeEndless(dx < 0 ? 1 : -1)
+    }, { passive: true })
+    document.addEventListener('visibilitychange', () => { lastTime = 0 })
+    window.addEventListener('resize', () => {
+      measureLoop()
+      centerCard(active)
+    })
+    motionQuery.addEventListener('change', () => {
+      updatePausedLabel()
+      renderEndless()
+    })
+    if ('IntersectionObserver' in window) {
+      const observer = new IntersectionObserver(entries => {
+        inView = entries[0]?.isIntersecting ?? true
+        lastTime = 0
+      }, { threshold: .15 })
+      observer.observe(clientsEndlessCarousel)
+    }
+    cards.forEach(card => {
+      const img = card.querySelector('img')
+      if (img) img.addEventListener('load', () => centerCard(active), { once: true })
+    })
+    measureLoop()
+    centerCard(0)
+    updatePausedLabel()
+    startEndless()
+  }
+}
+
 const featuredCarousel = document.querySelector('.featured-media-carousel')
 if (featuredCarousel) {
   const slides = [...featuredCarousel.querySelectorAll('.featured-media-slide')]
@@ -2108,52 +2763,95 @@ if (featuredCarousel) {
     console.warn('Featured media carousel skipped: required elements missing.')
   } else {
   const motionQuery = window.matchMedia('(prefers-reduced-motion: reduce)')
+  const campaignMedia = Array.isArray(clientCampaignRevealMedia) ? clientCampaignRevealMedia : []
+  const pairCount = Math.max(1, Math.ceil(campaignMedia.length / 2))
+  const leftImage = featuredCarousel.querySelector('[data-featured-image="left"]')
+  const rightImage = featuredCarousel.querySelector('[data-featured-image="right"]')
   let activeFeatured = 0
   let touchStartX = 0
   let touchStartY = 0
-  let featuredTimer = null
+  let isTransitioning = false
+  let queuedDirection = 0
+  let transitionTimer = null
 
-  const setFeaturedVideos = () => {
-    const carouselRect = featuredCarousel.getBoundingClientRect()
-    const visibleHeight = Math.min(carouselRect.bottom, window.innerHeight) - Math.max(carouselRect.top, 0)
-    const carouselVisible = Math.max(0, visibleHeight) / Math.max(1, carouselRect.height) > .18
-    slides.forEach((slide, index) => {
-      slide.querySelectorAll('video').forEach(video => {
-        if (index === activeFeatured && carouselVisible && !motionQuery.matches) {
-          video.play().catch(() => {})
-        } else {
-          video.pause()
-        }
-      })
+  const pairFor = index => {
+    if (!campaignMedia.length) return []
+    const leftIndex = (index * 2) % campaignMedia.length
+    const rightIndex = (leftIndex + 1) % campaignMedia.length
+    return [campaignMedia[leftIndex], campaignMedia[rightIndex]]
+  }
+  const preloadPair = index => {
+    pairFor(index).forEach(media => {
+      if (!media || media.type !== 'image') return
+      const image = new Image()
+      image.src = media.src
     })
   }
-  const showFeatured = (nextIndex) => {
-    activeFeatured = (nextIndex + slides.length) % slides.length
-    slides.forEach((slide, index) => {
-      const active = index === activeFeatured
-      slide.classList.toggle('is-active', active)
-      slide.setAttribute('aria-hidden', String(!active))
-    })
-    status.textContent = `${activeFeatured + 1} of ${slides.length}`
-    setFeaturedVideos()
+  const updateStatus = () => {
+    status.textContent = `${activeFeatured + 1} of ${pairCount}`
   }
-  const stopFeaturedAuto = () => {
-    if (featuredTimer) window.clearInterval(featuredTimer)
-    featuredTimer = null
+  const writeImage = (image, media) => {
+    if (!image || !media) return
+    image.src = media.src
+    image.alt = media.alt || 'Campaign creative'
   }
-  const startFeaturedAuto = () => {
-    stopFeaturedAuto()
-    if (motionQuery.matches || document.hidden) return
-    featuredTimer = window.setInterval(() => showFeatured(activeFeatured + 1), 1000)
+  const finishTransition = () => {
+    if (transitionTimer) window.clearTimeout(transitionTimer)
+    transitionTimer = null
+    featuredCarousel.classList.remove('is-exiting-next', 'is-exiting-prev', 'is-entering-next', 'is-entering-prev')
+    isTransitioning = false
+    if (queuedDirection) {
+      const direction = queuedDirection
+      queuedDirection = 0
+      showFeatured(activeFeatured + direction, direction)
+    }
+  }
+  const showFeatured = (nextIndex, direction = 1) => {
+    if (!campaignMedia.length || !leftImage || !rightImage) return
+    if (isTransitioning && !motionQuery.matches) {
+      queuedDirection = direction
+      return
+    }
+    isTransitioning = true
+    const normalized = (nextIndex + pairCount) % pairCount
+    const [left, right] = pairFor(normalized)
+    activeFeatured = normalized
+    preloadPair((activeFeatured + 1) % pairCount)
+    preloadPair((activeFeatured - 1 + pairCount) % pairCount)
+    if (transitionTimer) window.clearTimeout(transitionTimer)
+
+    if (motionQuery.matches) {
+      writeImage(leftImage, left)
+      writeImage(rightImage, right)
+      updateStatus()
+      finishTransition()
+      return
+    }
+
+    const exitClass = direction >= 0 ? 'is-exiting-next' : 'is-exiting-prev'
+    const enterClass = direction >= 0 ? 'is-entering-next' : 'is-entering-prev'
+    featuredCarousel.classList.remove('is-exiting-next', 'is-exiting-prev', 'is-entering-next', 'is-entering-prev')
+    featuredCarousel.classList.add(exitClass)
+    transitionTimer = window.setTimeout(() => {
+      writeImage(leftImage, left)
+      writeImage(rightImage, right)
+      updateStatus()
+      featuredCarousel.classList.remove(exitClass)
+      featuredCarousel.classList.add(enterClass)
+      void featuredCarousel.offsetWidth
+      featuredCarousel.classList.remove(enterClass)
+      transitionTimer = window.setTimeout(finishTransition, 620)
+    }, 260)
   }
 
-  featuredPrev.addEventListener('click', () => { showFeatured(activeFeatured - 1); startFeaturedAuto() })
-  featuredNext.addEventListener('click', () => { showFeatured(activeFeatured + 1); startFeaturedAuto() })
+  featuredPrev.setAttribute('aria-label', 'Previous campaign images')
+  featuredNext.setAttribute('aria-label', 'Next campaign images')
+  featuredPrev.addEventListener('click', () => showFeatured(activeFeatured - 1, -1))
+  featuredNext.addEventListener('click', () => showFeatured(activeFeatured + 1, 1))
   featuredCarousel.addEventListener('keydown', event => {
     if (event.key !== 'ArrowRight' && event.key !== 'ArrowLeft') return
     event.preventDefault()
-    showFeatured(activeFeatured + (event.key === 'ArrowRight' ? 1 : -1))
-    startFeaturedAuto()
+    showFeatured(activeFeatured + (event.key === 'ArrowRight' ? 1 : -1), event.key === 'ArrowRight' ? 1 : -1)
   })
   featuredCarousel.addEventListener('touchstart', event => {
     const touch = event.changedTouches[0]
@@ -2164,29 +2862,13 @@ if (featuredCarousel) {
     const touch = event.changedTouches[0]
     const dx = touch.clientX - touchStartX
     const dy = touch.clientY - touchStartY
-    if (Math.abs(dx) > 42 && Math.abs(dx) > Math.abs(dy)) showFeatured(activeFeatured + (dx < 0 ? 1 : -1))
-    startFeaturedAuto()
+    if (Math.abs(dx) > 42 && Math.abs(dx) > Math.abs(dy)) {
+      showFeatured(activeFeatured + (dx < 0 ? 1 : -1), dx < 0 ? 1 : -1)
+    }
   }, { passive: true })
-  featuredCarousel.querySelectorAll('.featured-media-mute').forEach(button => {
-    const video = button.closest('.featured-media-card').querySelector('video')
-    button.addEventListener('click', () => {
-      video.muted = !video.muted
-      button.textContent = video.muted ? 'Muted' : 'Sound on'
-      button.setAttribute('aria-pressed', String(video.muted))
-      button.setAttribute('aria-label', `${video.muted ? 'Unmute' : 'Mute'} featured video`)
-      if (!video.paused) video.play().catch(() => {})
-    })
-  })
-  featuredCarousel.addEventListener('mouseenter', stopFeaturedAuto)
-  featuredCarousel.addEventListener('mouseleave', startFeaturedAuto)
-  featuredCarousel.addEventListener('focusin', stopFeaturedAuto)
-  featuredCarousel.addEventListener('focusout', startFeaturedAuto)
-  document.addEventListener('visibilitychange', () => document.hidden ? stopFeaturedAuto() : startFeaturedAuto())
-  motionQuery.addEventListener('change', () => { setFeaturedVideos(); startFeaturedAuto() })
-  window.addEventListener('scroll', setFeaturedVideos, { passive: true })
-  window.addEventListener('resize', setFeaturedVideos)
-  setFeaturedVideos()
-  startFeaturedAuto()
+  preloadPair(0)
+  preloadPair(1 % pairCount)
+  updateStatus()
   }
 }
 
@@ -2241,12 +2923,12 @@ if (tiruWork) {
   if (!panels.length || !dots.length || !count || !lightbox || !tiruPrev || !tiruNext) {
     console.warn('Tirumalasetty carousel skipped: required elements missing.')
   } else {
-  const lightboxImg = lightbox.querySelector('img')
+  const lightboxMedia = lightbox.querySelector('.tiru-lightbox-media')
   const lightboxClose = lightbox.querySelector('.tiru-lightbox-close')
   const lightboxPrev = lightbox.querySelector('.tiru-lightbox-prev')
   const lightboxNext = lightbox.querySelector('.tiru-lightbox-next')
-  if (!lightboxImg || !lightboxClose || !lightboxPrev || !lightboxNext) {
-    console.warn('Tirumalasetty lightbox skipped: required elements missing.')
+  if (!lightboxMedia || !lightboxClose || !lightboxPrev || !lightboxNext) {
+    console.warn('Tirumalasetty lightbox skipped: required lightbox elements missing.')
   } else {
   let activeTiru = 0
   let lastFocus = null
@@ -2255,20 +2937,36 @@ if (tiruWork) {
   let autoTiru = null
   const motionQuery = window.matchMedia('(prefers-reduced-motion: reduce)')
 
+  const syncPanelVideos = () => {
+    panels.forEach((panel, panelIndex) => {
+      const video = panel.querySelector('video')
+      if (!video) return
+      if (panelIndex === activeTiru && lightbox.hidden && !motionQuery.matches && !document.hidden) video.play().catch(() => {})
+      else video.pause()
+    })
+  }
+  const renderTiruLightbox = () => {
+    const item = tirumalasettyWork[activeTiru]
+    if (!item) return
+    lightboxMedia.innerHTML = item.type === 'video'
+      ? `<video controls autoplay playsinline src="${item.src}" aria-label="${item.alt}"></video>`
+      : `<img src="${item.src}" alt="${item.alt}">`
+  }
   const setTiru = (index) => {
     activeTiru = (index + panels.length) % panels.length
     panels.forEach((panel, panelIndex) => {
       const offset = (panelIndex - activeTiru + panels.length) % panels.length
-      panel.dataset.position = offset === 0 ? 'active' : offset === 1 ? 'next' : 'prev'
+      panel.dataset.position = offset === 0 ? 'active' : offset === 1 ? 'next' : offset === panels.length - 1 ? 'prev' : 'hidden'
       panel.setAttribute('aria-pressed', String(panelIndex === activeTiru))
+      panel.tabIndex = offset === 0 || offset === 1 || offset === panels.length - 1 ? 0 : -1
     })
     dots.forEach((dot, dotIndex) => {
       if (dotIndex === activeTiru) dot.setAttribute('aria-current', 'true')
       else dot.removeAttribute('aria-current')
     })
     count.textContent = `${String(activeTiru + 1).padStart(2, '0')} / ${String(panels.length).padStart(2, '0')}`
-    lightboxImg.src = tirumalasettyWork[activeTiru].src
-    lightboxImg.alt = tirumalasettyWork[activeTiru].alt
+    if (!lightbox.hidden) renderTiruLightbox()
+    syncPanelVideos()
   }
   const stopTiruAuto = () => {
     if (autoTiru) window.clearInterval(autoTiru)
@@ -2286,14 +2984,18 @@ if (tiruWork) {
     lastFocus = trigger
     stopTiruAuto()
     setTiru(index)
+    renderTiruLightbox()
     lightbox.hidden = false
     document.body.classList.add('lightbox-open')
+    syncPanelVideos()
     lightboxClose.focus()
   }
   const closeTiruLightbox = () => {
     lightbox.hidden = true
+    lightboxMedia.innerHTML = ''
     document.body.classList.remove('lightbox-open')
     if (lastFocus) lastFocus.focus()
+    syncPanelVideos()
     startTiruAuto()
   }
 
@@ -2332,20 +3034,20 @@ if (tiruWork) {
     if (event.key === 'ArrowRight') setTiru(activeTiru + 1)
     if (event.key === 'ArrowLeft') setTiru(activeTiru - 1)
     if (event.key === 'Tab') {
-      const focusable = [...lightbox.querySelectorAll('button')]
+      const focusable = [...lightbox.querySelectorAll('button, video')]
       const first = focusable[0]
       const last = focusable[focusable.length - 1]
       if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last.focus() }
       else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first.focus() }
     }
   })
-  motionQuery.addEventListener('change', startTiruAuto)
+  motionQuery.addEventListener('change', () => { startTiruAuto(); syncPanelVideos() })
+  document.addEventListener('visibilitychange', syncPanelVideos)
   setTiru(0)
   startTiruAuto()
   }
   }
 }
-
 const renderClientsReactPage = async () => {
   return
   if (path !== '/clients') return
@@ -2618,3 +3320,5 @@ document.querySelectorAll('.ripple-button').forEach(button => {
     ripple.addEventListener('animationend', () => ripple.remove(), { once: true })
   })
 })
+
+
