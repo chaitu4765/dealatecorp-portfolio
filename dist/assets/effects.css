@@ -608,10 +608,10 @@ body::before {
   left: 0;
   width: 26rem;
   height: 26rem;
-  opacity: 0;
+  opacity: .45;
   transform: translate(calc(var(--pointer-x, -30rem) - 50%), calc(var(--pointer-y, -30rem) - 50%));
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(53, 129, 255, .09), transparent 68%);
+  background: radial-gradient(circle, rgba(20, 101, 255, .16), rgba(207, 139, 84, .08) 36%, transparent 68%);
   pointer-events: none;
   transition: opacity .3s ease;
   will-change: transform;
@@ -619,19 +619,12 @@ body::before {
 
 .pointer-aura--visible { opacity: 1; }
 
-@media (pointer: fine) and (prefers-reduced-motion: no-preference) {
-  body,
-  a,
-  button,
-  [tabindex="0"] { cursor: none; }
-}
-
 .smooth-cursor {
   position: fixed;
   z-index: 1200;
   top: 0;
   left: 0;
-  opacity: 0;
+  opacity: 1;
   border-radius: 50%;
   pointer-events: none;
   will-change: transform;
@@ -640,29 +633,31 @@ body::before {
 .smooth-cursor--visible { opacity: 1; }
 
 .smooth-cursor--dot {
-  width: 7px;
-  height: 7px;
-  margin: -3.5px 0 0 -3.5px;
-  background: #cf8b54;
-  box-shadow: 0 0 14px rgba(207, 139, 84, .55);
+  width: 14px;
+  height: 14px;
+  margin: -7px 0 0 -7px;
+  border: 2px solid #fff;
+  background: #1465ff;
+  box-shadow: 0 0 0 2px rgba(6, 16, 32, .5), 0 0 22px rgba(20, 101, 255, .86);
   transition: opacity .2s ease;
 }
 
 .smooth-cursor--ring {
-  width: 34px;
-  height: 34px;
-  margin: -17px 0 0 -17px;
-  border: 1px solid rgba(20, 101, 255, .72);
-  background: rgba(20, 101, 255, .035);
+  width: 48px;
+  height: 48px;
+  margin: -24px 0 0 -24px;
+  border: 2px solid rgba(207, 139, 84, .95);
+  background: rgba(255, 255, 255, .12);
+  box-shadow: 0 0 0 2px rgba(6, 16, 32, .34), 0 0 26px rgba(207, 139, 84, .46);
   transition: width .25s ease, height .25s ease, margin .25s ease, border-color .25s ease, background-color .25s ease, opacity .2s ease;
 }
 
 .smooth-cursor--ring.smooth-cursor--interactive {
-  width: 52px;
-  height: 52px;
-  margin: -26px 0 0 -26px;
-  border-color: rgba(207, 139, 84, .85);
-  background: rgba(207, 139, 84, .09);
+  width: 60px;
+  height: 60px;
+  margin: -30px 0 0 -30px;
+  border-color: rgba(20, 101, 255, .98);
+  background: rgba(20, 101, 255, .12);
 }
 
 .story-panel,
