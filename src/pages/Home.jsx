@@ -1,7 +1,6 @@
 import { Fragment } from "react";
 import { useAnimationEffect } from "../hooks/useAnimationEffect.js";
 import { Studio } from "./Studio.jsx";
-import { clientBrands } from "../data/client-brands.js";
 import { DepartmentLinks } from "../components/DepartmentLinks.jsx";
 const services = [
   {
@@ -81,10 +80,7 @@ export function Home() {
     <main id="main-content" className="dc-home">
       <section className="dc-hero" aria-labelledby="hero-title">
         <div className="dc-hero__copy">
-          <p className="dc-eyebrow">
-            {"DC Creative Labs "}
-            <span>Hyderabad, India</span>
-          </p>
+          <p className="dc-eyebrow">DC Creative Labs</p>
 
           <h1 id="hero-title">
             Good design.
@@ -341,57 +337,6 @@ export function Home() {
       <>
         <Studio />
       </>
-      <section className="dc-clients dc-wrap" aria-labelledby="clients-title">
-        <div className="dc-section-heading">
-          <div>
-            <p className="dc-eyebrow">04 / Our clients</p>
-            <h2 id="clients-title">
-              Good work starts
-              <br />
-              <span>with a good partnership.</span>
-            </h2>
-          </div>
-          <div className="dc-client-actions">
-            <a className="dc-service-link" href="/clients/">
-              Meet our clients
-            </a>
-            <button
-              className="dc-client-motion"
-              type="button"
-              aria-pressed="false"
-            >
-              Pause motion
-            </button>
-          </div>
-        </div>
-        <div className="dc-client-grid">
-          {clientBrands.map(([name, logo], i) => (
-            <article
-              className="dc-client-card"
-              style={{
-                "--float-delay": i * -0.6 + "s",
-              }}
-              key={i}
-            >
-              <span className="dc-client-card__number" aria-hidden="true">
-                {String(i + 1).padStart(2, "0")}
-              </span>
-              <div className="dc-client-card__logo">
-                <img
-                  src={logo}
-                  alt={name + " logo"}
-                  loading="lazy"
-                  decoding="async"
-                  width="180"
-                  height="140"
-                />
-              </div>
-              <h3>{name}</h3>
-            </article>
-          ))}
-        </div>
-      </section>
-
       <section className="dc-contact dc-wrap" id="contact">
         <p className="dc-eyebrow">Have something in mind?</p>
         <h2>
@@ -414,13 +359,6 @@ export function Home() {
   );
 }
 function initHome(scope) {
-  const clientSection = document.querySelector(".dc-clients");
-  const motionToggle = clientSection?.querySelector(".dc-client-motion");
-  scope.on(motionToggle, "click", () => {
-    const paused = clientSection.classList.toggle("is-paused");
-    motionToggle.setAttribute("aria-pressed", String(paused));
-    motionToggle.textContent = paused ? "Resume motion" : "Pause motion";
-  });
   const section = document.querySelector(".dc-showcase");
   if (!section) return;
   const reduced = window.matchMedia("(prefers-reduced-motion: reduce)");

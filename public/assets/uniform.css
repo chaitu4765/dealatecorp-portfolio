@@ -1024,6 +1024,7 @@ body.is-clients-page .client-brand-head > p:last-child {
 .client-brand-card.aceternity-client-card {
   overflow: visible;
   min-width: 0;
+  grid-template-rows: 1fr auto;
   border: 1px solid #d8dee8;
   border-radius: 14px;
   background: #fff;
@@ -1242,34 +1243,57 @@ body .dc-footer .brand small {
   overflow-wrap: anywhere;
 }
 .dc-footer__nav a:hover,
-.dc-footer__contact a:hover,
-.dc-footer__socials a:hover {
+.dc-footer__contact a:hover {
   color: #176bf5;
   text-decoration: underline;
   text-underline-offset: 4px;
 }
 .dc-footer__socials {
   display: flex;
-  align-items: center;
-  gap: 8px;
-  padding: 16px 0 24px;
+  align-items: stretch;
+  gap: 6px;
+  width: fit-content;
+  margin: 16px 0 24px;
+  padding: 8px;
+  border: 1px solid #1f2b3e;
+  border-radius: 18px;
+  background: linear-gradient(145deg, #111a29, #0b1220);
+  box-shadow: 0 14px 30px #1118271c;
 }
 .dc-footer__socials a {
+  position: relative;
   display: grid;
   justify-items: center;
-  width: 54px;
+  width: 50px;
   gap: 6px;
-  padding: 7px 0 8px;
-  border: 1px solid #e4e8ee;
-  border-radius: 14px;
-  background: #fbfcfe;
-  color: #505d70;
-  font-size: 9px;
+  overflow: hidden;
+  padding: 6px 0 7px;
+  border: 1px solid transparent;
+  border-radius: 12px;
+  background: #1a2435;
+  color: #e7edf8;
+  font-size: 8px;
   font-weight: 700;
   letter-spacing: 0.045em;
   line-height: 1.1;
   text-align: center;
-  transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+  text-decoration: none;
+  transition: border-color 0.24s ease, box-shadow 0.24s ease, color 0.24s ease, transform 0.24s cubic-bezier(0.2, 0.75, 0.25, 1);
+}
+.dc-footer__socials a::before {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  content: "";
+  opacity: 0;
+  background: var(--social-accent);
+  transform: translateY(100%);
+  transition: opacity 0.24s ease, transform 0.24s cubic-bezier(0.2, 0.75, 0.25, 1);
+}
+.dc-footer__socials a > svg,
+.dc-footer__socials a > span {
+  position: relative;
+  z-index: 1;
 }
 .dc-footer__socials a > svg {
   display: grid;
@@ -1278,46 +1302,40 @@ body .dc-footer .brand small {
   box-sizing: border-box;
   padding: 8px;
   border-radius: 50%;
-  background: #171b22;
-  color: #f7f9fd;
+  background: #ffffff1c;
+  color: #fff;
 }
-.dc-footer__socials a:hover {
+.dc-footer__socials a:hover,
+.dc-footer__socials a:focus-visible {
+  color: #fff;
   text-decoration: none;
-  transform: translateY(-2px);
-  border-color: #a9c8ff;
-  box-shadow: 0 8px 18px #1f4f9714;
+  transform: translateY(-3px);
+  border-color: #ffffff5c;
+  box-shadow: 0 9px 18px #02061766;
+  outline: none;
 }
-.dc-footer__socials a:hover svg {
-  background: var(--dc-blue);
+.dc-footer__socials a:hover::before,
+.dc-footer__socials a:focus-visible::before {
+  opacity: 1;
+  transform: translateY(0);
 }
 .dc-footer__social--instagram {
-  border-color: #f2ccdd !important;
-  background: #fff0f6 !important;
-  color: #9e1b57 !important;
+  --social-accent: linear-gradient(135deg, #f6a435, #dd3675 49%, #7738c7);
 }
 .dc-footer__social--instagram > svg {
-  background: linear-gradient(145deg, #ffbc51, #df3671 46%, #7e3ac8) !important;
+  background: linear-gradient(145deg, #ffbc51, #df3671 46%, #7e3ac8);
 }
 .dc-footer__social--facebook {
-  border-color: #cbdcff !important;
-  background: #edf3ff !important;
-  color: #1665d8 !important;
+  --social-accent: #1877f2;
 }
 .dc-footer__social--facebook > svg {
-  background: #1877f2 !important;
+  background: #1877f2;
 }
 .dc-footer__social--linkedin {
-  border-color: #c4ddeb !important;
-  background: #edf7fb !important;
-  color: #09648f !important;
+  --social-accent: #0a66c2;
 }
 .dc-footer__social--linkedin > svg {
-  background: #0a66c2 !important;
-}
-.dc-footer__social--instagram:hover,
-.dc-footer__social--facebook:hover,
-.dc-footer__social--linkedin:hover {
-  box-shadow: 0 9px 20px #1c38641f;
+  background: #0a66c2;
 }
 .dc-footer__socials a > svg {
   fill: none;
@@ -1407,8 +1425,8 @@ body .dc-footer .brand small {
     gap: 8px;
   }
   .dc-footer__socials {
-    max-width: 302px;
-    padding-top: 4px;
+    max-width: 100%;
+    margin-top: 4px;
   }
   .dc-footer__wordmark {
     margin-bottom: -10px;
@@ -1416,7 +1434,9 @@ body .dc-footer .brand small {
   }
 }
 @media (prefers-reduced-motion: reduce) {
-  .dc-footer__cta {
+  .dc-footer__cta,
+  .dc-footer__socials a,
+  .dc-footer__socials a::before {
     transition: none;
   }
 }

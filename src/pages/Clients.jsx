@@ -16,10 +16,9 @@ function mediaCard([src, label], i) {
     </figure>
   );
 }
-function clientBrandCard([name, logo, href], i) {
+function clientBrandCard([name, logo, href]) {
   const content = (
     <>
-      <span>{String(i + 1).padStart(2, "0")}</span>
       <div className="brand-logo-panel">
         <img src={logo} alt={name + " logo"} loading="lazy" decoding="async" />
       </div>
@@ -99,7 +98,7 @@ export function Clients({ featuredMedia }) {
         </div>
         <div className="client-brand-grid">
           {clientBrands.map((item, index) => (
-            <Fragment key={index}>{clientBrandCard(item, index)}</Fragment>
+            <Fragment key={index}>{clientBrandCard(item)}</Fragment>
           ))}
         </div>
       </section>
