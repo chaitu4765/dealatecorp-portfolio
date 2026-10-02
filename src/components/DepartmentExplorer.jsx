@@ -312,9 +312,26 @@ export function DepartmentExplorer({ services }) {
                   {String(capabilityIndex + 1).padStart(2, "0")}
                 </p>
                 <h3>{selected.name}</h3>
-                <p>{selected.description}</p>
               </header>
+              <Comparison
+                key={`${departmentId}-${selected.id}`}
+                capability={selected}
+                departmentId={departmentId}
+              />
               <div className="capability-detail__body">
+                <div className="capability-overview">
+                  <h4>Built around your business</h4>
+                  <p>{selected.description}</p>
+                  <a
+                    className="dc-button"
+                    href={`mailto:hr@dealatecorp.com?subject=${encodeURIComponent(`Enquiry: ${department.name} / ${selected.name}`)}`}
+                  >
+                    Discuss this capability
+                  </a>
+                  <p className="capability-overview__note">
+                    Scope, timeline and deliverables agreed before work begins.
+                  </p>
+                </div>
                 <div className="capability-scope">
                   <h4>What we can deliver</h4>
                   <ul>
@@ -322,21 +339,7 @@ export function DepartmentExplorer({ services }) {
                       <li key={line}>{line}</li>
                     ))}
                   </ul>
-                  <a
-                    className="dc-button"
-                    href={`mailto:hr@dealatecorp.com?subject=${encodeURIComponent(`Enquiry: ${department.name} / ${selected.name}`)}`}
-                  >
-                    Discuss this capability
-                  </a>
-                  <p>
-                    Scope, timeline and deliverables agreed before work begins.
-                  </p>
                 </div>
-                <Comparison
-                  key={`${departmentId}-${selected.id}`}
-                  capability={selected}
-                  departmentId={departmentId}
-                />
               </div>
               <div className="implementation">
                 <h4>How we put it into practice</h4>

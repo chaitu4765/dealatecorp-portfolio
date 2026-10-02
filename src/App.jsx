@@ -7,7 +7,6 @@ import { Clients } from "./pages/Clients.jsx";
 import { Footer } from "./components/Footer.jsx";
 import { FeaturedMedia } from "./components/FeaturedMedia.jsx";
 import { Portfolio } from "./pages/Portfolio.jsx";
-import { About } from "./pages/About.jsx";
 import { Contact } from "./pages/Contact.jsx";
 import { Adhithya } from "./pages/Adhithya.jsx";
 import { Tirumalasetty } from "./pages/Tirumalasetty.jsx";
@@ -26,7 +25,6 @@ const pages = {
   "/services": Services,
   "/products": Products,
   "/portfolio": Portfolio,
-  "/about": About,
   "/contact": Contact,
   "/clients/adhithya-sai-promoters": Adhithya,
   "/clients/adithya-sai-promoters": Adhithya,

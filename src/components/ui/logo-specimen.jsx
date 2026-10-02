@@ -73,7 +73,7 @@ const KEYS = [
   [50, 25, 1, -12, -6],
   [50, 45, 0.73, 25, 8],
   [79, 45, 0.78, -28, -7],
-  [50, 51, 0.42, 24, 6],
+  [50, 46, 0.28, 24, 6],
   [73, 48, 1.05, -22, -8],
   [76, 29, 0.58, 12, 2],
 ];
@@ -447,9 +447,6 @@ export function LogoSpecimen() {
               <br />
               Made to work together.
             </p>
-            <a href="/about/">
-              Meet the team <span aria-hidden="true">↗</span>
-            </a>
             <a className="logo-specimen__studio-link" href="#inside-dc">
               Inside Creative Labs <span aria-hidden="true">↓</span>
             </a>

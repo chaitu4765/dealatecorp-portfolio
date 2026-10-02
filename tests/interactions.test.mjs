@@ -261,7 +261,7 @@ test("Two departments keep complete capabilities, comparisons and keyboard selec
       );
       assert.ok(
         decodeURIComponent(
-          document.querySelector(".capability-scope a").href,
+          document.querySelector(".capability-overview a").href,
         ).includes(document.querySelector(".capability-detail h3").textContent),
       );
       await click(".comparison-controls button:last-child");
@@ -386,7 +386,8 @@ test("Department deep links restore the selected panel", async () => {
 });
 
 test("Navigation uses React state and Escape restores focus", async () => {
-  await mount("/about");
+  await mount("/contact");
+  assert.equal(document.querySelector('a[href="/about/"]'), null);
   await click(".menu");
   assert.ok(document.body.classList.contains("nav-open"));
   assert.equal(
@@ -576,7 +577,7 @@ test("Skipping or unmounting the homepage doors restores existing body styles", 
       assert.equal(document.body.style.overflow, "clip");
       await mount("/");
       assert.equal(document.body.style.position, "fixed");
-      await mount("/about");
+      await mount("/contact");
       assert.equal(document.body.style.position, "relative");
       assert.equal(document.body.style.overflow, "clip");
       assert.equal(document.documentElement.style.overflow, "");

@@ -57,7 +57,6 @@ const pages = {
   "/": "home",
   "/services": "services",
   "/clients": "clientsPage",
-  "/about": "about",
   "/portfolio": "portfolio",
   "/clients/adhithya-sai-promoters": "adhithyaSaiPromotersPage",
   "/clients/adithya-sai-promoters": "adhithyaSaiPromotersPage",
@@ -105,9 +104,6 @@ const replacedGallery = (node) => {
 };
 const preservedCopy = (node, path) => {
   if (replacedGallery(node)) return "";
-  // About now includes a direct enquiry button.
-  if (attr(node, "class")?.split(" ").includes("about-enquiry-button"))
-    return "";
   // The shared footer was intentionally redesigned; links remain checked below.
   if (node.tagName === "footer") return "";
   // New folder uploads are additions; preserve the original campaign content.
@@ -143,13 +139,12 @@ for (const [path, name] of Object.entries(pages)) {
     const currentMain = elements(actual, "main")[0];
     const expectedMain = elements(expected, "main")[0];
     assert.ok(currentMain, `Main content exists for ${path}`);
-    if (["/", "/services", "/clients", "/about"].includes(path)) {
+    if (["/", "/services", "/clients"].includes(path)) {
       const copy = preservedCopy(currentMain, path).replace(/\s/g, "");
       const updatedPageCopy = {
         "/": "Gooddesign.",
         "/services": "Yourgrowth,atthecentre.",
         "/clients": "Creativework.Realclientstories.",
-        "/about": "Builtforthegapbetween",
       }[path];
       assert.ok(
         copy.includes(updatedPageCopy),
@@ -162,7 +157,7 @@ for (const [path, name] of Object.entries(pages)) {
         `Established main content remains intact for ${path}`,
       );
     }
-    if (!["/", "/services", "/clients", "/about"].includes(path)) {
+    if (!["/", "/services", "/clients"].includes(path)) {
       for (const tag of ["img", "video", "source"]) {
         const media = (tree) =>
           elements(tree, tag)
@@ -193,7 +188,7 @@ for (const [path, name] of Object.entries(pages)) {
       elements(tree, "a")
         .filter((node) => !replacedGallery(node))
         .map((node) => normalizeProjectLink(attr(node, "href")));
-    if (!["/", "/services", "/clients", "/about"].includes(path)) {
+    if (!["/", "/services", "/clients"].includes(path)) {
       const remainingLinks = links(currentMain);
       for (const href of links(expectedMain)) {
         const index = remainingLinks.indexOf(href);
@@ -207,7 +202,7 @@ for (const [path, name] of Object.entries(pages)) {
         .map((node) => attr(node, "id"))
         .filter(Boolean)
         .filter((id) => id !== "site-navigation");
-    if (!["/", "/services", "/clients", "/about"].includes(path)) {
+    if (!["/", "/services", "/clients"].includes(path)) {
       for (const id of ids(expectedMain))
         assert.ok(ids(currentMain).includes(id), `Preserved anchor: ${id}`);
     }
@@ -272,8 +267,10 @@ test("Shared client list includes 10 logos and 51 campaign images", async () => 
 
 test("Production has all direct entry points and route-specific metadata", () => {
   const routes = JSON.parse(readFileSync("src/data/routes.json", "utf8"));
-  assert.equal(routes.length, 18);
+  assert.equal(routes.length, 17);
+  assert.ok(!routes.some((route) => route.path === "/about"));
   const buildDirectory = process.env.TEST_DIST_DIR || "dist";
+  assert.ok(!existsSync(resolve(buildDirectory, "about/index.html")));
   for (const route of routes) {
     const html = readFileSync(
       resolve(

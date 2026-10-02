@@ -77,7 +77,9 @@ export function Studio() {
             We start with your business and the people you want to reach. Then
             we bring the right ideas, design and channels together.
           </p>
-          <a href="/about/">Inside DC Creative Labs</a>
+          <a href="/services/#department-digital">
+            Explore our creative services
+          </a>
         </div>
 
         <div className="studio-column studio-films">

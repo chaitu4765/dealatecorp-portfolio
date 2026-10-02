@@ -16,8 +16,6 @@ export function Adhithya() {
           <source src="/clients/videos/aditya.mp4" type="video/mp4" />
         </video>
 
-        <div className="adhithya-hero__overlay" />
-
         <div className="adhithya-hero__copy">
           <p className="adhithya-badge">REAL ESTATE · VISAKHAPATNAM</p>
 

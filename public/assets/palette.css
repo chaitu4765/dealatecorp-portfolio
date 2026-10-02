@@ -1396,8 +1396,7 @@ html[data-theme]
     font-size: 22px;
   }
   .logo-specimen__project img {
-    height: 12cqh;
-    min-height: 48px;
+    height: auto;
   }
   html[data-theme] body .logo-specimen__project figcaption {
     font-size: 10px;
@@ -1424,6 +1423,126 @@ html[data-theme]
   }
 }
 /* The imported assistant shares the site's pale-blue and graphite palette. */
+/* The original banner remains untinted, with the intro card overlapping its edge. */
+html[data-theme] body .adhithya-hero {
+  height: auto;
+  min-height: clamp(560px, 76svh, 780px);
+  padding-bottom: 116px;
+}
+html[data-theme] body .adhithya-hero__copy {
+  width: min(1440px, 100%);
+  padding: clamp(100px, 10vw, 160px) var(--pad) 48px;
+  text-shadow: 0 2px 18px #0009, 0 1px 3px #000b;
+}
+html[data-theme] body .adhithya-hero__copy > p:not(.adhithya-badge) {
+  color: #fff;
+}
+html[data-theme] body main.adhithya-case > .adhithya-about {
+  position: relative;
+  z-index: 2;
+  width: min(88%, 1440px);
+  max-width: none;
+  margin: -76px auto clamp(48px, 6vw, 96px);
+  padding: clamp(32px, 4.5vw, 72px);
+  border: 1px solid var(--theme-border);
+  border-radius: 28px;
+  background: var(--theme-surface);
+  box-shadow: 0 24px 64px #18263814;
+}
+html[data-theme] body .adhithya-about h2 {
+  font-size: clamp(32px, 3.5vw, 56px);
+  line-height: 1.08;
+}
+html[data-theme] body .adhithya-about__copy p {
+  color: var(--theme-muted);
+  font-size: clamp(18px, 1.4vw, 22px);
+  line-height: 1.7;
+}
+
+/* A centered comparison leads into the capability overview and deliverables. */
+html[data-theme] body .dc-services-page .capability-detail__heading {
+  text-align: center;
+  scroll-margin-top: 120px;
+}
+html[data-theme] body .dc-services-page .capability-detail__heading > p {
+  margin-inline: auto;
+}
+html[data-theme] body .dc-services-page .capability-comparison {
+  width: min(100%, 1120px);
+  margin: 36px auto 0;
+}
+html[data-theme] body .dc-services-page .capability-comparison > figcaption {
+  text-align: center;
+  margin-bottom: 24px;
+}
+html[data-theme] body .dc-services-page .comparison-canvas {
+  height: auto;
+  min-height: 0;
+  aspect-ratio: 2 / 1;
+}
+html[data-theme] body .dc-services-page .capability-detail__body {
+  width: min(100%, 1120px);
+  margin: 48px auto 0;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(32px, 5vw, 80px);
+}
+html[data-theme] body .dc-services-page .capability-overview h4 {
+  font-size: clamp(23px, 1.8vw, 30px);
+  line-height: 1.2;
+}
+html[data-theme] body .dc-services-page .capability-overview > p {
+  color: var(--theme-muted);
+  line-height: 1.65;
+  margin: 0 0 24px;
+}
+html[data-theme] body .dc-services-page .capability-overview > .capability-overview__note {
+  margin-top: 18px;
+  font-size: 16px;
+}
+
+/* Strong, consistent primary actions on the homepage. */
+html[data-theme] body .site-header--home .nav-cta,
+html[data-theme] body .logo-specimen__scene .logo-specimen__cta {
+  background: linear-gradient(135deg, #1268c4, #064494);
+  color: #fff;
+  border: 1px solid #297bce;
+  font-weight: 750;
+  box-shadow: 0 6px 18px #0757b038, inset 0 1px 0 #ffffff30;
+  transition: background 180ms, box-shadow 180ms;
+}
+html[data-theme] body .site-header--home .nav-cta:hover,
+html[data-theme] body .logo-specimen__scene .logo-specimen__cta:hover {
+  background: linear-gradient(135deg, #0757b0, #033577);
+  color: #fff;
+  box-shadow: 0 8px 24px #0757b055;
+}
+html[data-theme] body .site-header--home .nav-cta:focus-visible,
+html[data-theme] body .logo-specimen__scene .logo-specimen__cta:focus-visible {
+  outline: 3px solid var(--theme-accent-text);
+  outline-offset: 4px;
+}
+@media (max-width: 700px) {
+  html[data-theme] body .adhithya-hero {
+    min-height: 540px;
+    padding-bottom: 72px;
+  }
+  html[data-theme] body .adhithya-hero__copy {
+    padding: 100px 24px 32px;
+  }
+  html[data-theme] body main.adhithya-case > .adhithya-about {
+    width: calc(100% - 32px);
+    margin-top: -40px;
+    padding: 28px 24px;
+    border-radius: 20px;
+  }
+  html[data-theme] body .dc-services-page .capability-detail__body {
+    grid-template-columns: 1fr;
+  }
+  html[data-theme] body .dc-services-page .comparison-canvas {
+    aspect-ratio: 3 / 2;
+  }
+}
+
 html[data-theme] body .dealate-assistant { z-index: 90; }
 html[data-theme] body .dealate-assistant__launcher { min-height: 64px; gap: 12px; padding: 8px 22px 8px 10px; background: var(--theme-accent-fill); color: var(--theme-on-accent); border-color: var(--theme-border); box-shadow: 0 8px 24px #18263818; font-size: 16px; }
 html[data-theme] body .dealate-assistant__launcher > span { width: 44px; height: 44px; background: var(--theme-surface); font-size: 29px; }

@@ -32,7 +32,9 @@ export function Header({ path }) {
     }
   }, [dark]);
   return (
-    <header className="site-header">
+    <header
+      className={`site-header${path === "/" ? " site-header--home" : ""}`}
+    >
       <a className="brand" href="/" aria-label="Dealatecorp home">
         <span className="brand-mark brand-mark--logo" aria-hidden="true">
           <img
