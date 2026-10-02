@@ -13,15 +13,6 @@ function featuredMediaFrame(media, side, index) {
         >
           <source src={media.src} type="video/mp4" />
         </video>
-
-        <button
-          className="featured-media-mute"
-          type="button"
-          aria-label="Unmute featured video"
-          aria-pressed="true"
-        >
-          Muted
-        </button>
       </figure>
     );
   }

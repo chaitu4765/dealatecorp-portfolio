@@ -27,11 +27,7 @@ export function Clients({ featuredMedia }) {
       <section className="clients-hero" aria-labelledby="clients-title">
         <div className="clients-hero__copy">
           <p className="clients-pill">Creative work. Real client stories.</p>
-          <h1 id="clients-title">
-            Built on trust.
-            <br />
-            <em>Measured in momentum.</em>
-          </h1>
+          <h1 id="clients-title">Built on trust.</h1>
           <p>Brands, campaigns and digital experiences. Explore our work.</p>
         </div>
         <div

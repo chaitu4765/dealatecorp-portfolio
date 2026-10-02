@@ -454,15 +454,13 @@ test("Home presents the logo story, four linked frames and unchanged studio cont
   assert.ok(!document.querySelector(".studio-film video").paused);
   await click(".studio-film [data-film-play]");
   assert.ok(document.querySelector(".studio-film video").paused);
-  await click(".studio-film [data-film-sound]");
-  assert.equal(
-    document.querySelector(".studio-film [data-film-sound]").textContent,
-    "Sound on",
-  );
+  assert.equal(document.querySelector(".studio-film [data-film-sound]"), null);
+  assert.ok(document.querySelector(".studio-film video").muted);
+  await click("[data-studio-motion]");
   assert.equal(
     document.querySelector("[data-studio-motion]").getAttribute("aria-pressed"),
     "true",
-    "Listening to a film pauses the moving rail",
+    "The moving rail can still be paused independently",
   );
   await click("[data-studio-motion]");
   assert.equal(
@@ -769,8 +767,8 @@ test("Tirumalasetty media preview wraps, closes and restores focus", async () =>
         .getAttribute("aria-current"),
       "page",
     );
-    const trigger = document.querySelector(".media-orbit__card");
-    await click(".media-orbit__card");
+    const trigger = document.querySelector(".media-orbit__open");
+    await click(".media-orbit__open");
     const dialog = document.querySelector(".client-media__lightbox");
     assert.ok(dialog.open);
     const firstSource = dialog.querySelector("img").src;
@@ -907,20 +905,19 @@ test("New uploads are matched to five client galleries and every client uses the
   }
 });
 
-test("Client cylinder navigates, honors reduced motion and pauses expanded films", async () => {
+test("Client cylinder keeps photo previews separate and honors reduced motion", async () => {
   await withEntranceDialog(async () => {
     await mount("/clients/ganesh-constructions");
-    await click(".media-orbit__card");
+    await click(".media-orbit__open");
     const dialog = document.querySelector(".client-media__lightbox");
     assert.ok(dialog.open);
     await click('[aria-label="Next media preview"]');
-    const player = dialog.querySelector("video");
-    assert.ok(player.controls);
-    assert.equal(player.preload, "metadata");
-    assert.ok(!player.autoplay);
-    await act(async () => player.play());
-    await press(dialog, "ArrowRight");
-    assert.ok(player.paused, "Leaving a film pauses its playback");
+    assert.ok(dialog.querySelector("img"));
+    assert.equal(
+      dialog.querySelector("video"),
+      null,
+      "Photo navigation skips films",
+    );
     await click('[aria-label="Close media preview"]');
     await click('[aria-label="Next photo or film"]');
     assert.equal(
@@ -946,6 +943,85 @@ test("Client cylinder navigates, honors reduced motion and pauses expanded films
       "true",
     );
   });
+});
+
+test("Client films play inside their frame and stop on navigation or unmount", async () => {
+  await mount("/clients/spark");
+  assert.equal(document.querySelector(".media-orbit__stage video"), null);
+  await click('.media-orbit__open[aria-label^="Play "]');
+  const player = document.querySelector(".media-orbit__card video");
+  assert.ok(player.controls);
+  assert.ok(player.playsInline);
+  assert.equal(player.preload, "metadata");
+  assert.ok(!player.paused, "Selecting a film starts playback in the frame");
+  assert.ok(player.muted);
+  assert.equal(player.volume, 0);
+  await act(async () => {
+    player.muted = false;
+    player.volume = 1;
+    player.dispatchEvent(new window.Event("volumechange"));
+  });
+  assert.ok(player.muted, "Native controls cannot enable video sound");
+  assert.equal(player.volume, 0);
+  assert.equal(document.activeElement, player);
+  assert.ok(!document.querySelector(".client-media__lightbox").open);
+  assert.equal(document.querySelector(".client-media__lightbox video"), null);
+  assert.equal(
+    document.querySelector(".media-orbit__motion").getAttribute("aria-pressed"),
+    "false",
+  );
+
+  const active = document.querySelector(
+    '.media-orbit__card[aria-current="true"]',
+  );
+  await press(player, "ArrowRight");
+  assert.equal(
+    document.querySelector('.media-orbit__card[aria-current="true"]'),
+    active,
+    "Video seek keys do not navigate the carousel",
+  );
+  await click('.media-orbit__open[aria-label^="Play "]');
+  const replacement = document.querySelector(".media-orbit__card video");
+  assert.notEqual(replacement, player);
+  assert.ok(player.paused, "Starting another film stops the previous one");
+  assert.equal(
+    document.querySelectorAll(".media-orbit__stage video").length,
+    1,
+  );
+  await click('[aria-label="Next photo or film"]');
+  assert.ok(replacement.paused);
+  assert.equal(document.querySelector(".media-orbit__stage video"), null);
+
+  await click('.media-orbit__open[aria-label^="Play "]');
+  const lastPlayer = document.querySelector(".media-orbit__card video");
+  await mount("/clients");
+  assert.ok(lastPlayer.paused, "Leaving the client page stops playback");
+});
+
+test("Project enquiry keeps its fields and keyboard navigation with the smoke effect", async () => {
+  await mount("/clients/ganesh-constructions");
+  const opener = document.querySelector(".site-header [data-project-enquiry]");
+  opener.focus();
+  await click(".site-header [data-project-enquiry]");
+  const dialog = document.querySelector(".project-enquiry-modal__dialog");
+  assert.ok(dialog.querySelector('.smokey-background[aria-hidden="true"]'));
+  assert.deepEqual(
+    [...dialog.querySelectorAll("input,textarea")].map((field) => field.name),
+    ["name", "phone", "email", "message"],
+  );
+  const name = dialog.querySelector('[name="name"]');
+  assert.equal(name.closest("label").textContent, "Name");
+  assert.equal(dialog.querySelector('[type="password"]'), null);
+  const submit = dialog.querySelector('[type="submit"]');
+  submit.focus();
+  await press(submit, "Tab");
+  assert.equal(document.activeElement, dialog.querySelector("a"));
+  await press(document.activeElement, "Tab", true);
+  assert.equal(document.activeElement, submit);
+  await press(submit, "Escape");
+  assert.equal(document.querySelector(".project-enquiry-modal"), null);
+  assert.equal(document.activeElement, opener);
+  assert.ok(!document.body.classList.contains("project-enquiry-open"));
 });
 
 test("Products navigation opens all imported concepts and returns to the catalogue", async () => {

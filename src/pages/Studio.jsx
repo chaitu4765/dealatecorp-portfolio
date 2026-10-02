@@ -25,14 +25,6 @@ const film = (id, title, caption) => (
         >
           Play
         </button>
-        <button
-          type="button"
-          data-film-sound=""
-          aria-label={"Unmute " + title + " film"}
-          aria-pressed="false"
-        >
-          Sound off
-        </button>
       </div>
     </div>
     <p>{caption}</p>
@@ -362,8 +354,7 @@ function initStudio(scope) {
   videos.forEach((video) => {
     mediaObserver.observe(video);
     const article = video.closest("article"),
-      play = article.querySelector("[data-film-play]"),
-      sound = article.querySelector("[data-film-sound]");
+      play = article.querySelector("[data-film-play]");
     scope.on(video, "play", () => syncVideo(video));
     scope.on(video, "pause", () => syncVideo(video));
     scope.on(play, "click", () => {
@@ -374,33 +365,6 @@ function initStudio(scope) {
       } else {
         video.dataset.userPaused = "true";
         video.pause();
-      }
-    });
-    scope.on(sound, "click", () => {
-      const muted = !video.muted;
-      videos.forEach((other) => {
-        other.muted = true;
-        const b = other.closest("article").querySelector("[data-film-sound]");
-        b.textContent = "Sound off";
-        b.setAttribute("aria-pressed", "false");
-        b.setAttribute(
-          "aria-label",
-          `Unmute ${other.getAttribute("aria-label")}`,
-        );
-      });
-      video.muted = muted;
-      sound.textContent = muted ? "Sound off" : "Sound on";
-      sound.setAttribute("aria-pressed", String(!muted));
-      sound.setAttribute(
-        "aria-label",
-        `${muted ? "Unmute" : "Mute"} ${video.getAttribute("aria-label")}`,
-      );
-      if (!muted) {
-        paused = true;
-        load(video);
-        video.dataset.userPaused = "false";
-        video.play().catch(() => syncVideo(video));
-        sync();
       }
     });
   });

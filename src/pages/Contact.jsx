@@ -5,6 +5,7 @@ const initialValues = { name: "", phone: "", email: "", message: "" };
 export function ProjectForm({
   className = "contact-form",
   title = "Your details",
+  floatingLabels = false,
 }) {
   const [values, setValues] = useState(initialValues);
   const update = (event) =>
@@ -21,20 +22,23 @@ export function ProjectForm({
     window.location.href = `mailto:hr@dealatecorp.com?subject=${subject}&body=${body}`;
   };
   return (
-    <form className={className} onSubmit={submit}>
+    <form
+      className={`${className}${floatingLabels ? " contact-form--floating" : ""}`}
+      onSubmit={submit}
+    >
       <h2 id="contact-form-title">{title}</h2>
       <label>
-        Name
         <input
           name="name"
           value={values.name}
           onChange={update}
           required
           autoComplete="name"
+          placeholder={floatingLabels ? " " : undefined}
         />
+        <span>Name</span>
       </label>
       <label>
-        Phone number
         <input
           name="phone"
           type="tel"
@@ -42,10 +46,11 @@ export function ProjectForm({
           onChange={update}
           required
           autoComplete="tel"
+          placeholder={floatingLabels ? " " : undefined}
         />
+        <span>Phone number</span>
       </label>
       <label>
-        Work email
         <input
           name="email"
           type="email"
@@ -53,18 +58,21 @@ export function ProjectForm({
           onChange={update}
           required
           autoComplete="email"
-          placeholder="you@company.com"
+          placeholder={floatingLabels ? " " : "you@company.com"}
         />
+        <span>Work email</span>
       </label>
       <label>
-        How can we help?
         <textarea
           name="message"
           value={values.message}
           onChange={update}
           rows="5"
-          placeholder="Tell us a little about your project"
+          placeholder={
+            floatingLabels ? " " : "Tell us a little about your project"
+          }
         />
+        <span>How can we help?</span>
       </label>
       <button className="button contact-form__submit" type="submit">
         Send enquiry <span aria-hidden="true">↗</span>

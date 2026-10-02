@@ -3,11 +3,12 @@ import { useCallback, useEffect, useRef, useState } from "react";
 const wrap = (index, count) => ((index % count) + count) % count;
 
 // The supplied cylinder interaction, adapted to local photos and films.
-// Cards share a CSS 3D scene; full-size media only loads in the native dialog.
+// Photos open at full size; films load and play inside their carousel frame.
 export function ThreeDPhotoCarousel({ items, brand }) {
   const [active, setActive] = useState(0);
   const [playing, setPlaying] = useState(false);
   const [preview, setPreview] = useState(null);
+  const [film, setFilm] = useState(null);
   const stage = useRef(null);
   const ring = useRef(null);
   const dialog = useRef(null);
@@ -27,10 +28,12 @@ export function ThreeDPhotoCarousel({ items, brand }) {
     visible: false,
     reduced: false,
     preview: false,
+    film: false,
   });
   const count = items.length;
   const step = 360 / count;
   const selected = preview === null ? null : items[preview];
+  const photoCount = items.filter((item) => item.type !== "video").length;
 
   const paint = useCallback(
     (next, updateActive = true) => {
@@ -79,6 +82,7 @@ export function ThreeDPhotoCarousel({ items, brand }) {
     const observer = new IntersectionObserver(
       ([entry]) => {
         motion.current.visible = entry.isIntersecting;
+        if (!entry.isIntersecting) video.current?.pause();
       },
       { threshold: 0.15 },
     );
@@ -97,7 +101,11 @@ export function ThreeDPhotoCarousel({ items, brand }) {
             target.current = null;
           } else
             paint(angle.current + difference * Math.min(1, delta / 90), false);
-        } else if (Math.abs(velocity.current) > 0.001 && !state.reduced) {
+        } else if (
+          Math.abs(velocity.current) > 0.001 &&
+          !state.reduced &&
+          !state.film
+        ) {
           paint(angle.current + velocity.current * delta);
           velocity.current *= Math.exp(-delta / 180);
         } else if (
@@ -106,6 +114,7 @@ export function ThreeDPhotoCarousel({ items, brand }) {
           state.visible &&
           !state.hovered &&
           !state.focused &&
+          !state.film &&
           !state.reduced
         ) {
           paint(angle.current - delta * 0.006);
@@ -126,11 +135,30 @@ export function ThreeDPhotoCarousel({ items, brand }) {
     if (preview === null) return;
     const element = dialog.current;
     if (!element.open) element.showModal();
-    const player = video.current;
-    return () => player?.pause();
   }, [preview]);
 
+  useEffect(() => {
+    if (film === null) return;
+    const player = video.current;
+    player.focus({ preventScroll: true });
+    player.play()?.catch(() => {}); // Native controls remain available if playback is blocked.
+    const hide = () => {
+      if (document.hidden) player.pause();
+    };
+    document.addEventListener("visibilitychange", hide);
+    return () => {
+      player.pause();
+      document.removeEventListener("visibilitychange", hide);
+    };
+  }, [film]);
+
+  const stopFilm = () => {
+    video.current?.pause();
+    motion.current.film = false;
+    setFilm(null);
+  };
   const navigate = (index) => {
+    stopFilm();
     setPlaying(false);
     velocity.current = 0;
     const next = wrap(index, count);
@@ -149,20 +177,29 @@ export function ThreeDPhotoCarousel({ items, brand }) {
       return;
     }
     opener.current = button;
+    if (items[index].type === "video") {
+      navigate(index);
+      motion.current.film = true;
+      setFilm(index);
+      return;
+    }
+    stopFilm();
     motion.current.preview = true;
     velocity.current = 0;
     setPreview(index);
   };
   const close = () => {
-    video.current?.pause();
     if (dialog.current?.open) dialog.current.close();
     motion.current.preview = false;
     setPreview(null);
     opener.current?.focus();
   };
   const changePreview = (direction) => {
-    video.current?.pause();
-    setPreview((index) => wrap(index + direction, count));
+    setPreview((index) => {
+      let next = wrap(index + direction, count);
+      while (items[next].type === "video") next = wrap(next + direction, count);
+      return next;
+    });
   };
   const finishDrag = (event) => {
     if (!drag.current || drag.current.id !== event.pointerId) return;
@@ -203,7 +240,8 @@ export function ThreeDPhotoCarousel({ items, brand }) {
         className="media-orbit__stage"
         ref={stage}
         onPointerDown={(event) => {
-          if (event.button !== 0 || count < 2) return;
+          if (event.button !== 0 || count < 2 || event.target.closest("video"))
+            return;
           suppressClick.current = false;
           velocity.current = 0;
           target.current = null;
@@ -221,6 +259,7 @@ export function ThreeDPhotoCarousel({ items, brand }) {
           if (!pointer || pointer.id !== event.pointerId) return;
           const distance = event.clientX - pointer.x;
           if (!pointer.moved && Math.abs(distance) < 7) return;
+          if (!pointer.moved) stopFilm();
           pointer.moved = true;
           suppressClick.current = true;
           stage.current.setPointerCapture?.(event.pointerId);
@@ -241,41 +280,67 @@ export function ThreeDPhotoCarousel({ items, brand }) {
       >
         <div className="media-orbit__ring" ref={ring}>
           {items.map((item, index) => (
-            <button
+            <div
               className="media-orbit__card"
               key={item.id}
-              type="button"
               style={{ "--media-angle": `${index * step}deg` }}
-              aria-label={`Open ${item.title}`}
               aria-current={index === active ? "true" : undefined}
-              tabIndex={index === active ? 0 : -1}
-              onDragStart={(event) => event.preventDefault()}
-              onClick={(event) => {
-                if (event.detail === 0) suppressClick.current = false;
-                open(index, event.currentTarget);
-              }}
             >
-              <span className="media-orbit__image">
-                <img
-                  src={item.thumbnail || item.poster || item.src}
-                  alt={item.alt}
-                  loading="lazy"
-                  decoding="async"
-                  draggable="false"
-                />
-                {item.type === "video" && (
-                  <span className="media-orbit__play" aria-hidden="true">
-                    ▶
+              {film === index ? (
+                <>
+                  <div className="media-orbit__image media-orbit__player">
+                    <video
+                      ref={video}
+                      src={item.src}
+                      poster={item.poster || item.thumbnail}
+                      controls
+                      muted
+                      playsInline
+                      preload="metadata"
+                      tabIndex={0}
+                      aria-label={item.alt || item.title}
+                    />
+                  </div>
+                  <span className="media-orbit__card-label">
+                    <span>{item.title}</span>
+                    <span>In frame</span>
                   </span>
-                )}
-              </span>
-              <span className="media-orbit__card-label">
-                <span>{item.title}</span>
-                <span aria-hidden="true">
-                  {item.type === "video" ? "Play ↗" : "↗"}
-                </span>
-              </span>
-            </button>
+                </>
+              ) : (
+                <button
+                  className="media-orbit__open"
+                  type="button"
+                  aria-label={`${item.type === "video" ? "Play" : "Open"} ${item.title}`}
+                  tabIndex={index === active ? 0 : -1}
+                  onDragStart={(event) => event.preventDefault()}
+                  onClick={(event) => {
+                    if (event.detail === 0) suppressClick.current = false;
+                    open(index, event.currentTarget);
+                  }}
+                >
+                  <span className="media-orbit__image">
+                    <img
+                      src={item.thumbnail || item.poster || item.src}
+                      alt={item.alt}
+                      loading="lazy"
+                      decoding="async"
+                      draggable="false"
+                    />
+                    {item.type === "video" && (
+                      <span className="media-orbit__play" aria-hidden="true">
+                        ▶
+                      </span>
+                    )}
+                  </span>
+                  <span className="media-orbit__card-label">
+                    <span>{item.title}</span>
+                    <span aria-hidden="true">
+                      {item.type === "video" ? "Play ▶" : "↗"}
+                    </span>
+                  </span>
+                </button>
+              )}
+            </div>
           ))}
         </div>
       </div>
@@ -314,7 +379,10 @@ export function ThreeDPhotoCarousel({ items, brand }) {
               playing ? "Pause carousel rotation" : "Play carousel rotation"
             }
             aria-pressed={playing}
-            onClick={() => setPlaying((value) => !value)}
+            onClick={() => {
+              stopFilm();
+              setPlaying((value) => !value);
+            }}
           >
             {playing ? "Pause" : "Rotate"}
           </button>
@@ -322,8 +390,10 @@ export function ThreeDPhotoCarousel({ items, brand }) {
       </div>
       <p className="media-orbit__hint">
         {count > 1
-          ? "Drag to explore · Select a frame to open"
-          : "Select the frame to open"}
+          ? "Drag to explore · Play films in their frame · Select photos to expand"
+          : items[0].type === "video"
+            ? "Play the film in its frame"
+            : "Select the photo to expand"}
       </p>
       <dialog
         ref={dialog}
@@ -356,23 +426,11 @@ export function ThreeDPhotoCarousel({ items, brand }) {
         </button>
         {selected && (
           <div className="media-orbit__expanded" key={selected.src}>
-            {selected.type === "video" ? (
-              <video
-                ref={video}
-                src={selected.src}
-                poster={selected.poster}
-                controls
-                playsInline
-                preload="metadata"
-                aria-label={selected.alt}
-              />
-            ) : (
-              <img src={selected.src} alt={selected.alt} />
-            )}
+            <img src={selected.src} alt={selected.alt} />
           </div>
         )}
         <div className="media-orbit__preview-controls">
-          {count > 1 && (
+          {photoCount > 1 && (
             <button
               type="button"
               aria-label="Previous media preview"
@@ -382,7 +440,7 @@ export function ThreeDPhotoCarousel({ items, brand }) {
             </button>
           )}
           <span>{selected?.title}</span>
-          {count > 1 && (
+          {photoCount > 1 && (
             <button
               type="button"
               aria-label="Next media preview"

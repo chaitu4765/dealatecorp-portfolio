@@ -513,16 +513,74 @@ html[data-theme]
   :is(input, textarea)::placeholder {
   color: var(--theme-muted);
 }
+html[data-theme] body .project-enquiry-modal__dialog {
+  position: relative;
+  isolation: isolate;
+  background: linear-gradient(135deg, #e4f1fc, #f6faff);
+}
+html[data-theme="dark"] body .project-enquiry-modal__dialog {
+  background: linear-gradient(135deg, #19324d, #18212e);
+}
+.smokey-background {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
 html[data-theme] body .project-enquiry-modal__intro {
-  background:
-    radial-gradient(ellipse at top left, #43566b, transparent 70%), #2c3541;
+  background: transparent;
 }
 html[data-theme] body .project-enquiry-modal__intro :is(h2, p, a) {
-  color: #f6f5f0;
+  color: var(--theme-text);
 }
 html[data-theme] body .project-enquiry-modal__intro .kicker {
-  color: #d2dfeb;
+  color: var(--theme-accent-text);
 }
+html[data-theme] body .project-enquiry-modal__form-wrap {
+  background: color-mix(in srgb, var(--theme-surface) 82%, transparent);
+  border-left: 1px solid var(--theme-border);
+}
+html[data-theme] body .project-enquiry-modal__form {
+  background: transparent;
+}
+.contact-form label > span {
+  order: -1;
+}
+html[data-theme] body .contact-form--floating {
+  gap: 22px;
+}
+.contact-form--floating label {
+  position: relative;
+  display: block;
+}
+html[data-theme] body .contact-form--floating :is(input, textarea) {
+  padding: 25px 14px 9px;
+  border-radius: 12px;
+  background: color-mix(in srgb, var(--theme-surface) 55%, transparent);
+  font-size: 16px;
+}
+.contact-form--floating label > span {
+  position: absolute;
+  left: 15px;
+  top: 6px;
+  font-size: 12px;
+  color: var(--theme-accent-text);
+  pointer-events: none;
+  transition: top 160ms ease, font-size 160ms ease;
+}
+.contact-form--floating :placeholder-shown:not(:focus) + span {
+  top: 18px;
+  font-size: 16px;
+  color: var(--theme-muted);
+}
+@media (prefers-reduced-motion: reduce) {
+  .contact-form--floating label > span { transition: none; }
+}
+/* Site videos are intentionally silent; playback and seeking remain available. */
+video::-webkit-media-controls-mute-button,
+video::-webkit-media-controls-volume-slider { display: none; }
 html[data-theme] body .project-enquiry-modal__close {
   background: var(--theme-surface-raised);
   color: var(--theme-text);
@@ -941,6 +999,15 @@ html[data-theme]
   font-size: clamp(52px, 7.8vw, 132px);
   line-height: 1.06;
   letter-spacing: -0.065em;
+}
+/* A smaller Clients headline that scales with its available space. */
+.clients-hero__copy {
+  max-width: 1100px;
+  container-type: inline-size;
+}
+html[data-theme] body main .clients-hero .clients-hero__copy h1 {
+  font-size: clamp(24px, 7.8cqw, 84px);
+  line-height: 1.12;
 }
 html[data-theme]
   body

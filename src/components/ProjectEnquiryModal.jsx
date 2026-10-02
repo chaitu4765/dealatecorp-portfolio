@@ -1,20 +1,42 @@
 import { useEffect, useRef } from "react";
 import { ProjectForm } from "../pages/Contact.jsx";
+import { SmokeyBackground } from "./ui/smokey-background.jsx";
 
 export function ProjectEnquiryModal({ open, onClose }) {
   const dialog = useRef(null);
 
   useEffect(() => {
     if (!open) return undefined;
+    const previousFocus = document.activeElement;
     const onKeyDown = (event) => {
       if (event.key === "Escape") onClose();
+      if (event.key === "Tab") {
+        const controls = dialog.current.querySelectorAll(
+          "a[href],button,input,textarea",
+        );
+        const first = controls[0];
+        const last = controls[controls.length - 1];
+        if (
+          event.shiftKey &&
+          (document.activeElement === first ||
+            document.activeElement === dialog.current)
+        ) {
+          event.preventDefault();
+          last.focus();
+        } else if (!event.shiftKey && document.activeElement === last) {
+          event.preventDefault();
+          first.focus();
+        }
+      }
     };
     document.body.classList.add("project-enquiry-open");
     document.addEventListener("keydown", onKeyDown);
-    requestAnimationFrame(() => dialog.current?.focus());
+    const frame = requestAnimationFrame(() => dialog.current?.focus());
     return () => {
+      cancelAnimationFrame(frame);
       document.body.classList.remove("project-enquiry-open");
       document.removeEventListener("keydown", onKeyDown);
+      previousFocus?.focus();
     };
   }, [onClose, open]);
 
@@ -36,6 +58,7 @@ export function ProjectEnquiryModal({ open, onClose }) {
         aria-labelledby="project-enquiry-title"
         tabIndex="-1"
       >
+        <SmokeyBackground />
         <div className="project-enquiry-modal__intro">
           <p className="kicker">Dealatecorp / New project</p>
           <h2 id="project-enquiry-title">Let’s make the next move clear.</h2>
@@ -57,6 +80,7 @@ export function ProjectEnquiryModal({ open, onClose }) {
           <ProjectForm
             className="contact-form project-enquiry-modal__form"
             title="Your details"
+            floatingLabels
           />
         </div>
       </section>

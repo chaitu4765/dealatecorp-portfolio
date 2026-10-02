@@ -13,6 +13,16 @@ const tirumalasettyWork = [
   },
 ];
 export function initSite(scope, usesEditorialTheme) {
+  // Keep every site-owned video silent, including dynamically mounted players.
+  const silence = (video) => {
+    if (video?.tagName !== "VIDEO") return;
+    if (!video.muted) video.muted = true;
+    if (!video.defaultMuted) video.defaultMuted = true;
+    if (video.volume !== 0) video.volume = 0;
+  };
+  document.querySelectorAll("video").forEach(silence);
+  for (const event of ["play", "volumechange", "loadedmetadata"])
+    scope.on(document, event, (event) => silence(event.target), true);
   const scrollToCurrentHash = () => {
     if (!location.hash) return;
     scope.requestAnimationFrame(() => {
@@ -150,23 +160,6 @@ export function initSite(scope, usesEditorialTheme) {
         passive: true,
       },
     );
-    featuredCarousel
-      .querySelectorAll(".featured-media-mute")
-      .forEach((button) => {
-        const video = button
-          .closest(".featured-media-card")
-          .querySelector("video");
-        scope.on(button, "click", () => {
-          video.muted = !video.muted;
-          button.textContent = video.muted ? "Muted" : "Sound on";
-          button.setAttribute("aria-pressed", String(video.muted));
-          button.setAttribute(
-            "aria-label",
-            `${video.muted ? "Unmute" : "Mute"} featured video`,
-          );
-          if (!video.paused) video.play().catch(() => {});
-        });
-      });
     scope.on(motionQuery, "change", setFeaturedVideos);
     scope.on(window, "scroll", setFeaturedVideos, {
       passive: true,
