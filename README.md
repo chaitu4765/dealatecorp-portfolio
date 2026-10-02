@@ -2,7 +2,8 @@
 
 The existing website is now a React 19 + Vite application. The established design,
 page content, client logos, campaigns, videos, responsive CSS and interactions are
-preserved. No CI/CD or GitHub Actions workflows are configured.
+preserved. The GitHub repository is connected to Vercel; pushes to `main` trigger
+production deployments. No separate GitHub Actions workflow is required.
 
 ## Run locally
 
@@ -24,7 +25,7 @@ npm run preview
 `preview` serves the production build on the same port; stop the development
 server before using it.
 
-`npm test` builds the site and runs 28 content-preservation and simulated component
+`npm test` builds the site and runs API, content-preservation and simulated component
 interaction checks. The migration tests compare against commit
 `aec7abd1c6a04b21c29437fa196b18fa18bc244e`, so run them from the repository with its
 Git history available. These tests do not replace visual browser testing.
@@ -46,8 +47,39 @@ existing deep links, reloads and static hosting compatible without a server rout
 The two Adhithya spelling variants remain supported.
 
 Edit `src/` or `public/`, not the generated `dist/` directory. `npm run build`
-recreates `dist/`. `.openai/hosting.json` retains the existing Site configuration;
-publishing is manual, not automatic.
+recreates `dist/`. `.openai/hosting.json` retains the separate OpenAI Site configuration.
+Vercel uses `vercel.json` and the Git integration.
+
+## Lyzr assistant on Vercel
+
+The chat widget calls `POST /api/dealate-assistant`. Vercel deploys
+`api/dealate-assistant.js` as a Node.js function alongside the static Vite build.
+It shares the same handler with local development and preview servers in
+`server/dealate-assistant.mjs`.
+
+In the existing Vercel project's **Settings > Environment Variables**, add the
+following variables to **Production** using the values from the deployed Lyzr
+agent's **Deploy > Agent API** panel:
+
+- `LYZR_API_KEY`: the API key; mark this variable **Sensitive**.
+- `LYZR_USER_ID`: the `user_id` in the Lyzr cURL request.
+- `LYZR_AGENT_ID`: the deployed `agent_id` in that request.
+
+Add Preview variables separately only if preview deployments should use the agent.
+Never use a `VITE_` prefix for credentials: those variables are embedded in browser
+JavaScript. Keep keys out of Git, build commands, URLs and logs. `.env.example`
+contains names only; local `.env` files and `.vercel/` are ignored.
+
+After adding or changing variables, redeploy the latest `main` commit because
+existing deployments do not receive environment changes. A static-only host cannot
+serve this function. The Vercel build command is `npm run build`, with `dist` as
+the output directory and a 60-second function limit.
+
+Verify the deployed widget using **Ask us**. A POST to the endpoint should return
+JSON with a nonempty `text` field. HTTP 503 means the server configuration is
+missing, 502 indicates a provider failure, and 504 indicates a timeout. The key
+and upstream error details are never sent to the browser. API tests use mocked
+Lyzr responses; they do not establish live provider connectivity.
 
 The repository includes all website source and browser-ready assets. Original
 client media folders, backup ZIPs, dependencies, caches and generated `dist/`

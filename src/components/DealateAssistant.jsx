@@ -139,7 +139,7 @@ export function DealateAssistant({ onStartProject }) {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          messages: conversation,
+          messages: [{ from: "user", text }],
           sessionId: sessionId.current,
         }),
       });
@@ -260,6 +260,7 @@ export function DealateAssistant({ onStartProject }) {
               value={draft}
               onChange={(event) => setDraft(event.target.value)}
               placeholder="Ask about a project..."
+              maxLength={1200}
               disabled={pending}
             />
             <button type="submit" aria-label="Send message" disabled={pending}>
