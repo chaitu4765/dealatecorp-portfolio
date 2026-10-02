@@ -143,7 +143,7 @@ export function LogoSpecimen() {
       const mobile = width < 700;
       const first = (mobile ? MOBILE_KEYS : KEYS)[0];
       const title = stage.querySelector("#hero-title");
-      const titleTop = title.offsetTop - title.offsetHeight / 2;
+      const titleTop = title.offsetTop;
       const topInset = mobile ? 38 : 28;
       const gap = mobile ? 18 : 28;
       const markHeight = object.offsetHeight * 1.12;

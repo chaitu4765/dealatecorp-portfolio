@@ -95,6 +95,13 @@
 .logo-specimen__cover {
   opacity: 1;
   visibility: visible;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(24px, 3cqh, 36px);
+  padding-bottom: max(92px, 12cqh);
+}
+.logo-specimen__cover > .logo-specimen__eyebrow {
+  margin-bottom: auto;
 }
 .logo-specimen__eyebrow {
   font-size: 13px;
@@ -147,11 +154,12 @@ html[data-theme] body .logo-specimen__scene h2 > span {
   );
 }
 html[data-theme] body .logo-specimen__cover h1 {
-  position: absolute;
+  position: relative;
+  flex-shrink: 0;
   width: 100%;
-  left: 0;
-  top: 58%;
-  transform: translateY(-50%);
+  left: auto;
+  top: auto;
+  transform: none;
   font-size: clamp(64px, 14cqw, 230px);
   line-height: 1;
   letter-spacing: -0.075em;
@@ -162,10 +170,8 @@ html[data-theme] body .logo-specimen__cover h1 {
   outline: none;
 }
 .logo-specimen__cover-bottom {
-  position: absolute;
-  left: 6%;
-  right: 6%;
-  bottom: 13%;
+  position: relative;
+  flex-shrink: 0;
   display: flex;
   align-items: end;
   justify-content: space-between;
@@ -474,14 +480,14 @@ html[data-theme] body .logo-specimen__work > h2 {
     font-size: 44px;
   }
   html[data-theme] body .logo-specimen__cover h1 {
-    top: 45%;
     font-size: 15.2cqw;
     letter-spacing: -0.07em;
   }
   .logo-specimen__cover-bottom {
-    top: 55%;
-    bottom: auto;
     display: block;
+  }
+  .logo-specimen__cover {
+    padding-bottom: 100px;
   }
   html[data-theme] body .logo-specimen__cover-bottom h2 {
     font-size: 34px;

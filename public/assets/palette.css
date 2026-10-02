@@ -1283,9 +1283,6 @@ html[data-theme]
   .logo-specimen__nav {
     top: 10px;
   }
-  .logo-specimen__cover-bottom {
-    top: 53%;
-  }
   html[data-theme] body .logo-specimen__cover-bottom h2 {
     font-size: 27px;
   }
