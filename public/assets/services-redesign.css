@@ -452,6 +452,10 @@
   z-index: 3;
 }
 /* Variable-font breathing headline adapted to the existing services hero. */
+.services-breathing-text__word {
+  display: inline-block;
+  white-space: nowrap;
+}
 .services-heading h1 em {
   font-style: normal;
 }
@@ -833,6 +837,39 @@
   letter-spacing: 0.04em;
   pointer-events: none;
 }
+.dc-services-page .capability-nav .capability-wheel__controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  padding: 12px 0;
+}
+.dc-services-page .capability-nav .capability-wheel__controls button {
+  display: inline-flex;
+  width: auto;
+  min-height: 44px;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 16px;
+  border: 1px solid var(--theme-border);
+  border-radius: 24px;
+  background: var(--theme-surface);
+  color: var(--theme-text);
+  font-size: 14px;
+  line-height: 1.4;
+  transform: none;
+}
+.capability-wheel__controls button:disabled {
+  opacity: 0.45;
+  cursor: default;
+}
+.capability-wheel__controls output {
+  flex: 0 0 auto;
+  color: var(--theme-muted);
+  font: 600 14px/1.5 var(--type-body);
+  font-variant-numeric: tabular-nums;
+}
 @media (max-width: 700px) {
   .dc-services-page .capability-nav > .capability-select {
     display: block;
@@ -842,17 +879,30 @@
   }
   .capability-wheel__title {
     top: auto;
-    bottom: 44px;
+    bottom: 54px;
     left: 5%;
-    width: 42%;
+    width: 90%;
     transform: none;
-    font-size: 12px;
+    text-align: center;
+    font-size: 14px;
   }
   .capability-wheel__index {
     display: none;
   }
   .capability-wheel__hint {
-    display: none;
+    display: block;
+    right: 5%;
+    bottom: 18px;
+    width: 90%;
+    transform: none;
+    text-align: center;
+    font-size: 12px;
+  }
+  .dc-services-page .capability-nav .capability-wheel__controls {
+    gap: 10px;
+  }
+  .dc-services-page .capability-nav .capability-wheel__controls button {
+    padding-inline: 12px;
   }
 }
 html[data-theme="dark"] body .dc-services-page .capability-wheel__stage {

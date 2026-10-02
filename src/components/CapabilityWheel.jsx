@@ -43,7 +43,7 @@ export function CapabilityWheel({
   const scalerRefs = useRef([]);
   const labelRef = useRef(null);
   const titleRef = useRef(null);
-  const dragY = useRef(null);
+  const drag = useRef(null);
   const dragged = useRef(false);
   const target = useRef(activeIndex);
   const turn = useRef(activeIndex);
@@ -77,7 +77,11 @@ export function CapabilityWheel({
 
   const metrics = useMemo(() => {
     const { width, height } = stage;
-    const cardWidth = Math.min(height * CARD_HEIGHT * CARD_RATIO, width * 0.74, 500);
+    const cardWidth = Math.min(
+      height * CARD_HEIGHT * CARD_RATIO,
+      width * 0.74,
+      500,
+    );
     const cardHeight = cardWidth / CARD_RATIO;
     // Keep the compact overview inside the stage, even at portrait/mobile
     // aspect ratios. The old card-relative radius pushed the outer cards past
@@ -146,9 +150,7 @@ export function CapabilityWheel({
       // step transitions the last focused card into the complete circle.
       const position = clamp(turn.current, 0, last);
       const mix =
-        turn.current < last
-          ? 1
-          : 1 - clamp(turn.current - last, 0, 1);
+        turn.current < last ? 1 : 1 - clamp(turn.current - last, 0, 1);
       if (wheelRef.current) {
         wheelRef.current.style.transform = `translateZ(${-mix * metrics.drumRadius}px)`;
       }
@@ -180,7 +182,8 @@ export function CapabilityWheel({
           }
         }
         if (scalerRefs.current[index]) {
-          scalerRefs.current[index].style.transform = `scale(${lerp(metrics.ringScale, 1, mix)})`;
+          scalerRefs.current[index].style.transform =
+            `scale(${lerp(metrics.ringScale, 1, mix)})`;
         }
       }
 
@@ -204,16 +207,23 @@ export function CapabilityWheel({
     const element = stageRef.current;
     if (!element) return undefined;
     const onWheel = (event) => {
-      const next = target.current + event.deltaY / WHEEL_UNITS;
+      if (event.ctrlKey || event.target.closest(".capability-wheel__index"))
+        return;
+      const units =
+        event.deltaMode === 1
+          ? 16
+          : event.deltaMode === 2
+            ? element.clientHeight
+            : 1;
+      const next = target.current + (event.deltaY * units) / WHEEL_UNITS;
       const atEnd =
         target.current >= last + 1 &&
         turn.current >= last + 1 &&
         Math.abs(target.current - turn.current) < 0.001;
 
-      // Keep the page in this section while the wheel is still revealing its
-      // capabilities. Let downward scrolling continue only after the final
-      // card has reached its settled position.
-      if (event.deltaY > 0 ? !atEnd : next > 0 && next < last + 1) {
+      const atStart = target.current <= 0 && turn.current <= 0.001;
+      // Consume wheel input while exploring; release the page at either end.
+      if (event.deltaY > 0 ? !atEnd : event.deltaY < 0 && !atStart) {
         event.preventDefault();
       }
       to(next);
@@ -234,33 +244,56 @@ export function CapabilityWheel({
         className="capability-wheel__stage"
         tabIndex={0}
         role="group"
-        aria-label={`${departmentName} capability wheel. Scroll or drag to explore.`}
+        aria-label={`${departmentName} capability wheel. Scroll or swipe sideways to explore.`}
         style={{ perspective: `${metrics.depth}px` }}
         onPointerDown={(event) => {
-          if (event.target.closest("button")) {
-            dragY.current = null;
+          if (
+            event.button !== 0 ||
+            event.target.closest(".capability-wheel__index")
+          )
             return;
-          }
-          dragY.current = event.clientY;
+          drag.current = {
+            x: event.clientX,
+            y: event.clientY,
+            start: target.current,
+            touch: event.pointerType === "touch",
+          };
           dragged.current = false;
-          event.currentTarget.setPointerCapture?.(event.pointerId);
         }}
         onPointerMove={(event) => {
-          if (dragY.current === null) return;
-          const delta = dragY.current - event.clientY;
-          if (Math.abs(delta) > 3) dragged.current = true;
-          to(target.current + delta / DRAG_UNITS);
-          dragY.current = event.clientY;
+          const gesture = drag.current;
+          if (!gesture) return;
+          const dx = gesture.x - event.clientX;
+          const dy = gesture.y - event.clientY;
+          if (!dragged.current) {
+            if (Math.max(Math.abs(dx), Math.abs(dy)) < 10) return;
+            // Vertical touch gestures continue scrolling the page. Horizontal
+            // swipes navigate the cards, including swipes begun on a button.
+            if (gesture.touch && Math.abs(dy) > Math.abs(dx)) {
+              drag.current = null;
+              return;
+            }
+            dragged.current = true;
+            gesture.horizontal = gesture.touch || Math.abs(dx) > Math.abs(dy);
+            event.currentTarget.setPointerCapture?.(event.pointerId);
+          }
+          const units = gesture.horizontal
+            ? Math.min(DRAG_UNITS, stage.width * 0.55)
+            : DRAG_UNITS;
+          to(
+            gesture.start + (gesture.horizontal ? dx : dy) / Math.max(1, units),
+          );
         }}
         onPointerUp={() => {
-          dragY.current = null;
+          drag.current = null;
           if (dragged.current) to(Math.round(target.current));
           window.setTimeout(() => {
             dragged.current = false;
           }, 0);
         }}
         onPointerCancel={() => {
-          dragY.current = null;
+          drag.current = null;
+          to(Math.round(target.current));
           dragged.current = false;
         }}
         onClickCapture={(event) => {
@@ -270,7 +303,6 @@ export function CapabilityWheel({
           dragged.current = false;
         }}
         onKeyDown={(event) => {
-          if (event.target !== event.currentTarget) return;
           if (event.key === "ArrowDown" || event.key === "ArrowRight") {
             to(Math.round(target.current) + 1);
           } else if (event.key === "ArrowUp" || event.key === "ArrowLeft") {
@@ -281,11 +313,7 @@ export function CapabilityWheel({
           event.preventDefault();
         }}
       >
-        <div
-          ref={wheelRef}
-          className="capability-wheel__track"
-          aria-live="off"
-        >
+        <div ref={wheelRef} className="capability-wheel__track" aria-live="off">
           {capabilities.map((capability, index) => (
             <div
               key={capability.id}
@@ -319,10 +347,17 @@ export function CapabilityWheel({
         <div ref={labelRef} className="capability-wheel__label">
           Explore capabilities
         </div>
-        <div ref={titleRef} className="capability-wheel__title" aria-hidden="true">
+        <div
+          ref={titleRef}
+          className="capability-wheel__title"
+          aria-hidden="true"
+        >
           {activeName}
         </div>
-        <ol className="capability-wheel__index" aria-label="Choose a capability">
+        <ol
+          className="capability-wheel__index"
+          aria-label="Choose a capability"
+        >
           {capabilities.map((capability, index) => (
             <li key={capability.id}>
               <button
@@ -336,8 +371,30 @@ export function CapabilityWheel({
           ))}
         </ol>
         <p className="capability-wheel__hint">
-          Scroll through capabilities · continue after the last
+          Scroll or swipe sideways to explore
         </p>
+      </div>
+      <div
+        className="capability-wheel__controls"
+        aria-label="Capability navigation"
+      >
+        <button
+          type="button"
+          onClick={() => select(activeIndex - 1)}
+          disabled={activeIndex === 0}
+        >
+          <span aria-hidden="true">←</span> Previous
+        </button>
+        <output aria-live="polite" aria-atomic="true">
+          {activeIndex + 1} / {count}
+        </output>
+        <button
+          type="button"
+          onClick={() => select(activeIndex + 1)}
+          disabled={activeIndex === last}
+        >
+          Next <span aria-hidden="true">→</span>
+        </button>
       </div>
     </section>
   );

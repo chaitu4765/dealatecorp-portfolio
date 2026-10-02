@@ -1568,3 +1568,119 @@ html[data-theme] body .dealate-assistant__composer input { background: var(--the
 html[data-theme] body .dealate-assistant__composer input::placeholder { color: var(--theme-muted); }
 html[data-theme] body .dealate-assistant__composer button { width: 42px; background: var(--theme-accent-fill); color: var(--theme-on-accent); }
 html[data-theme] body .dealate-assistant :is(button, input):focus-visible { outline: 2px solid var(--theme-accent-text); outline-offset: 3px; }
+
+/* Keep desktop navigation on one line just above the mobile-menu breakpoint. */
+@media (min-width: 851px) and (max-width: 1100px) {
+  html[data-theme] body .site-header {
+    padding-inline: 24px;
+    gap: 16px;
+  }
+  html[data-theme] body .site-header .brand {
+    flex: 0 0 auto;
+    gap: 8px;
+  }
+  html[data-theme] body .site-header .brand b {
+    font-size: 12px;
+  }
+  html[data-theme] body .site-header .brand small {
+    font-size: 7px;
+    white-space: nowrap;
+  }
+  html[data-theme] body .site-header nav {
+    gap: 20px;
+    font-size: 14px;
+  }
+  html[data-theme] body .site-header .nav-cta {
+    padding-inline: 16px;
+    white-space: nowrap;
+  }
+  html[data-theme] body .site-header__actions {
+    gap: 12px;
+  }
+}
+
+/* Phone layouts keep the shared header and content inside the available width. */
+@media (max-width: 600px) {
+  :root {
+    --type-section: clamp(30px, 8.5vw, 44px);
+  }
+  html[data-theme] body .site-header {
+    padding-inline: 16px;
+    gap: 4px;
+  }
+  html[data-theme] body .site-header .brand {
+    min-width: 0;
+    gap: 8px;
+  }
+  html[data-theme] body .site-header .brand-mark.brand-mark--logo {
+    flex: 0 0 32px;
+    width: 32px;
+    height: 32px;
+  }
+  html[data-theme] body .site-header .brand b {
+    font-size: 11px;
+    white-space: nowrap;
+  }
+  html[data-theme] body .site-header .brand small {
+    font-size: 7px;
+    letter-spacing: 0.08em;
+    white-space: nowrap;
+  }
+  html[data-theme] body .site-header__actions {
+    flex: 0 0 auto;
+  }
+  html[data-theme] body .site-header__actions > .sky-toggle {
+    width: 66px;
+  }
+  html[data-theme] body .site-header .menu {
+    flex: 0 0 40px;
+    width: 40px;
+    min-height: 44px;
+    padding: 0;
+    margin-left: 0;
+  }
+  html[data-theme] body .site-header .menu i {
+    width: 22px;
+    margin: 6px auto;
+  }
+  html[data-theme] body main :is(h1, h2, h3, h4) {
+    text-wrap: balance;
+  }
+  html[data-theme] body main .services-heading h1 {
+    font-size: clamp(32px, 9vw, 54px);
+    line-height: 1.15;
+    letter-spacing: -0.055em;
+  }
+  html[data-theme] body .services-heading > div {
+    min-width: 0;
+    width: 100%;
+  }
+  html[data-theme] body .dc-services-page .services-heading > div > p {
+    width: 100%;
+    max-width: 100%;
+    white-space: normal;
+    text-wrap: pretty;
+  }
+  html[data-theme] body main[class$="-case"] :is(h1, .case-title) {
+    font-size: clamp(30px, 8.8vw, 42px);
+    line-height: 1.15;
+  }
+  html[data-theme] body .dc-footer__columns {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  html[data-theme] body .dealate-assistant__launcher {
+    min-height: 56px;
+    width: 56px;
+    padding: 5px;
+    gap: 0;
+  }
+  html[data-theme] body .dealate-assistant__launcher > b {
+    display: none;
+  }
+  html[data-theme] body .logo-specimen__nav {
+    display: none;
+  }
+  html[data-theme] body.home-page:has(.logo-specimen) .dealate-assistant {
+    bottom: 86px;
+  }
+}

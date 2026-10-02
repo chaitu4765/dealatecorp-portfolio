@@ -5,16 +5,24 @@ import { DigitalMarketingShowcase } from "../components/DigitalMarketingShowcase
 import { Fragment, useEffect, useRef, useState } from "react";
 // Native SVG adaptation of Inspira UI Animated Beam. See third-party-notices.txt.
 function BreathingText({ text }) {
+  let characterIndex = 0;
   return (
     <span className="services-breathing-text" aria-hidden="true">
-      {Array.from(text, (character, index) => (
-        <span
-          className="services-breathing-text__char"
-          key={`${character}-${index}`}
-          style={{ "--char-delay": `${index * 0.08}s` }}
-        >
-          {character === " " ? "\u00a0" : character}
-        </span>
+      {text.split(" ").map((word, wordIndex) => (
+        <Fragment key={`${word}-${wordIndex}`}>
+          {wordIndex > 0 && " "}
+          <span className="services-breathing-text__word">
+            {Array.from(word, (character, index) => (
+              <span
+                className="services-breathing-text__char"
+                key={index}
+                style={{ "--char-delay": `${characterIndex++ * 0.08}s` }}
+              >
+                {character}
+              </span>
+            ))}
+          </span>
+        </Fragment>
       ))}
     </span>
   );
@@ -390,7 +398,6 @@ export function Services() {
         <p className="dc-eyebrow">Dealatecorp / Our services</p>
         <h1 aria-label="Two disciplines. One shared direction.">
           <BreathingText text="Two disciplines." />
-          <br />
           <span className="services-heading__accent">
             <BreathingText text="One shared direction." />
           </span>

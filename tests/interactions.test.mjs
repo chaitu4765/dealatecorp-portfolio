@@ -3,7 +3,7 @@ import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import { JSDOM } from "jsdom";
 import { createServer } from "vite";
-import { createElement, StrictMode, act } from "react";
+import { createElement, StrictMode, act, useState } from "react";
 
 // Component tests, not a substitute for real-browser visual verification.
 const dom = new JSDOM(
@@ -310,6 +310,127 @@ test("Two departments keep complete capabilities, comparisons and keyboard selec
   );
   assert.equal(document.querySelector('input[type="range"]').value, "50");
   window.history.replaceState(null, "", "/");
+});
+
+test("Capability cards accept touch swipes, preserve page scrolling and expose step controls", async () => {
+  await act(async () => root?.unmount());
+  const { CapabilityWheel } = await vite.ssrLoadModule(
+    "/src/components/CapabilityWheel.jsx",
+  );
+  const { itCapabilities } = await vite.ssrLoadModule(
+    "/src/data/departments.js",
+  );
+  matchMedia("(prefers-reduced-motion: reduce)").matches = true;
+  function WheelHarness() {
+    const [selected, setSelected] = useState(0);
+    return createElement(CapabilityWheel, {
+      capabilities: itCapabilities,
+      activeIndex: selected,
+      onSelect: setSelected,
+      departmentName: "IT Department",
+    });
+  }
+  root = createRoot(document.getElementById("app"));
+  await act(async () => root.render(createElement(WheelHarness)));
+  const stage = document.querySelector(".capability-wheel__stage");
+  await act(async () => {
+    Object.defineProperties(stage, {
+      clientWidth: { value: 320 },
+      clientHeight: { value: 480 },
+    });
+    observers.forEach((observer) => observer.callback([]));
+  });
+  const settle = () =>
+    act(async () => new Promise((resolve) => setTimeout(resolve, 50)));
+  const pointer = (target, type, x, y) => {
+    const event = new window.Event(type, { bubbles: true, cancelable: true });
+    Object.assign(event, {
+      button: 0,
+      pointerId: 1,
+      pointerType: "touch",
+      clientX: x,
+      clientY: y,
+    });
+    target.dispatchEvent(event);
+    return event;
+  };
+  const firstCard = document.querySelector(".capability-flip-card");
+  await act(async () => {
+    pointer(firstCard, "pointerdown", 250, 200);
+    pointer(firstCard, "pointermove", 70, 202);
+    pointer(firstCard, "pointerup", 70, 202);
+    firstCard.click();
+  });
+  await settle();
+  assert.equal(
+    document.querySelector(".capability-wheel__controls output").textContent,
+    "2 / 6",
+  );
+  assert.equal(
+    firstCard.dataset.flipped,
+    "false",
+    "Swiping a card must not also flip it",
+  );
+  await act(async () => {
+    pointer(stage, "pointerdown", 180, 220);
+    const move = pointer(stage, "pointermove", 182, 80);
+    assert.equal(
+      move.defaultPrevented,
+      false,
+      "Vertical touch scrolling remains available",
+    );
+    pointer(stage, "pointerup", 182, 80);
+  });
+  await settle();
+  assert.equal(
+    document.querySelector(".capability-wheel__controls output").textContent,
+    "2 / 6",
+  );
+  await click(".capability-wheel__controls button:first-child");
+  await settle();
+  assert.equal(
+    document.querySelector(".capability-wheel__controls output").textContent,
+    "1 / 6",
+  );
+  assert.equal(
+    document.querySelector(".capability-wheel__controls button:first-child")
+      .disabled,
+    true,
+  );
+  const up = new window.WheelEvent("wheel", { deltaY: -200, cancelable: true });
+  stage.dispatchEvent(up);
+  assert.equal(
+    up.defaultPrevented,
+    false,
+    "The first card releases upward page scrolling",
+  );
+  await press(firstCard, "ArrowRight");
+  await settle();
+  assert.equal(
+    document.querySelector(".capability-wheel__controls output").textContent,
+    "2 / 6",
+  );
+  await act(async () =>
+    stage.dispatchEvent(
+      new window.WheelEvent("wheel", { deltaY: 9000, cancelable: true }),
+    ),
+  );
+  await settle();
+  const down = new window.WheelEvent("wheel", {
+    deltaY: 200,
+    cancelable: true,
+  });
+  stage.dispatchEvent(down);
+  assert.equal(
+    down.defaultPrevented,
+    false,
+    "The overview releases downward page scrolling",
+  );
+  assert.equal(
+    document.querySelector(".capability-wheel__controls button:last-child")
+      .disabled,
+    true,
+  );
 });
 
 test("Campaign trail and expandable gallery follow the live client artwork", async () => {

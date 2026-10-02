@@ -309,6 +309,12 @@ html[data-theme] body main.products-page {
   }
 }
 @media (max-width: 700px) {
+  .products-intro h1,
+  .products-page .products-detail-title {
+    font-size: clamp(32px, 8.6vw, 52px);
+    line-height: 1.12;
+    text-wrap: balance;
+  }
   html[data-theme] body main.products-page {
     padding: 120px 20px 60px;
   }
