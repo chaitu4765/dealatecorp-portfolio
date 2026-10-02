@@ -1,5 +1,4 @@
-import { Fragment } from "react";
-import { adhithyaGallery } from "../data/content.js";
+import { ClientMediaGallery } from "../components/ClientMediaGallery.jsx";
 export function Adhithya() {
   const mapsUrl =
     "https://www.google.com/maps/search/?api=1&query=D%20No.%201-168%2F5%2C%20Sanyal%20Villa%2C%20Gopalapatnam%20Main%20Road%2C%20Susarla%20Colony%2C%20Baji%20Junction%2C%20Gopalapatnam%2C%20Visakhapatnam%20530027%2C%20Andhra%20Pradesh%2C%20India";
@@ -160,19 +159,6 @@ export function Adhithya() {
             Contact the company to confirm current availability and project
             details.
           </small>
-        </div>
-
-        <div className="adhithya-gallery">
-          {adhithyaGallery.map((item, index) => (
-            <figure key={index}>
-              <img
-                src={item.src}
-                alt={item.alt}
-                loading="lazy"
-                decoding="async"
-              />
-            </figure>
-          ))}
         </div>
       </section>
 

@@ -1,63 +1,5 @@
 import { nav } from "../data/content.js";
-export function Footer({ path }) {
-  if (path === "/clients/tirumalasetty") {
-    const mapsUrl =
-      "https://www.google.com/maps/search/?api=1&query=3rd%20Floor%2C%20Flat%20No.%20303%2C%20Srinivasam%20-%2011%2C%20Sapthagirinagar%2C%20Sujathanagar%2C%20Pendurthi%2C%20Visakhapatnam%2C%20Andhra%20Pradesh%20530051";
-    return (
-      <footer className="tirumalasetty-footer-card">
-        <div className="tirumalasetty-footer-main">
-          <a className="brand brand--footer" href="/">
-            <span className="brand-mark">D</span>
-            <span>
-              <b>DEALATECORP</b>
-              <small>For a better tomorrow</small>
-            </span>
-          </a>
-
-          <h2>
-            Let's shape the next
-            <br />
-            <em>property story.</em>
-          </h2>
-
-          <p>
-            Planning a launch, campaign, or branded real estate experience? We
-            can help turn the location, vision, and project details into a clear
-            digital presence.
-          </p>
-
-          <a className="button interactive-hover" href="/contact/" data-project-enquiry>
-            <span>Start a project</span>
-            <i aria-hidden="true">{"->"}</i>
-          </a>
-        </div>
-
-        <address className="tirumalasetty-footer-address">
-          <span className="kicker">Address</span>
-
-          <strong>Tirumalasetty Projects LLP</strong>
-
-          <p>
-            3rd Floor, Flat No. 303, Srinivasam - 11, Sapthagirinagar,
-            Sujathanagar, Pendurthi, Visakhapatnam, Andhra Pradesh - 530051
-          </p>
-
-          <a
-            className="tirumalasetty-map-link"
-            href={mapsUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Open in Google Maps
-          </a>
-        </address>
-
-        <p className="copyright">
-          © 2026 Dealatecorp. Strategy, creative and performance connected.
-        </p>
-      </footer>
-    );
-  }
+export function Footer() {
   return (
     <footer className="dc-footer">
       <div className="dc-footer__inner">
@@ -184,13 +126,21 @@ export function Footer({ path }) {
 function SocialIcon({ type }) {
   if (type === "linkedin")
     return (
-      <svg viewBox="0 0 24 24" aria-hidden="true" className="dc-footer__linkedin-icon">
+      <svg
+        viewBox="0 0 24 24"
+        aria-hidden="true"
+        className="dc-footer__linkedin-icon"
+      >
         <path d="M6.3 8.3A1.8 1.8 0 1 0 6.3 4.7a1.8 1.8 0 0 0 0 3.6ZM4.8 19.4h3V10h-3v9.4Zm5.1 0h3v-4.7c0-1.2.2-2.4 1.7-2.4 1.5 0 1.5 1.4 1.5 2.5v4.6h3v-5.3c0-2.6-.6-4.6-3.6-4.6-1.5 0-2.5.8-2.9 1.6h-.1V10H9.9v9.4Z" />
       </svg>
     );
   if (type === "facebook")
     return (
-      <svg viewBox="0 0 24 24" aria-hidden="true" className="dc-footer__facebook-icon">
+      <svg
+        viewBox="0 0 24 24"
+        aria-hidden="true"
+        className="dc-footer__facebook-icon"
+      >
         <path d="M13.7 20v-7h2.5l.4-2.8h-2.9V8.4c0-.8.2-1.4 1.4-1.4h1.6V4.5c-.3 0-1.2-.1-2.2-.1-2.2 0-3.7 1.3-3.7 3.8v2.1H8.3V13h2.5v7h2.9Z" />
       </svg>
     );

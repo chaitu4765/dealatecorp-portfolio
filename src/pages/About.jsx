@@ -16,10 +16,7 @@ export function About() {
           </a>
         </div>
         <div className="dc-about__hero-summary">
-          <p>
-            We are an independent growth partner in Hyderabad, bringing business
-            thinking and digital craft under one roof.
-          </p>
+          <p>Strategy, design and technology. One team in Hyderabad.</p>
         </div>
         <div
           className="dc-about__visual"
@@ -37,14 +34,8 @@ export function About() {
           <p className="kicker">Our point of view</p>
           <h2>Clarity is the beginning of good growth.</h2>
           <p>
-            More activity is rarely the answer. Better alignment is. We help
-            teams decide what matters, build it with care, and learn quickly
-            from what the market says next.
-          </p>
-          <p>
-            That means fewer disconnected campaigns, fewer vanity reports and
-            more useful conversations about customers, conversion and long-term
-            brand value.
+            We turn clear strategy into thoughtful design, useful technology and
+            measurable marketing.
           </p>
         </div>
       </section>

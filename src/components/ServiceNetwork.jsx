@@ -12,6 +12,7 @@ export function ServiceNetwork({ services, selected, onSelect, renderIcon }) {
     beams: [],
   });
   const [paused, setPaused] = useState(false);
+  const [hovered, setHovered] = useState(null);
   const [reduced, setReduced] = useState(
     () =>
       typeof window !== "undefined" &&
@@ -92,13 +93,24 @@ export function ServiceNetwork({ services, selected, onSelect, renderIcon }) {
       key={service.id}
       type="button"
       className="service-node"
+      id={`service-${service.id}`}
       data-beam-node={index}
       aria-pressed={index === selected}
-      aria-controls="service-focus"
+      aria-haspopup="dialog"
       style={{
         "--node-color": service.color,
       }}
-      onClick={() => onSelect(index)}
+      onPointerEnter={() => setHovered(index)}
+      onPointerLeave={(event) => {
+        if (document.activeElement !== event.currentTarget)
+          setHovered((current) => (current === index ? null : current));
+      }}
+      onFocus={() => setHovered(index)}
+      onBlur={(event) => {
+        if (!event.currentTarget.matches(":hover"))
+          setHovered((current) => (current === index ? null : current));
+      }}
+      onClick={(event) => onSelect(index, event.currentTarget)}
     >
       <span className="service-node__label">{service.short}</span>
       <span
@@ -118,7 +130,7 @@ export function ServiceNetwork({ services, selected, onSelect, renderIcon }) {
     <>
       <div
         ref={container}
-        className="service-network"
+        className={`service-network${hovered === null ? "" : " is-interacting"}`}
         aria-describedby="network-help"
       >
         <svg
@@ -174,7 +186,15 @@ export function ServiceNetwork({ services, selected, onSelect, renderIcon }) {
             <g
               key={services[index].id}
               data-beam={index}
-              className={index === selected ? "is-selected" : undefined}
+              className={
+                [
+                  index === selected && "is-selected",
+                  index === hovered && "is-hovered",
+                ]
+                  .filter(Boolean)
+                  .join(" ") || undefined
+              }
+              style={{ "--node-color": services[index].color }}
             >
               <path
                 className="beam-track"

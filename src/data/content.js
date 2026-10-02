@@ -1,6 +1,7 @@
 export const nav = [
   ["Home", "/"],
   ["Services", "/services/"],
+  ["Products", "/products/"],
   ["Clients", "/clients/"],
   ["About", "/about/"],
 ];

@@ -91,11 +91,35 @@ export function Studio() {
         <div className="studio-column studio-films">
           <>
             {film("surya", "Sri Surya", "A place to live. A story to tell.")}
-            {film(
-              "ssm",
-              "SSM Developers",
-              "Property stories, brought into focus.",
-            )}
+            <article
+              className="studio-film studio-website"
+              aria-label="Godha real estate website"
+            >
+              <div className="studio-film__heading">
+                <span>Website design</span>
+                <span>Godha Real Estate</span>
+              </div>
+              <a
+                className="studio-website__preview"
+                href="https://dcreal-estate.vercel.app/"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Open Godha Real Estate website"
+              >
+                <div className="studio-website__viewport" aria-hidden="true">
+                  <iframe
+                    src="https://dcreal-estate.vercel.app/"
+                    title="Godha Real Estate homepage preview"
+                    loading="lazy"
+                    tabIndex={-1}
+                    sandbox="allow-scripts allow-same-origin"
+                    referrerPolicy="no-referrer"
+                  />
+                </div>
+                <span className="studio-website__link">Explore website ↗</span>
+              </a>
+              <p>Thoughtful homes. A clearer digital experience.</p>
+            </article>
           </>
         </div>
 

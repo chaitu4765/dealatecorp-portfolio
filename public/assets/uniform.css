@@ -1446,83 +1446,6 @@ body .dc-footer .brand small {
   white-space: nowrap;
 }
 
-/* Shared pointer treatment for desktop devices. */
-@media (pointer: fine) and (prefers-reduced-motion: no-preference) {
-  body,
-  a,
-  button,
-  input,
-  select,
-  textarea,
-  [tabindex="0"] {
-    cursor: none;
-  }
-}
-.pointer-aura {
-  position: fixed;
-  z-index: 1198;
-  top: calc(var(--pointer-y, -100px) - 90px);
-  left: calc(var(--pointer-x, -100px) - 90px);
-  width: 180px;
-  height: 180px;
-  opacity: 0;
-  border-radius: 50%;
-  background: radial-gradient(circle, #176bf514, transparent 68%);
-  pointer-events: none;
-  transition: opacity 0.3s ease;
-}
-.pointer-aura--visible {
-  opacity: 1;
-}
-.smooth-cursor {
-  position: fixed;
-  z-index: 1200;
-  top: 0;
-  left: 0;
-  opacity: 0;
-  border-radius: 50%;
-  pointer-events: none;
-  will-change: transform;
-}
-.smooth-cursor--visible {
-  opacity: 1;
-}
-.smooth-cursor--dot {
-  width: 8px;
-  height: 8px;
-  margin: -4px 0 0 -4px;
-  background: #cf8b54;
-  box-shadow: 0 0 12px #cf8b5488;
-  transition: opacity 0.2s ease;
-}
-.smooth-cursor--ring {
-  width: 42px;
-  height: 42px;
-  margin: -21px 0 0 -21px;
-  border: 2px solid #6298ff;
-  background: #6298ff0c;
-  transition:
-    width 0.25s ease,
-    height 0.25s ease,
-    margin 0.25s ease,
-    border-color 0.25s ease,
-    background-color 0.25s ease,
-    opacity 0.2s ease;
-}
-.smooth-cursor--ring.smooth-cursor--interactive {
-  width: 54px;
-  height: 54px;
-  margin: -27px 0 0 -27px;
-  border-color: #cf8b54;
-  background: #cf8b541c;
-}
-@media (pointer: coarse), (prefers-reduced-motion: reduce) {
-  .pointer-aura,
-  .smooth-cursor {
-    display: none;
-  }
-}
-
 /* About page composition inspired by the Superly reference. */
 .dc-about {
   background: #eef0f7;
@@ -1950,3 +1873,89 @@ body .dc-footer .brand small {
     line-height: 1.5;
   }
 }
+
+/* Fixed local concierge: a lightweight chat entry point for project enquiries. */
+.dealate-assistant {
+  position: fixed;
+  z-index: 1100;
+  right: clamp(16px, 2.5vw, 34px);
+  bottom: clamp(16px, 2.5vw, 30px);
+  display: grid;
+  justify-items: end;
+  gap: 12px;
+}
+.dealate-assistant__launcher {
+  display: inline-flex;
+  min-height: 52px;
+  align-items: center;
+  gap: 9px;
+  border: 1px solid #ffffff45;
+  border-radius: 999px;
+  padding: 0 17px 0 10px;
+  background: linear-gradient(135deg, #176bf5, #0a45ac);
+  color: #fff;
+  box-shadow: 0 16px 36px #0a3b8b40;
+  font: 700 13px/1 "DM Sans", sans-serif;
+  cursor: pointer;
+  transition: transform .22s ease, box-shadow .22s ease;
+}
+.dealate-assistant__launcher:hover,
+.dealate-assistant__launcher:focus-visible {
+  transform: translateY(-3px);
+  box-shadow: 0 21px 42px #0a3b8b55;
+  outline: none;
+}
+.dealate-assistant__launcher span {
+  display: grid;
+  width: 32px;
+  height: 32px;
+  place-items: center;
+  border-radius: 50%;
+  background: #ffffff22;
+  font-size: 18px;
+}
+.dealate-assistant__panel {
+  width: min(360px, calc(100vw - 32px));
+  overflow: hidden;
+  border: 1px solid #dbe5f5;
+  border-radius: 22px;
+  background: #fff;
+  box-shadow: 0 24px 65px #102a521f;
+  animation: dealate-assistant-in .26s cubic-bezier(.2,.8,.2,1) both;
+}
+.dealate-assistant__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 17px 16px;
+  background: linear-gradient(135deg, #111d32, #173f87);
+  color: #fff;
+}
+.dealate-assistant__identity { display: flex; align-items: center; gap: 10px; }
+.dealate-assistant__identity strong,
+.dealate-assistant__identity span { display: block; }
+.dealate-assistant__identity strong { font: 700 14px/1.2 "Manrope", sans-serif; }
+.dealate-assistant__identity div > span { margin-top: 3px; color: #c9dcff; font-size: 10px; }
+.dealate-assistant__spark { display: grid !important; width: 30px; height: 30px; place-items: center; border-radius: 10px; background: #fff; color: #176bf5; }
+.dealate-assistant__header > button { border: 0; background: transparent; color: #fff; font-size: 23px; line-height: 1; cursor: pointer; }
+.dealate-assistant__messages { display: grid; gap: 9px; max-height: 250px; overflow-y: auto; padding: 17px 16px 10px; background: #f6f8fc; }
+.dealate-assistant__message { max-width: 88%; margin: 0; border-radius: 13px; padding: 10px 12px; font-size: 12px; line-height: 1.48; }
+.dealate-assistant__message--bot { justify-self: start; border: 1px solid #e2e8f3; background: #fff; color: #39485d; border-bottom-left-radius: 4px; }
+.dealate-assistant__message--user { justify-self: end; background: #176bf5; color: #fff; border-bottom-right-radius: 4px; }
+.dealate-assistant__rich-text { display: grid; gap: 7px; }
+.dealate-assistant__rich-text p { margin: 0; }
+.dealate-assistant__heading { color: #15396f; font-weight: 750; }
+.dealate-assistant__list { display: grid; gap: 4px; margin: 0; padding-left: 17px; }
+.dealate-assistant__list li { padding-left: 1px; }
+.dealate-assistant__prompts { display: flex; gap: 6px; overflow-x: auto; padding: 9px 16px; background: #f6f8fc; }
+.dealate-assistant__prompts button { flex: 0 0 auto; border: 1px solid #cbd9ef; border-radius: 999px; padding: 6px 9px; background: #fff; color: #2356a1; font: 600 10px/1 "DM Sans", sans-serif; cursor: pointer; }
+.dealate-assistant__prompts button:hover { border-color: #176bf5; background: #edf4ff; }
+.dealate-assistant__prompts button:disabled { cursor: wait; opacity: .55; }
+.dealate-assistant__composer { display: flex; gap: 8px; padding: 12px; border-top: 1px solid #e8edf5; }
+.dealate-assistant__composer input { min-width: 0; flex: 1; border: 1px solid #d7e0ee; border-radius: 10px; padding: 10px 11px; background: #f9fbff; color: #17243a; font: 12px "DM Sans", sans-serif; }
+.dealate-assistant__composer input:focus { border-color: #176bf5; outline: 2px solid #176bf51f; }
+.dealate-assistant__composer button { width: 38px; border: 0; border-radius: 10px; background: #176bf5; color: #fff; font-size: 18px; cursor: pointer; }
+.dealate-assistant__composer button:disabled { cursor: wait; opacity: .65; }
+@keyframes dealate-assistant-in { from { opacity: 0; transform: translateY(12px) scale(.97); } to { opacity: 1; transform: none; } }
+@media (max-width: 600px) { .dealate-assistant { right: 14px; bottom: 14px; } .dealate-assistant__panel { max-height: min(540px, calc(100vh - 90px)); } }
+@media (prefers-reduced-motion: reduce) { .dealate-assistant__launcher, .dealate-assistant__panel { animation: none; transition: none; } }

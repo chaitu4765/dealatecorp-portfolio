@@ -5,3 +5,17 @@ dist/
 playwright-report/
 test-results/
 .migration/
+.env
+.env.*
+!.env.example
+__pycache__/
+*.py[cod]
+
+# Original upload bundles and raw media; browser-ready copies live in public/.
+/*.zip
+/SSm/
+/Sri venkateshwara/
+/ganesh constructions/
+/spark/
+/thirumala setty/
+/jwelery poster.jpeg

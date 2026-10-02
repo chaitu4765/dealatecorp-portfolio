@@ -1,11 +1,24 @@
 import { useEffect, useRef, useState } from "react";
+import { LogoShader } from "./LogoShader.jsx";
+import { CapabilityWheel } from "./CapabilityWheel.jsx";
 import {
   departments,
   itCapabilities,
   marketingCapabilities,
 } from "../data/departments.js";
 
-function Comparison({ capability }) {
+const comparisonArtwork = {
+  it: {
+    before: "/assets/implementation-it-before.jpg",
+    after: "/assets/implementation-it-after.jpg",
+  },
+  digital: {
+    before: "/assets/implementation-marketing-before.jpg",
+    after: "/assets/implementation-marketing-after.jpg",
+  },
+};
+
+function Comparison({ capability, departmentId }) {
   const [position, setPosition] = useState(50);
   const rangeId = `comparison-${capability.id}`;
   const moveDivider = (event) => {
@@ -24,7 +37,7 @@ function Comparison({ capability }) {
         <h4>From disconnected to considered.</h4>
       </figcaption>
       <div
-        className="comparison-canvas"
+        className={`comparison-canvas comparison-canvas--${departmentId}`}
         style={{ "--split": `${position}%` }}
         aria-hidden="true"
         onPointerDown={(event) => {
@@ -41,6 +54,12 @@ function Comparison({ capability }) {
             className={`comparison-scene comparison-scene--${side}`}
             key={side}
           >
+            <img
+              className={`comparison-art comparison-art--${side}`}
+              src={comparisonArtwork[departmentId][side]}
+              alt=""
+              draggable="false"
+            />
             <div className="comparison-scene__top">
               <span>{side === "before" ? "Before" : "After"}</span>
               <span>Workflow view</span>
@@ -181,31 +200,57 @@ export function DepartmentExplorer({ services }) {
           See what goes into making it work.
         </p>
       </div>
-      <div
-        className="department-tabs"
-        role="tablist"
-        aria-label="Service departments"
-      >
-        {departments.map((item, index) => (
-          <button
-            key={item.id}
-            id={`department-${item.id}`}
-            role="tab"
-            type="button"
-            aria-selected={departmentId === item.id}
-            tabIndex={departmentId === item.id ? 0 : -1}
-            aria-controls={`department-panel-${item.id}`}
-            ref={(node) => {
-              tabs.current[index] = node;
-            }}
-            onKeyDown={(event) => onTabKey(event, index)}
-            onClick={() => chooseDepartment(item.id)}
-          >
-            <span>0{index + 1}</span>
-            <strong>{item.name}</strong>
-            <small>{item.line}</small>
-          </button>
-        ))}
+      <div className="department-constellation">
+        <LogoShader />
+        <svg
+          className="department-trunks"
+          viewBox="0 0 1000 300"
+          preserveAspectRatio="none"
+          aria-hidden="true"
+        >
+          <path d="M500 80 C500 190 240 100 240 270" />
+          <path d="M500 80 C500 190 760 100 760 270" />
+        </svg>
+        <div
+          className="department-tabs"
+          role="tablist"
+          aria-label="Service departments"
+        >
+          {departments.map((item, index) => (
+            <button
+              key={item.id}
+              id={`department-${item.id}`}
+              role="tab"
+              type="button"
+              aria-selected={departmentId === item.id}
+              tabIndex={departmentId === item.id ? 0 : -1}
+              aria-controls={`department-panel-${item.id}`}
+              ref={(node) => {
+                tabs.current[index] = node;
+              }}
+              onKeyDown={(event) => onTabKey(event, index)}
+              onPointerMove={(event) => {
+                if (matchMedia("(prefers-reduced-motion: reduce)").matches)
+                  return;
+                const b = event.currentTarget.getBoundingClientRect();
+                event.currentTarget.style.setProperty(
+                  "--spot-x",
+                  `${event.clientX - b.left}px`,
+                );
+                event.currentTarget.style.setProperty(
+                  "--spot-y",
+                  `${event.clientY - b.top}px`,
+                );
+              }}
+              onClick={() => chooseDepartment(item.id)}
+            >
+              <span>0{index + 1}</span>
+              <strong>{item.name}</strong>
+              <small>{item.line}</small>
+              <i aria-hidden="true">↗</i>
+            </button>
+          ))}
+        </div>
       </div>
       {departments.map((item) =>
         item.id !== departmentId ? (
@@ -243,20 +288,13 @@ export function DepartmentExplorer({ services }) {
                   ))}
                 </select>
               </div>
-              <div role="group" aria-label={`${department.name} capabilities`}>
-                {capabilities.map((cap, index) => (
-                  <button
-                    type="button"
-                    key={cap.id}
-                    aria-pressed={selected.id === cap.id}
-                    aria-controls="capability-detail"
-                    onClick={() => setCapabilityIndex(index)}
-                  >
-                    <span>{String(index + 1).padStart(2, "0")}</span>
-                    {cap.name}
-                  </button>
-                ))}
-              </div>
+              <CapabilityWheel
+                key={department.id}
+                capabilities={capabilities}
+                activeIndex={capabilityIndex}
+                onSelect={setCapabilityIndex}
+                departmentName={department.name}
+              />
               {departmentId === "digital" && (
                 <a href="#digital-network" className="dc-service-link">
                   Explore the connected channels
@@ -297,6 +335,7 @@ export function DepartmentExplorer({ services }) {
                 <Comparison
                   key={`${departmentId}-${selected.id}`}
                   capability={selected}
+                  departmentId={departmentId}
                 />
               </div>
               <div className="implementation">

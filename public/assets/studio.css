@@ -55,3 +55,10 @@
 .studio-toolbar button:disabled{cursor:default;color:var(--dc-muted);border-color:transparent;background:transparent}
 @media(max-width:849px){.dc-studio{padding:65px 0 28px}.studio-heading.dc-wrap{padding-bottom:32px}.studio-heading>p:last-child{font-size:16px}.studio-toolbar.dc-wrap{align-items:flex-start;flex-direction:column;gap:16px}.studio-rail{scroll-snap-type:x proximity}.studio-column{scroll-snap-align:start;max-width:calc(100vw - 48px)}.studio-films{width:420px;grid-template-rows:1fr 1fr}.studio-film{display:flex;flex-direction:column;justify-content:center}.studio-film__media{flex-shrink:0}.studio-film__heading{font-size:10px}.studio-film__heading>span:first-child{font-size:9px}.studio-toolbar>div{width:100%;justify-content:space-between}.studio-toolbar button{padding:8px 12px}.studio-art>img{height:390px}.studio-campaigns figcaption{display:none}}
 @media(prefers-reduced-motion:reduce){.studio-campaigns figcaption{transition:none}.studio-rail{scroll-behavior:auto}}
+/* Godha website replaces the second film frame in the creative studio. */
+.studio-film.studio-website { display: flex; flex-direction: column; }
+.studio-website__preview { position: relative; display: block; flex: 1; min-height: 0; overflow: hidden; border-radius: 10px; background: #f2f5fa; container-type: inline-size; }
+.studio-website__viewport { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
+.studio-website__viewport iframe { width: 1440px; height: 960px; max-width: none; border: 0; transform: scale(.28); transform: scale(calc(100cqw / 1440px)); transform-origin: top left; pointer-events: none; }
+.studio-website__link { position: absolute; right: 10px; bottom: 10px; padding: 7px 12px; border: 1px solid var(--theme-border); border-radius: 20px; background: var(--theme-surface); color: var(--theme-text); font: 650 12px/1.4 "Manrope",sans-serif; }
+.studio-website__preview:focus-visible { outline: 3px solid var(--theme-accent-fill); outline-offset: 3px; }

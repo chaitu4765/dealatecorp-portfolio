@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Header } from "./components/Header.jsx";
 import { Home } from "./pages/Home.jsx";
 import { Services } from "./pages/Services.jsx";
+import { Products } from "./pages/Products.jsx";
 import { Clients } from "./pages/Clients.jsx";
 import { Footer } from "./components/Footer.jsx";
 import { FeaturedMedia } from "./components/FeaturedMedia.jsx";
@@ -10,19 +11,32 @@ import { About } from "./pages/About.jsx";
 import { Contact } from "./pages/Contact.jsx";
 import { Adhithya } from "./pages/Adhithya.jsx";
 import { Tirumalasetty } from "./pages/Tirumalasetty.jsx";
+import {
+  ClientBrandCaseStudy,
+  clientBrandCaseStudyPaths,
+} from "./pages/ClientBrandCaseStudy.jsx";
 import { ProjectEnquiryModal } from "./components/ProjectEnquiryModal.jsx";
+import { DealateAssistant } from "./components/DealateAssistant.jsx";
 import { createAnimationScope } from "./hooks/useAnimationEffect.js";
 import { initSite } from "./hooks/siteAnimations.js";
+import { ScrollLockedDoorHero } from "./components/ui/scroll-locked-door-hero.jsx";
 
 const pages = {
   "/": Home,
   "/services": Services,
+  "/products": Products,
   "/portfolio": Portfolio,
   "/about": About,
   "/contact": Contact,
   "/clients/adhithya-sai-promoters": Adhithya,
   "/clients/adithya-sai-promoters": Adhithya,
   "/clients/tirumalasetty": Tirumalasetty,
+  ...Object.fromEntries(
+    clientBrandCaseStudyPaths.map((clientPath) => [
+      clientPath,
+      ClientBrandCaseStudy,
+    ]),
+  ),
 };
 
 export default function App({ path }) {
@@ -55,19 +69,25 @@ export default function App({ path }) {
     document.addEventListener("click", openProjectForm);
     return () => document.removeEventListener("click", openProjectForm);
   }, []);
-  return (
+  const site = (
     <>
       <Header path={path} />
       {path === "/clients" ? (
         <Clients featuredMedia={<FeaturedMedia />} />
       ) : (
-        <Page />
+        <Page path={path} />
       )}
       <Footer path={path} />
       <ProjectEnquiryModal
         open={projectFormOpen}
         onClose={() => setProjectFormOpen(false)}
       />
+      <DealateAssistant onStartProject={() => setProjectFormOpen(true)} />
     </>
+  );
+  return path === "/" ? (
+    <ScrollLockedDoorHero>{site}</ScrollLockedDoorHero>
+  ) : (
+    site
   );
 }

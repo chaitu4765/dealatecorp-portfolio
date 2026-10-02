@@ -1,0 +1,342 @@
+.molten-ring {
+  --ring-height: clamp(540px, 72vh, 740px);
+  --ring-ink: var(--theme-text, #172238);
+  --ring-muted: var(--theme-muted, #65738a);
+  --ring-line: var(--theme-border, #d9e1ed);
+  --ring-accent: #176bf5;
+  position: relative;
+  isolation: isolate;
+  width: 100%;
+  color: var(--ring-ink);
+  background: radial-gradient(ellipse at 51% 50%, #176bf509, transparent 57%);
+}
+
+.molten-ring__view {
+  position: relative;
+  height: var(--ring-height);
+  overflow: hidden;
+}
+
+.molten-ring__canvas {
+  display: block;
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  color: var(--ring-ink);
+  touch-action: pan-x pinch-zoom;
+}
+
+.molten-ring [hidden] {
+  display: none !important;
+}
+
+.molten-ring__caption {
+  position: absolute;
+  z-index: 2;
+  top: calc(var(--ring-height) / 2);
+  left: 2.5%;
+  width: 25%;
+  max-width: 320px;
+  transform: translateY(-50%);
+}
+
+.molten-ring__eyebrow {
+  margin: 0 0 1.25rem;
+  color: var(--ring-accent);
+  font-size: 0.68rem;
+  font-weight: 750;
+  letter-spacing: 0.16em;
+}
+
+.molten-ring__caption h3 {
+  margin: 0;
+  color: var(--ring-ink);
+  font-size: clamp(1.65rem, 2.7vw, 2.8rem);
+  line-height: 1.08;
+  letter-spacing: -0.055em;
+  overflow-wrap: break-word;
+}
+
+.molten-ring__visit {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-top: 1.8rem;
+  padding-block: 0.35rem;
+  color: var(--ring-ink);
+  font-size: 0.82rem;
+  font-weight: 650;
+  text-decoration: none;
+  border-bottom: 1px solid var(--ring-line);
+}
+
+.molten-ring__visit:hover {
+  color: var(--ring-accent);
+  border-color: currentColor;
+}
+
+.molten-ring__guide {
+  position: absolute;
+  z-index: 2;
+  top: calc(var(--ring-height) / 2);
+  right: 2.5%;
+  width: 20%;
+  transform: translateY(-50%);
+  color: var(--ring-muted);
+  pointer-events: none;
+}
+
+.molten-ring__guide-arrow {
+  display: block;
+  margin-bottom: 1rem;
+  color: var(--ring-accent);
+  font-size: 2rem;
+  font-weight: 300;
+}
+
+.molten-ring__guide p {
+  margin: 0 0 1.25rem;
+  color: var(--ring-ink);
+  font-size: 0.9rem;
+  line-height: 1.8;
+}
+
+.molten-ring__guide > span:last-child {
+  font-size: 0.72rem;
+}
+
+.molten-ring__controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+  min-height: 82px;
+  padding: 1rem 2.5%;
+  border-top: 1px solid var(--ring-line);
+}
+
+.molten-ring__arrows {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+}
+
+.molten-ring__arrows button {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 1px solid var(--ring-line);
+  border-radius: 50%;
+  background: transparent;
+  color: var(--ring-ink);
+  font: inherit;
+  font-size: 1.15rem;
+  cursor: pointer;
+  transition:
+    color 180ms ease,
+    border-color 180ms ease,
+    background 180ms ease;
+}
+
+.molten-ring__arrows button:hover {
+  border-color: var(--ring-accent);
+  background: color-mix(in srgb, var(--ring-accent) 8%, transparent);
+  color: var(--ring-accent);
+}
+
+.molten-ring__status {
+  min-width: 3.8rem;
+  text-align: center;
+  color: var(--ring-muted);
+  font-size: 0.75rem;
+  font-weight: 650;
+  font-variant-numeric: tabular-nums;
+}
+
+.molten-ring__index {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.12rem;
+}
+
+.molten-ring__index button {
+  display: grid;
+  place-items: center;
+  width: 24px;
+  height: 36px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+}
+
+.molten-ring__index button span {
+  width: 5px;
+  height: 5px;
+  border-radius: 5px;
+  background: color-mix(in srgb, var(--ring-muted) 42%, transparent);
+  transition:
+    width 200ms ease,
+    background 200ms ease;
+}
+
+.molten-ring__index button[aria-current="true"] span {
+  width: 20px;
+  background: var(--ring-accent);
+}
+
+.molten-ring__hint {
+  margin: 0;
+  color: var(--ring-muted);
+  font-size: 0.72rem;
+}
+
+.molten-ring__motion {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  min-height: 44px;
+  padding: 0.4rem 0.7rem;
+  border: 0;
+  border-radius: 6px;
+  background: transparent;
+  color: var(--ring-muted);
+  font: inherit;
+  font-size: 0.75rem;
+  cursor: pointer;
+}
+
+.molten-ring__motion:hover {
+  color: var(--ring-accent);
+  background: color-mix(in srgb, var(--ring-accent) 7%, transparent);
+}
+
+.molten-ring :is(a, button):focus-visible {
+  outline: 2px solid var(--ring-accent);
+  outline-offset: 5px;
+}
+
+.molten-ring__loading {
+  position: absolute;
+  top: 62%;
+  left: 50%;
+  transform: translateX(-50%);
+  color: var(--ring-muted);
+  font-size: 0.8rem;
+}
+
+.molten-ring__fallback {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  height: 100%;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: thin;
+  padding: 2rem max(1rem, calc((100% - 400px) / 2));
+}
+
+.molten-ring__fallback-card {
+  flex: 0 0 min(70vw, 400px);
+  scroll-snap-align: center;
+  color: var(--ring-ink);
+  text-decoration: none;
+}
+
+.molten-ring__fallback-card img {
+  display: block;
+  width: 100%;
+  height: 250px;
+  padding: 25px;
+  object-fit: contain;
+  background: #f3f6fc;
+  border-radius: 8px;
+}
+
+.molten-ring__fallback-card > span {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: 1rem;
+  font-size: 0.9rem;
+  font-weight: 650;
+}
+
+.molten-ring[data-renderer="fallback"] .molten-ring__guide {
+  display: none;
+}
+
+.molten-ring[data-renderer="fallback"] .molten-ring__caption {
+  position: relative;
+  top: auto;
+  left: auto;
+  width: 100%;
+  max-width: none;
+  padding: 1.5rem 2.5%;
+  transform: none;
+}
+
+.molten-ring[data-renderer="fallback"] .molten-ring__view {
+  height: 360px;
+}
+
+html[data-theme="dark"] .molten-ring {
+  --ring-accent: #8ab7ff;
+  background: radial-gradient(ellipse at 51% 50%, #176bf510, transparent 57%);
+}
+
+@media (max-width: 700px) {
+  .molten-ring {
+    --ring-height: 430px;
+  }
+
+  .molten-ring__caption {
+    position: relative;
+    top: auto;
+    left: auto;
+    width: 100%;
+    max-width: none;
+    padding: 0.8rem 0.25rem 1.5rem;
+    transform: none;
+  }
+
+  .molten-ring__caption h3 {
+    font-size: clamp(1.9rem, 7vw, 2.8rem);
+  }
+
+  .molten-ring__visit {
+    margin-top: 1rem;
+  }
+
+  .molten-ring__guide {
+    display: none;
+  }
+
+  .molten-ring__controls {
+    justify-content: center;
+    gap: 0.25rem 1rem;
+    padding-inline: 0;
+  }
+
+  .molten-ring__hint {
+    flex-basis: 100%;
+    text-align: center;
+    padding-top: 0.4rem;
+  }
+
+  .molten-ring__index button {
+    width: 22px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .molten-ring * {
+    transition: none !important;
+  }
+}

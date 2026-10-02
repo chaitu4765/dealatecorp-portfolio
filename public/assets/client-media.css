@@ -1,0 +1,308 @@
+/* Shared gallery for the client-folder uploads. */
+html[data-theme] body main .client-media {
+  max-width: 1480px;
+  width: calc(100% - clamp(32px, 9vw, 144px));
+  margin: clamp(48px, 7vw, 110px) auto;
+  padding: 0;
+  color: var(--theme-text);
+  background: transparent;
+  scroll-margin-top: 110px;
+}
+.client-case-fragment {
+  display: contents;
+}
+.client-media__heading {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 26px;
+}
+html[data-theme] body .client-media .client-media__eyebrow {
+  margin: 0 0 12px;
+  color: var(--theme-accent-text);
+  font:
+    700 14px/1.5 "Manrope",
+    sans-serif;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+html[data-theme] body .client-media h2 {
+  margin: 0;
+  color: var(--theme-text);
+  font:
+    750 clamp(32px, 4.5vw, 64px)/1.08 "Manrope",
+    sans-serif;
+  letter-spacing: -0.055em;
+}
+html[data-theme] body .client-media .client-media__total {
+  margin: 0 0 4px;
+  color: var(--theme-muted);
+  font:
+    600 16px/1.5 "Manrope",
+    sans-serif;
+  white-space: nowrap;
+}
+.client-media__lightbox {
+  position: fixed;
+  inset: 0;
+  width: min(96vw, 1600px);
+  max-width: 96vw;
+  height: min(94dvh, 1200px);
+  max-height: 94dvh;
+  padding: 56px 12px 12px;
+  border: 1px solid var(--theme-border);
+  border-radius: 16px;
+  background: var(--theme-surface);
+  color: var(--theme-text);
+}
+.client-media__lightbox::backdrop {
+  background: #121a24d9;
+}
+.client-media__lightbox img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+.client-media__lightbox > button {
+  position: absolute;
+  right: 15px;
+  top: 12px;
+  min-height: 34px;
+  padding: 5px 15px;
+  border: 1px solid var(--theme-border);
+  border-radius: 20px;
+  background: var(--theme-accent-fill);
+  color: var(--theme-on-accent);
+  font:
+    700 14px/1.5 "Manrope",
+    sans-serif;
+  cursor: pointer;
+}
+.client-media :is(button, a):focus-visible,
+.client-media:focus-visible {
+  outline: 3px solid var(--theme-accent-text);
+  outline-offset: 3px;
+}
+@media (max-width: 600px) {
+  .client-media__heading {
+    align-items: start;
+    flex-direction: column;
+    gap: 12px;
+  }
+}
+/* Photo and video cylinder: same interaction across every client gallery. */
+.media-orbit {
+  --media-card-width: 340px;
+  --media-radius: 420px;
+}
+.media-orbit__stage {
+  position: relative;
+  height: clamp(360px, 44vw, 510px);
+  overflow: hidden;
+  perspective: 1200px;
+  touch-action: pan-y;
+  cursor: grab;
+}
+.media-orbit__stage.is-dragging {
+  cursor: grabbing;
+}
+.media-orbit__ring {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 0;
+  height: 0;
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+.media-orbit__card {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: var(--media-card-width);
+  height: calc(var(--media-card-width) + 44px);
+  margin-left: calc(var(--media-card-width) / -2);
+  margin-top: calc((var(--media-card-width) + 44px) / -2);
+  border: 1px solid var(--theme-border);
+  border-radius: 18px;
+  padding: 12px;
+  background: var(--theme-surface);
+  color: var(--theme-text);
+  box-shadow: 0 14px 30px #17273516;
+  transform: rotateY(var(--media-angle)) translateZ(var(--media-radius));
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  cursor: inherit;
+  user-select: none;
+}
+.media-orbit__card[aria-current="true"] {
+  border-color: var(--theme-accent-text);
+}
+.media-orbit__image {
+  position: relative;
+  display: grid;
+  min-height: 0;
+  flex: 1;
+  place-items: center;
+  overflow: hidden;
+  border-radius: 10px;
+  background: var(--theme-surface-raised);
+}
+.media-orbit__image img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  pointer-events: none;
+}
+.media-orbit__play {
+  position: absolute;
+  display: grid;
+  width: 56px;
+  height: 56px;
+  place-items: center;
+  border: 1px solid var(--theme-border);
+  border-radius: 50%;
+  background: var(--theme-surface);
+  color: var(--theme-text);
+  font-size: 21px;
+}
+.media-orbit__card-label {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  min-height: 26px;
+  text-align: left;
+  font:
+    700 15px/1.4 "Manrope",
+    sans-serif;
+}
+.media-orbit__card-label > span:last-child {
+  white-space: nowrap;
+  color: var(--theme-accent-text);
+}
+.media-orbit__controls {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 14px;
+  margin-top: 14px;
+}
+.media-orbit__controls > button,
+.media-orbit__preview-controls > button {
+  min-width: 46px;
+  height: 46px;
+  border: 1px solid var(--theme-border);
+  border-radius: 50%;
+  background: var(--theme-surface);
+  color: var(--theme-text);
+  font:
+    650 21px/1 "Manrope",
+    sans-serif;
+  cursor: pointer;
+}
+.media-orbit__controls > button:hover,
+.media-orbit__preview-controls > button:hover {
+  background: var(--theme-accent-fill);
+  color: var(--theme-on-accent);
+}
+.media-orbit__controls > .media-orbit__motion {
+  min-width: 78px;
+  padding: 0 15px;
+  border-radius: 28px;
+  font-size: 13px;
+}
+html[data-theme] body main .media-orbit__count {
+  margin: 0;
+  min-width: 100px;
+  text-align: center;
+  font:
+    650 14px/1.6 "Manrope",
+    sans-serif;
+  color: var(--theme-accent-text);
+  font-variant-numeric: tabular-nums;
+}
+.media-orbit__count span {
+  display: block;
+  font-size: 12px;
+  color: var(--theme-muted);
+}
+html[data-theme] body main .media-orbit__hint {
+  margin: 18px 0 0;
+  text-align: center;
+  color: var(--theme-muted);
+  font:
+    500 14px/1.5 "Manrope",
+    sans-serif;
+}
+.media-orbit__expanded {
+  width: 100%;
+  height: calc(100% - 64px);
+  min-height: 0;
+  animation: media-preview-in 0.25s ease-out;
+}
+.media-orbit__expanded :is(img, video) {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+.media-orbit__preview-controls {
+  display: flex;
+  height: 64px;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  font:
+    650 14px/1.5 "Manrope",
+    sans-serif;
+}
+@keyframes media-preview-in {
+  from {
+    opacity: 0;
+    transform: scale(0.94);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+@media (max-width: 600px) {
+  .media-orbit__stage {
+    height: 380px;
+  }
+  .media-orbit__card {
+    border-radius: 14px;
+    padding: 8px;
+  }
+  .media-orbit__card-label {
+    font-size: 13px;
+  }
+  .media-orbit__controls {
+    gap: 9px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .media-orbit__expanded {
+    animation: none;
+  }
+}
+html[data-theme] body .adhithya-offerings {
+  grid-template-columns: 1fr;
+}
+
+/* Retained website previews use the same surfaces as the new media galleries. */
+html[data-theme] body main :is(.spark-work,.spark-website-section,.ganesh-work,.svc-work,.parasakthi-work) {
+  background: var(--theme-bg); color: var(--theme-text);
+}
+html[data-theme] body main :is(.spark-browser-bar,.ganesh-browser__bar,.svc-browser__bar,.parasakthi-browser__bar) {
+  background: var(--theme-surface); color: var(--theme-text); border-color: var(--theme-border);
+}
+html[data-theme] body main :is(.spark-browser-bar,.ganesh-browser__bar,.svc-browser__bar,.parasakthi-browser__bar) b { color: var(--theme-text); }

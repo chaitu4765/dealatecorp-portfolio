@@ -1,0 +1,465 @@
+.home-entrance {
+  --entry-progress: 0;
+  --entry-door-opacity: 1;
+  --entry-copy-opacity: 1;
+  --entry-ink: #102b53;
+  --entry-muted: #486589;
+  --entry-blue: #176bf5;
+  --entry-line: rgb(97 160 241 / 40%);
+  --entry-door-start: #f4f8ff;
+  --entry-door-mid: #dae9fb;
+  --entry-door-end: #a6c9f2;
+  --entry-door-shine: rgb(255 255 255 / 88%);
+  --entry-emblem-bg: rgb(246 251 255 / 70%);
+}
+
+html[data-theme="dark"] .home-entrance {
+  --entry-ink: #edf5ff;
+  --entry-muted: #adc3e0;
+  --entry-blue: #75aeff;
+  --entry-line: rgb(70 132 234 / 37%);
+  --entry-door-start: #0c1627;
+  --entry-door-mid: #152f50;
+  --entry-door-end: #244c7a;
+  --entry-door-shine: rgb(140 190 255 / 15%);
+  --entry-emblem-bg: rgb(229 243 255 / 94%);
+}
+
+.home-entrance[data-active="true"] .home-entrance__page {
+  height: 100dvh;
+  overflow: hidden;
+  transform: scale(var(--entry-scene-scale, 0.86));
+  transform-origin: 50% 50vh;
+  border-radius: calc((1 - var(--entry-progress)) * 24px);
+  will-change: transform;
+}
+
+.home-entrance__dialog {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100dvh;
+  max-width: none;
+  max-height: none;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  overflow: hidden;
+  color: var(--entry-ink);
+  background: transparent;
+  touch-action: pinch-zoom;
+  overscroll-behavior: none;
+  font-family: "Manrope", "DM Sans", Arial, sans-serif;
+}
+
+.home-entrance__dialog::backdrop {
+  background: transparent;
+}
+.home-entrance__dialog button {
+  font: inherit;
+  cursor: pointer;
+}
+.home-entrance__dialog button:focus-visible {
+  outline: 2px solid var(--entry-blue);
+  outline-offset: 7px;
+}
+
+.home-entrance__doors {
+  position: absolute;
+  inset: 0;
+  perspective: 1600px;
+  perspective-origin: 50% 46%;
+}
+
+.home-entrance__door {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 50%;
+  overflow: hidden;
+  background:
+    repeating-linear-gradient(
+      90deg,
+      transparent 0 3px,
+      rgb(66 130 210 / 2%) 3px 4px
+    ),
+    linear-gradient(
+      108deg,
+      var(--entry-door-start) 4%,
+      var(--entry-door-mid) 52%,
+      var(--entry-door-end) 100%
+    );
+  box-shadow:
+    inset 0 0 80px rgb(20 70 130 / 8%),
+    0 0 38px rgb(12 48 98 / 30%);
+  opacity: var(--entry-door-opacity);
+  backface-visibility: hidden;
+  will-change: transform;
+}
+
+.home-entrance__door::before {
+  content: "";
+  position: absolute;
+  inset: 12px;
+  border: 1px solid var(--entry-line);
+  border-radius: 3px;
+  background: linear-gradient(
+    120deg,
+    transparent 16%,
+    var(--entry-door-shine) 16.1%,
+    transparent 16.3%,
+    transparent 72%,
+    var(--entry-door-shine) 72.1%,
+    transparent 72.3%
+  );
+  pointer-events: none;
+}
+
+.home-entrance__door::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(
+    180deg,
+    transparent,
+    #67b4ff 22%,
+    #b8e4ff 50%,
+    #3686ff 78%,
+    transparent
+  );
+  box-shadow: 0 0 22px 3px rgb(40 137 255 / 45%);
+}
+
+.home-entrance__door--left {
+  left: 0;
+  transform-origin: left center;
+  transform: translate3d(
+      calc(var(--entry-progress) * -35%),
+      0,
+      calc(var(--entry-progress) * 220px)
+    )
+    rotateY(calc(var(--entry-progress) * -95deg));
+}
+.home-entrance__door--left::after {
+  right: 0;
+}
+
+.home-entrance__door--right {
+  right: 0;
+  transform-origin: right center;
+  background:
+    repeating-linear-gradient(
+      90deg,
+      transparent 0 3px,
+      rgb(66 130 210 / 2%) 3px 4px
+    ),
+    linear-gradient(
+      252deg,
+      var(--entry-door-start) 4%,
+      var(--entry-door-mid) 52%,
+      var(--entry-door-end) 100%
+    );
+  transform: translate3d(
+      calc(var(--entry-progress) * 35%),
+      0,
+      calc(var(--entry-progress) * 220px)
+    )
+    rotateY(calc(var(--entry-progress) * 95deg));
+}
+.home-entrance__door--right::after {
+  left: 0;
+}
+
+/* Paint one continuous brand lockup across the two separately moving doors. */
+.home-entrance__identity {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100dvh;
+  padding: 0 24px 15vh;
+  color: var(--entry-ink);
+}
+.home-entrance__door--right .home-entrance__identity {
+  left: -100%;
+}
+
+.home-entrance__emblem {
+  display: grid;
+  place-items: center;
+  width: clamp(96px, 11vw, 158px);
+  aspect-ratio: 1;
+  margin-bottom: 30px;
+  border: 1px solid rgb(171 209 255 / 65%);
+  border-radius: 28%;
+  background: var(--entry-emblem-bg);
+  box-shadow:
+    0 14px 60px rgb(16 94 207 / 14%),
+    inset 0 2px 2px rgb(255 255 255 / 70%);
+}
+.home-entrance__emblem img {
+  width: 64%;
+  height: auto;
+}
+
+.home-entrance__identity strong {
+  font-size: clamp(46px, 9.5vw, 158px);
+  font-weight: 650;
+  line-height: 1.08;
+  letter-spacing: -0.075em;
+  text-shadow: 0 1px 0 rgb(255 255 255 / 18%);
+}
+.home-entrance__identity > span {
+  margin-top: 28px;
+  color: var(--entry-muted);
+  font-size: clamp(9px, 1vw, 13px);
+  font-weight: 600;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+}
+
+.home-entrance__handle {
+  position: absolute;
+  top: 58%;
+  height: 80px;
+  width: 6px;
+  border: 1px solid var(--entry-line);
+  border-radius: 5px;
+  background: linear-gradient(
+    90deg,
+    var(--entry-door-mid),
+    var(--entry-door-shine)
+  );
+  box-shadow: 2px 3px 8px rgb(16 44 86 / 18%);
+}
+.home-entrance__door--left .home-entrance__handle {
+  right: 25px;
+}
+.home-entrance__door--right .home-entrance__handle {
+  left: 25px;
+}
+
+.home-entrance__department {
+  position: absolute;
+  bottom: 32px;
+  color: var(--entry-muted);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+}
+.home-entrance__door--left .home-entrance__department {
+  left: 36px;
+}
+.home-entrance__door--right .home-entrance__department {
+  right: 36px;
+}
+
+.home-entrance__frame {
+  position: absolute;
+  inset: 0;
+  border: 7px solid var(--entry-door-start);
+  box-shadow:
+    inset 0 0 3px var(--entry-blue),
+    inset 0 0 70px rgb(2 22 56 / 10%);
+  opacity: var(--entry-door-opacity);
+  pointer-events: none;
+}
+
+.home-entrance__topline {
+  position: absolute;
+  inset: clamp(24px, 4vw, 52px) clamp(24px, 4vw, 60px) auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+.home-entrance__topline > span {
+  color: var(--entry-muted);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  opacity: var(--entry-copy-opacity);
+}
+.home-entrance__topline button {
+  display: inline-flex;
+  gap: 18px;
+  align-items: center;
+  padding: 10px 15px;
+  border: 1px solid var(--entry-line);
+  border-radius: 30px;
+  color: var(--entry-ink);
+  background: var(--entry-door-start);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.home-entrance__invitation {
+  position: absolute;
+  left: 50%;
+  bottom: clamp(65px, 10vh, 110px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: max-content;
+  max-width: calc(100% - 48px);
+  transform: translateX(-50%);
+  opacity: var(--entry-copy-opacity);
+}
+.home-entrance__invitation p {
+  margin: 0 0 18px;
+  color: var(--entry-ink);
+  font-size: clamp(16px, 1.4vw, 21px);
+  letter-spacing: -0.03em;
+}
+.home-entrance__invitation button {
+  display: inline-flex;
+  align-items: center;
+  gap: 24px;
+  min-height: 48px;
+  padding: 0 24px;
+  border: 0;
+  border-radius: 28px;
+  background: #176bf5;
+  color: #fff;
+  font-size: 13px;
+  font-weight: 600;
+  box-shadow: 0 8px 30px rgb(23 107 245 / 20%);
+  transition: background 0.2s;
+}
+.home-entrance__invitation button:hover {
+  background: #0959df;
+}
+.home-entrance__hint {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 23px;
+  color: var(--entry-muted);
+  font-size: 10px;
+  letter-spacing: 0.09em;
+}
+
+.home-entrance__progress {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 3px;
+  background: var(--entry-line);
+}
+.home-entrance__progress > span {
+  display: block;
+  height: 100%;
+  transform: scaleX(var(--entry-progress));
+  transform-origin: left center;
+  background: linear-gradient(90deg, #176bf5, #72d5ff);
+}
+.home-entrance__sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+@media (max-width: 700px) {
+  .home-entrance__doors {
+    perspective: 850px;
+  }
+  .home-entrance__door::before {
+    inset: 8px;
+  }
+  .home-entrance__frame {
+    border-width: 4px;
+  }
+  .home-entrance__identity {
+    padding-bottom: 14vh;
+  }
+  .home-entrance__identity strong {
+    font-size: 12vw;
+  }
+  .home-entrance__emblem {
+    margin-bottom: 25px;
+  }
+  .home-entrance__identity > span {
+    letter-spacing: 0.2em;
+    margin-top: 20px;
+  }
+  .home-entrance__topline {
+    inset: 23px 23px auto;
+    gap: 10px;
+  }
+  .home-entrance__topline > span {
+    max-width: 125px;
+    font-size: 8px;
+    line-height: 1.7;
+  }
+  .home-entrance__department {
+    font-size: 7px;
+    bottom: 22px;
+    letter-spacing: 0.06em;
+  }
+  .home-entrance__door--left .home-entrance__department {
+    left: 23px;
+  }
+  .home-entrance__door--right .home-entrance__department {
+    right: 23px;
+  }
+  .home-entrance__handle {
+    height: 55px;
+    width: 4px;
+  }
+  .home-entrance__door--left .home-entrance__handle {
+    right: 13px;
+  }
+  .home-entrance__door--right .home-entrance__handle {
+    left: 13px;
+  }
+}
+
+@media (max-height: 560px) and (min-width: 701px) {
+  .home-entrance__emblem {
+    width: 68px;
+    margin-bottom: 12px;
+  }
+  .home-entrance__identity strong {
+    font-size: 64px;
+  }
+  .home-entrance__identity > span {
+    margin-top: 12px;
+    font-size: 9px;
+  }
+  .home-entrance__identity {
+    padding-bottom: 95px;
+  }
+  .home-entrance__invitation {
+    bottom: 45px;
+  }
+  .home-entrance__invitation p {
+    display: none;
+  }
+  .home-entrance__hint {
+    margin-top: 13px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .home-entrance__dialog {
+    display: none;
+  }
+  .home-entrance[data-active="true"] .home-entrance__page {
+    transform: none;
+    filter: none;
+  }
+}

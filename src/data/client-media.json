@@ -1,0 +1,199 @@
+{
+  "/clients/ganesh-constructions": {
+    "brand": "Ganesh Constructions",
+    "items": [
+      {
+        "id": "01-image",
+        "type": "image",
+        "title": "Site photograph",
+        "alt": "Ganesh Constructions — site photograph",
+        "src": "/assets/client-media/ganesh-constructions/01-image.webp",
+        "thumbnail": "/assets/client-media/ganesh-constructions/01-image-thumb.webp",
+        "width": 1920,
+        "height": 1080,
+        "sourceFile": "ganesh constructions/1.JPG"
+      },
+      {
+        "id": "02-video",
+        "type": "video",
+        "title": "Aerial film",
+        "alt": "Ganesh Constructions — aerial film",
+        "src": "/assets/client-media/ganesh-constructions/02-video.mp4",
+        "thumbnail": "/assets/client-media/ganesh-constructions/02-video-thumb.webp",
+        "width": 1280,
+        "height": 720,
+        "sourceFile": "ganesh constructions/DJI_20260715121345_0002_D.MP4",
+        "poster": "/assets/client-media/ganesh-constructions/02-video-poster.webp"
+      }
+    ]
+  },
+  "/clients/spark": {
+    "brand": "Spark Clinic",
+    "items": [
+      {
+        "id": "01-image",
+        "type": "image",
+        "title": "Dental care campaign",
+        "alt": "Spark Clinic — dental care campaign",
+        "src": "/assets/client-media/spark/01-image.webp",
+        "thumbnail": "/assets/client-media/spark/01-image-thumb.webp",
+        "width": 1440,
+        "height": 1920,
+        "sourceFile": "spark/Dental_2.png"
+      },
+      {
+        "id": "02-image",
+        "type": "image",
+        "title": "Smile care campaign",
+        "alt": "Spark Clinic — smile care campaign",
+        "src": "/assets/client-media/spark/02-image.webp",
+        "thumbnail": "/assets/client-media/spark/02-image-thumb.webp",
+        "width": 1440,
+        "height": 1920,
+        "sourceFile": "spark/Dental_3.png"
+      },
+      {
+        "id": "03-image",
+        "type": "image",
+        "title": "Dental care for kids",
+        "alt": "Spark Clinic — dental care for kids",
+        "src": "/assets/client-media/spark/03-image.webp",
+        "thumbnail": "/assets/client-media/spark/03-image-thumb.webp",
+        "width": 1440,
+        "height": 1920,
+        "sourceFile": "spark/Dental_Forkids.png"
+      }
+    ]
+  },
+  "/clients/sri-venkateswara-constructions": {
+    "brand": "Sri Venkateswara Constructions",
+    "items": [
+      {
+        "id": "01-video",
+        "type": "video",
+        "title": "Aerial film",
+        "alt": "Sri Venkateswara Constructions — aerial film",
+        "src": "/assets/client-media/sri-venkateswara-constructions/01-video.mp4",
+        "thumbnail": "/assets/client-media/sri-venkateswara-constructions/01-video-thumb.webp",
+        "width": 1280,
+        "height": 720,
+        "sourceFile": "Sri venkateshwara/DJI_20260804112655_0397_D.MP4",
+        "poster": "/assets/client-media/sri-venkateswara-constructions/01-video-poster.webp"
+      }
+    ]
+  },
+  "/clients/ssm-construction": {
+    "brand": "SSM Construction",
+    "items": [
+      {
+        "id": "01-image",
+        "type": "image",
+        "title": "Site photograph",
+        "alt": "SSM Construction — site photograph",
+        "src": "/assets/client-media/ssm-construction/01-image.webp",
+        "thumbnail": "/assets/client-media/ssm-construction/01-image-thumb.webp",
+        "width": 1920,
+        "height": 1083,
+        "sourceFile": "SSm/DJI_20260715141209_0088_D.JPG"
+      },
+      {
+        "id": "02-video",
+        "type": "video",
+        "title": "Aerial film 01",
+        "alt": "SSM Construction — aerial film 01",
+        "src": "/assets/client-media/ssm-construction/02-video.mp4",
+        "thumbnail": "/assets/client-media/ssm-construction/02-video-thumb.webp",
+        "width": 1280,
+        "height": 720,
+        "sourceFile": "SSm/DJI_20260715140614_0071_D.LRF",
+        "poster": "/assets/client-media/ssm-construction/02-video-poster.webp"
+      },
+      {
+        "id": "03-video",
+        "type": "video",
+        "title": "Aerial film 02",
+        "alt": "SSM Construction — aerial film 02",
+        "src": "/assets/client-media/ssm-construction/03-video.mp4",
+        "thumbnail": "/assets/client-media/ssm-construction/03-video-thumb.webp",
+        "width": 1280,
+        "height": 720,
+        "sourceFile": "SSm/DJI_20260715141110_0083_D.MP4",
+        "poster": "/assets/client-media/ssm-construction/03-video-poster.webp"
+      },
+      {
+        "id": "04-video",
+        "type": "video",
+        "title": "Aerial film 03",
+        "alt": "SSM Construction — aerial film 03",
+        "src": "/assets/client-media/ssm-construction/04-video.mp4",
+        "thumbnail": "/assets/client-media/ssm-construction/04-video-thumb.webp",
+        "width": 1280,
+        "height": 720,
+        "sourceFile": "SSm/DJI_20260715141132_0084_D.MP4",
+        "poster": "/assets/client-media/ssm-construction/04-video-poster.webp"
+      }
+    ]
+  },
+  "/clients/tirumalasetty": {
+    "brand": "Tirumalasetty Projects LLP",
+    "items": [
+      {
+        "id": "01-image",
+        "type": "image",
+        "title": "Site photograph 01",
+        "alt": "Tirumalasetty Projects LLP — site photograph 01",
+        "src": "/assets/client-media/tirumalasetty/01-image.webp",
+        "thumbnail": "/assets/client-media/tirumalasetty/01-image-thumb.webp",
+        "width": 1920,
+        "height": 1080,
+        "sourceFile": "thirumala setty/DJI_20260804110539_0376_D.JPG"
+      },
+      {
+        "id": "02-image",
+        "type": "image",
+        "title": "Site photograph 02",
+        "alt": "Tirumalasetty Projects LLP — site photograph 02",
+        "src": "/assets/client-media/tirumalasetty/02-image.webp",
+        "thumbnail": "/assets/client-media/tirumalasetty/02-image-thumb.webp",
+        "width": 1920,
+        "height": 1080,
+        "sourceFile": "thirumala setty/DJI_20260804112133_0389_D.JPG"
+      },
+      {
+        "id": "03-image",
+        "type": "image",
+        "title": "Site photograph 03",
+        "alt": "Tirumalasetty Projects LLP — site photograph 03",
+        "src": "/assets/client-media/tirumalasetty/03-image.webp",
+        "thumbnail": "/assets/client-media/tirumalasetty/03-image-thumb.webp",
+        "width": 960,
+        "height": 540,
+        "sourceFile": "thirumala setty/DJI_20260804112520_0394_D.DNG"
+      },
+      {
+        "id": "04-video",
+        "type": "video",
+        "title": "Aerial film 01",
+        "alt": "Tirumalasetty Projects LLP — aerial film 01",
+        "src": "/assets/client-media/tirumalasetty/04-video.mp4",
+        "thumbnail": "/assets/client-media/tirumalasetty/04-video-thumb.webp",
+        "width": 1280,
+        "height": 720,
+        "sourceFile": "thirumala setty/DJI_20260804112309_0391_D.MP4",
+        "poster": "/assets/client-media/tirumalasetty/04-video-poster.webp"
+      },
+      {
+        "id": "05-video",
+        "type": "video",
+        "title": "Aerial film 02",
+        "alt": "Tirumalasetty Projects LLP — aerial film 02",
+        "src": "/assets/client-media/tirumalasetty/05-video.mp4",
+        "thumbnail": "/assets/client-media/tirumalasetty/05-video-thumb.webp",
+        "width": 1280,
+        "height": 720,
+        "sourceFile": "thirumala setty/DJI_20260804125644_0368_D.MP4",
+        "poster": "/assets/client-media/tirumalasetty/05-video-poster.webp"
+      }
+    ]
+  }
+}

@@ -24,7 +24,7 @@ npm run preview
 `preview` serves the production build on the same port; stop the development
 server before using it.
 
-`npm test` builds the site and runs 19 content-preservation and simulated component
+`npm test` builds the site and runs 28 content-preservation and simulated component
 interaction checks. The migration tests compare against commit
 `aec7abd1c6a04b21c29437fa196b18fa18bc244e`, so run them from the repository with its
 Git history available. These tests do not replace visual browser testing.
@@ -39,7 +39,7 @@ Git history available. These tests do not replace visual browser testing.
 - `src/data/`: shared client assets and route metadata.
 - `public/assets/`: original CSS, images, fonts, logos and studio videos.
 - `public/clients/videos/`: client story video.
-- `scripts/build-routes.mjs`: creates all eight static route entry points after build.
+- `scripts/build-routes.mjs`: creates all 18 static route entry points after build.
 
 Navigation uses ordinary links and each URL mounts its own React page. This keeps
 existing deep links, reloads and static hosting compatible without a server router.
@@ -48,6 +48,13 @@ The two Adhithya spelling variants remain supported.
 Edit `src/` or `public/`, not the generated `dist/` directory. `npm run build`
 recreates `dist/`. `.openai/hosting.json` retains the existing Site configuration;
 publishing is manual, not automatic.
+
+The repository includes all website source and browser-ready assets. Original
+client media folders, backup ZIPs, dependencies, caches and generated `dist/`
+output are excluded. The optional `scripts/prepare-client-media.py` utility needs
+the original client media uploads to regenerate their prepared copies; normal
+builds use the committed assets in `public/`. The `poc--master/` source is retained
+for `scripts/import-products.mjs`.
 
 Original design and third-party attribution remain in `ASSET-CREDITS.md` and
 `public/assets/third-party-notices.txt`.

@@ -27,3 +27,29 @@ SOFTWARE.
 Platform icons: Simple Icons, https://simpleicons.org, CC0-1.0.
 Icons identify the services offered and do not imply platform affiliation.
 DC Creative Labs logo supplied by the site owner.
+
+Services redesign patterns reviewed on 21st.dev:
+Card Spotlight: https://21st.dev/aceternity/card-spotlight/default
+Spotlight technique: https://news.21st.dev/blog/react-spotlight-effect-components
+Shimmer Button: https://21st.dev/
+Spotlight and shimmer effects independently implemented with native CSS and React.
+Logo shader is an original procedural WebGL implementation.
+Implementation comparison artwork generated for this project.
+
+Capability flip cards: independently implemented React/CSS adaptation of the interaction reviewed at https://21st.dev/community/components/UmairXD/flip-card/default (Umair Waheed).
+
+Molten Ring Carousel: component source supplied by the site owner. The WebGL
+distance-field, fusion, strand and glass-refraction rendering is integrated in
+src/components/ui/molten-ring-carousel.tsx, with brand navigation, contained
+logos, theme styling, responsive sizing and an accessible fallback.
+
+Scroll-locked hero: adapted from React source supplied by the site owner,
+whose demo credits guglielmogiannattasio.exe (guglielmogiannattasio.it).
+The scroll-scrubbing interaction is reworked as branded CSS doors revealing
+the live homepage, with scroll release, modal keyboard controls, skip and
+reduced-motion support. The demo's city video is not used.
+
+Logo scroll specimen: adapted from the site-owner-supplied Lycoris Specimen
+by Kedhareswer (https://21st.dev/@kedhareswer). The scene timing, scroll holds
+and composition transitions are adapted for DealateCorp branding and content.
+The demo flower, font specimen text, blur and grain are not used.

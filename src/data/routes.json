@@ -10,6 +10,11 @@
     "description": "Explore Dealatecorp's IT Department and Digital Marketing capabilities, implementation steps and illustrative before-and-after workflows. Includes all 14 DC Creative Labs marketing services."
   },
   {
+    "path": "/products",
+    "title": "Products — Dealatecorp",
+    "description": "Explore Dealatecorp's product concepts, from pharmacy and dealership software to digital experiences for growing businesses."
+  },
+  {
     "path": "/clients",
     "title": "Clients — Dealatecorp",
     "description": "The ambitious organizations that choose Dealatecorp as their growth partner."
@@ -43,5 +48,45 @@
     "path": "/clients/tirumalasetty",
     "title": "Tirumalasetty Projects LLP - Dealatecorp Clients",
     "description": "Tirumalasetty Projects LLP client detail page by Dealatecorp Creative Labs."
+  },
+  {
+    "path": "/clients/ganesh-constructions",
+    "title": "Ganesh Constructions - Dealatecorp Clients",
+    "description": "Explore Ganesh Constructions brand story and campaign work by Dealatecorp Creative Labs."
+  },
+  {
+    "path": "/clients/spark",
+    "title": "Spark Dental Hospital - Dealatecorp Clients",
+    "description": "Explore Spark Dental Hospital's digital presence, creative work, and campaign showcase by Dealatecorp."
+  },
+  {
+    "path": "/clients/sree-surya-infra",
+    "title": "Sree Surya Infra - Dealatecorp Clients",
+    "description": "Explore Sree Surya Infra's brand story, visual identity, and digital experience by Dealatecorp."
+  },
+  {
+    "path": "/clients/sri-conventions",
+    "title": "Sri Conventions - Dealatecorp Clients",
+    "description": "Explore Sri Conventions' brand story and creative work by Dealatecorp Creative Labs."
+  },
+  {
+    "path": "/clients/sri-parasakthi-peetam",
+    "title": "Sri Parasakthi Peetam - Dealatecorp Clients",
+    "description": "Explore the Sri Parasakthi Peetam digital experience and creative work by Dealatecorp."
+  },
+  {
+    "path": "/clients/sri-venkateswara-constructions",
+    "title": "Sri Venkateswara Constructions - Dealatecorp Clients",
+    "description": "Explore Sri Venkateswara Constructions' brand and campaign showcase by Dealatecorp."
+  },
+  {
+    "path": "/clients/ssm-construction",
+    "title": "SSM Construction - Dealatecorp Clients",
+    "description": "Explore SSM Construction's digital presence and creative work by Dealatecorp."
+  },
+  {
+    "path": "/clients/ubic",
+    "title": "UBIC - Dealatecorp Clients",
+    "description": "Explore the UBIC brand story and digital experience by Dealatecorp Creative Labs."
   }
 ]

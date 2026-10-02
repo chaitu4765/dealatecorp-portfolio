@@ -1,7 +1,25 @@
 import { ServiceNetwork } from "../components/ServiceNetwork.jsx";
 import { DepartmentExplorer } from "../components/DepartmentExplorer.jsx";
-import { Fragment, useState, useRef } from "react";
+import { SiteShowcase } from "../components/SiteShowcase.jsx";
+import { DigitalMarketingShowcase } from "../components/DigitalMarketingShowcase.jsx";
+import { Fragment, useEffect, useRef, useState } from "react";
 // Native SVG adaptation of Inspira UI Animated Beam. See third-party-notices.txt.
+function BreathingText({ text }) {
+  return (
+    <span className="services-breathing-text" aria-hidden="true">
+      {Array.from(text, (character, index) => (
+        <span
+          className="services-breathing-text__char"
+          key={`${character}-${index}`}
+          style={{ "--char-delay": `${index * 0.08}s` }}
+        >
+          {character === " " ? "\u00a0" : character}
+        </span>
+      ))}
+    </span>
+  );
+}
+
 export const serviceCatalog = [
   {
     id: "seo",
@@ -13,7 +31,6 @@ export const serviceCatalog = [
     description:
       "Technical, on-page and off-page SEO that strengthens search visibility, organic traffic and qualified enquiries.",
     includes: ["Technical SEO", "On-page optimisation", "Off-page authority"],
-    alias: 3,
   },
   {
     id: "local-seo",
@@ -44,7 +61,6 @@ export const serviceCatalog = [
       "Audience & keyword targeting",
       "Campaign optimisation",
     ],
-    alias: 4,
   },
   {
     id: "social-media",
@@ -296,33 +312,91 @@ function icon(service) {
 }
 export function Services() {
   const [selectedIndex, setSelectedIndex] = useState(2);
-  const focus = useRef(null);
-  const selectService = (index) => {
+  const [openServiceIndex, setOpenServiceIndex] = useState(null);
+  const dialogRef = useRef(null);
+  const closeButtonRef = useRef(null);
+  const dialogTriggerRef = useRef(null);
+  const selectService = (index, trigger) => {
     setSelectedIndex(index);
-    if (window.innerWidth < 640)
-      focus.current?.scrollIntoView({
-        block: "start",
-        behavior: matchMedia("(prefers-reduced-motion: reduce)").matches
-          ? "instant"
-          : "smooth",
-      });
+    dialogTriggerRef.current = trigger;
+    setOpenServiceIndex(index);
   };
-  const selected = serviceCatalog[selectedIndex];
+  const closeServiceDialog = () => setOpenServiceIndex(null);
+  const selected =
+    openServiceIndex === null ? null : serviceCatalog[openServiceIndex];
+
+  useEffect(() => {
+    const openLinkedService = () => {
+      const targetId = window.location.hash.slice(1);
+      const index = serviceCatalog.findIndex(
+        (service) => `service-${service.id}` === targetId,
+      );
+      if (index < 0) return;
+      dialogTriggerRef.current = document.getElementById(targetId);
+      setSelectedIndex(index);
+      setOpenServiceIndex(index);
+    };
+
+    openLinkedService();
+    window.addEventListener("hashchange", openLinkedService);
+    return () => window.removeEventListener("hashchange", openLinkedService);
+  }, []);
+
+  useEffect(() => {
+    if (openServiceIndex === null) return undefined;
+
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    const dialog = dialogRef.current;
+    const focusFrame = requestAnimationFrame(() =>
+      closeButtonRef.current?.focus(),
+    );
+    const onKeyDown = (event) => {
+      if (event.key === "Escape") {
+        event.preventDefault();
+        closeServiceDialog();
+        return;
+      }
+      if (event.key !== "Tab" || !dialog) return;
+
+      const focusable = [
+        ...dialog.querySelectorAll(
+          'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])',
+        ),
+      ];
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last?.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first?.focus();
+      }
+    };
+
+    document.addEventListener("keydown", onKeyDown);
+    return () => {
+      cancelAnimationFrame(focusFrame);
+      document.body.style.overflow = previousOverflow;
+      document.removeEventListener("keydown", onKeyDown);
+      const trigger = dialogTriggerRef.current;
+      if (trigger?.isConnected) requestAnimationFrame(() => trigger.focus());
+    };
+  }, [openServiceIndex]);
   return (
     <main className="dc-services-page" id="main-content">
       <section className="services-heading dc-wrap" id="layer-1">
         <p className="dc-eyebrow">Dealatecorp / Our services</p>
-        <h1>
-          Two disciplines.
+        <h1 aria-label="Two disciplines. One shared direction.">
+          <BreathingText text="Two disciplines." />
           <br />
-          <em>One shared direction.</em>
+          <span className="services-heading__accent">
+            <BreathingText text="One shared direction." />
+          </span>
         </h1>
         <div>
-          <p>
-            Technology and digital marketing—connected around your business.
-            Explore the expertise, the implementation and the difference a
-            considered approach can make.
-          </p>
+          <p>Technology and digital marketing. Built around your business.</p>
           <a className="dc-service-link" href="#departments">
             Find your starting point
           </a>
@@ -347,10 +421,10 @@ export function Services() {
             Select a service to explore what it can do for your business.
             <a
               className="dc-service-link"
-              href="#service-directory"
+              href="#departments"
               data-department-addition
             >
-              View every service
+              Explore department capabilities
             </a>
           </p>
         </div>
@@ -361,103 +435,6 @@ export function Services() {
           onSelect={selectService}
           renderIcon={icon}
         />
-
-        <div
-          className="service-focus"
-          id="service-focus"
-          style={{
-            "--selected-color": selected.color,
-          }}
-          ref={focus}
-        >
-          <span className="service-focus__number" aria-hidden="true">
-            {String(selectedIndex + 1).padStart(2, "0")} <small>/ 14</small>
-          </span>
-          <div
-            className="service-focus__copy"
-            aria-live="polite"
-            aria-atomic="true"
-          >
-            <p className="dc-eyebrow">{selected.group}</p>
-            <h3>{selected.name}</h3>
-            <p className="service-focus__description">{selected.description}</p>
-            <ul>
-              {selected.includes.map((t, index) => (
-                <li key={index}>{t}</li>
-              ))}
-            </ul>
-          </div>
-          <a
-            className="dc-button service-focus__cta"
-            href={
-              "mailto:hr@dealatecorp.com?subject=" +
-              encodeURIComponent("Enquiry: " + selected.name)
-            }
-          >
-            Discuss this service
-          </a>
-        </div>
-      </section>
-
-      <section
-        className="service-directory dc-wrap"
-        id="service-directory"
-        aria-labelledby="directory-title"
-      >
-        <div className="dc-section-heading">
-          <div>
-            <p className="dc-eyebrow">The full service suite</p>
-            <h2 id="directory-title">
-              A clear role
-              <br />
-              <span>for every channel.</span>
-            </h2>
-          </div>
-          <p>
-            Choose the services your business needs today. Build on them as your
-            priorities evolve.
-          </p>
-        </div>
-        <div className="service-directory__grid">
-          {serviceCatalog.map((s, i) => (
-            <article id={"service-" + s.id} key={i}>
-              {s.alias ? (
-                <span className="service-anchor" id={"layer-" + s.alias} />
-              ) : (
-                ""
-              )}
-              <div className="service-directory__title">
-                <span
-                  className="service-directory__icon"
-                  style={{
-                    color: s.color,
-                  }}
-                >
-                  {icon(s)}
-                </span>
-                <span className="dc-eyebrow">
-                  <>
-                    {String(i + 1).padStart(2, "0")}
-                    {" / "}
-                    {s.group}
-                  </>
-                </span>
-              </div>
-              <h3>{s.name}</h3>
-              {s.subtitle ? (
-                <p className="service-directory__subtitle">{s.subtitle}</p>
-              ) : (
-                ""
-              )}
-              <p>{s.description}</p>
-              <ul>
-                {s.includes.map((t, index) => (
-                  <li key={index}>{t}</li>
-                ))}
-              </ul>
-            </article>
-          ))}
-        </div>
       </section>
 
       <section
@@ -492,6 +469,74 @@ export function Services() {
           ))}
         </div>
       </section>
+
+      <SiteShowcase />
+      <DigitalMarketingShowcase />
+
+      {selected && (
+        <div
+          className="service-dialog-backdrop"
+          onMouseDown={(event) => {
+            if (event.target === event.currentTarget) closeServiceDialog();
+          }}
+        >
+          <section
+            className="service-dialog"
+            id="service-dialog"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="service-dialog-title"
+            aria-describedby="service-dialog-description"
+            tabIndex={-1}
+            ref={dialogRef}
+            style={{ "--selected-color": selected.color }}
+          >
+            <div className="service-dialog__topline">
+              <p className="dc-eyebrow">
+                {String(openServiceIndex + 1).padStart(2, "0")} / 14
+                <span aria-hidden="true"> · </span>
+                {selected.group}
+              </p>
+              <button
+                className="service-dialog__close"
+                type="button"
+                aria-label="Close service details"
+                ref={closeButtonRef}
+                onClick={closeServiceDialog}
+              >
+                <span aria-hidden="true">×</span>
+              </button>
+            </div>
+            <h2 id="service-dialog-title">{selected.name}</h2>
+            {selected.subtitle && (
+              <p className="service-dialog__subtitle">{selected.subtitle}</p>
+            )}
+            <p
+              id="service-dialog-description"
+              className="service-dialog__description"
+            >
+              {selected.description}
+            </p>
+            <div className="service-dialog__deliverables">
+              <h3>What we can deliver</h3>
+              <ul>
+                {selected.includes.map((item) => (
+                  <li key={item}>{item}</li>
+                ))}
+              </ul>
+            </div>
+            <a
+              className="dc-button service-dialog__cta"
+              href={
+                "mailto:hr@dealatecorp.com?subject=" +
+                encodeURIComponent("Enquiry: " + selected.name)
+              }
+            >
+              Discuss this service <span aria-hidden="true">↗</span>
+            </a>
+          </section>
+        </div>
+      )}
 
       <section className="services-next dc-wrap">
         <div>

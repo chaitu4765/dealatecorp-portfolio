@@ -1,7 +1,8 @@
 import { Fragment } from "react";
 import { useAnimationEffect } from "../hooks/useAnimationEffect.js";
 import { clientBrands, clientHeroMedia } from "../data/client-brands.js";
-import { AceternityClientCard } from "../components/AceternityClientCard.jsx";
+import { AnimatedBrandCarousel } from "../components/AnimatedBrandCarousel.jsx";
+import { IndustryPortfolio } from "../components/IndustryPortfolio.jsx";
 const media = clientHeroMedia.map((src) => [src, "Client campaign"]);
 function mediaCard([src, label], i) {
   return (
@@ -14,27 +15,6 @@ function mediaCard([src, label], i) {
       />
       <figcaption>{label}</figcaption>
     </figure>
-  );
-}
-function clientBrandCard([name, logo, href]) {
-  const content = (
-    <>
-      <div className="brand-logo-panel">
-        <img src={logo} alt={name + " logo"} loading="lazy" decoding="async" />
-      </div>
-      <b>{name}</b>
-    </>
-  );
-  return href ? (
-    <AceternityClientCard
-      as="a"
-      href={href}
-      aria-label={"View " + name + " case study"}
-    >
-      {content}
-    </AceternityClientCard>
-  ) : (
-    <AceternityClientCard>{content}</AceternityClientCard>
   );
 }
 export function Clients({ featuredMedia }) {
@@ -52,10 +32,7 @@ export function Clients({ featuredMedia }) {
             <br />
             <em>Measured in momentum.</em>
           </h1>
-          <p>
-            Discover the brands, campaigns and digital experiences we create
-            with the businesses we partner with.
-          </p>
+          <p>Brands, campaigns and digital experiences. Explore our work.</p>
         </div>
         <div
           className="clients-media-viewport"
@@ -91,30 +68,11 @@ export function Clients({ featuredMedia }) {
             <br />
             <span>worked with.</span>
           </h2>
-          <p>
-            A curated wall of client identities, preserved in their original
-            colors and presented with clarity.
-          </p>
+          <p>Choose a brand. Explore its story.</p>
         </div>
-        <div className="client-brand-grid">
-          {clientBrands.map((item, index) => (
-            <Fragment key={index}>{clientBrandCard(item)}</Fragment>
-          ))}
-        </div>
+        <AnimatedBrandCarousel brands={clientBrands} />
       </section>
-      <section className="clients-project-cta">
-        <div>
-          <p className="kicker">Next collaboration</p>
-          <h2>Let’s build your next success story.</h2>
-          <p>
-            Bring the ambition. We will shape the creative system around it with
-            focus, restraint and momentum.
-          </p>
-          <a className="button button--light" href="/contact/" data-project-enquiry>
-            Start a project
-          </a>
-        </div>
-      </section>
+      <IndustryPortfolio />
     </main>
   );
 }

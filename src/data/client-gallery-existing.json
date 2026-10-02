@@ -1,0 +1,333 @@
+{
+  "/clients/ganesh-constructions": {
+    "brand": "Ganesh Constructions",
+    "items": [
+      {
+        "id": "existing-1",
+        "type": "image",
+        "src": "/assets/postors/g.jpg",
+        "title": "Creative 01",
+        "alt": "Ganesh Constructions campaign creative artwork"
+      },
+      {
+        "id": "existing-2",
+        "type": "image",
+        "src": "/assets/postors/ganeh.jpg",
+        "title": "Creative 02",
+        "alt": "Ganesh Constructions residential campaign artwork"
+      },
+      {
+        "id": "existing-3",
+        "type": "image",
+        "src": "/assets/postors/ganesh.jpg",
+        "title": "Creative 03",
+        "alt": "Ganesh Constructions brand campaign artwork"
+      },
+      {
+        "id": "existing-4",
+        "type": "image",
+        "src": "/assets/postors/gguru.jpg",
+        "title": "Creative 04",
+        "alt": "Ganesh Constructions festival campaign artwork"
+      },
+      {
+        "id": "existing-5",
+        "type": "image",
+        "src": "/assets/postors/gi.jpg",
+        "title": "Creative 05",
+        "alt": "Ganesh Constructions property promotion artwork"
+      },
+      {
+        "id": "existing-6",
+        "type": "image",
+        "src": "/assets/postors/gin.jpg",
+        "title": "Creative 06",
+        "alt": "Ganesh Constructions announcement artwork"
+      },
+      {
+        "id": "existing-7",
+        "type": "image",
+        "src": "/assets/postors/gj.jpg",
+        "title": "Creative 07",
+        "alt": "Ganesh Constructions social creative artwork"
+      },
+      {
+        "id": "existing-8",
+        "type": "image",
+        "src": "/assets/postors/gk.jpg",
+        "title": "Creative 08",
+        "alt": "Ganesh Constructions campaign post artwork"
+      },
+      {
+        "id": "existing-9",
+        "type": "image",
+        "src": "/assets/postors/go.jpg",
+        "title": "Creative 09",
+        "alt": "Ganesh Constructions real estate visual artwork"
+      },
+      {
+        "id": "existing-10",
+        "type": "image",
+        "src": "/assets/postors/gr.jpg",
+        "title": "Creative 10",
+        "alt": "Ganesh Constructions promotional artwork"
+      }
+    ]
+  },
+  "/clients/spark": {
+    "brand": "Spark Clinic",
+    "items": [
+      {
+        "id": "existing-1",
+        "type": "image",
+        "src": "/assets/poster2/sp1.jpg",
+        "title": "Creative 01",
+        "alt": "Spark creative poster 1"
+      },
+      {
+        "id": "existing-2",
+        "type": "image",
+        "src": "/assets/poster2/sp2.jpg",
+        "title": "Creative 02",
+        "alt": "Spark creative poster 2"
+      },
+      {
+        "id": "existing-3",
+        "type": "image",
+        "src": "/assets/poster2/sp3.jpg",
+        "title": "Creative 03",
+        "alt": "Spark creative poster 3"
+      },
+      {
+        "id": "existing-4",
+        "type": "image",
+        "src": "/assets/poster2/sp4.jpg",
+        "title": "Creative 04",
+        "alt": "Spark creative poster 4"
+      },
+      {
+        "id": "existing-5",
+        "type": "image",
+        "src": "/assets/poster2/sp5.jpg",
+        "title": "Creative 05",
+        "alt": "Spark creative poster 5"
+      },
+      {
+        "id": "existing-6",
+        "type": "image",
+        "src": "/assets/poster2/sp6.jpg",
+        "title": "Creative 06",
+        "alt": "Spark creative poster 6"
+      },
+      {
+        "id": "existing-7",
+        "type": "video",
+        "src": "/clients/videos/spark1.mp4",
+        "title": "Brand film 01",
+        "alt": "Spark video 01",
+        "poster": "/assets/client-media/previews/spark-existing-7.webp"
+      },
+      {
+        "id": "existing-8",
+        "type": "video",
+        "src": "/clients/videos/spark2.mp4",
+        "title": "Brand film 02",
+        "alt": "Spark video 02",
+        "poster": "/assets/client-media/previews/spark-existing-8.webp"
+      },
+      {
+        "id": "existing-9",
+        "type": "video",
+        "src": "/clients/videos/spark3.mp4",
+        "title": "Brand film 03",
+        "alt": "Spark video 03",
+        "poster": "/assets/client-media/previews/spark-existing-9.webp"
+      },
+      {
+        "id": "existing-10",
+        "type": "video",
+        "src": "/clients/videos/spark4.mp4",
+        "title": "Brand film 04",
+        "alt": "Spark video 04",
+        "poster": "/assets/client-media/previews/spark-existing-10.webp"
+      }
+    ]
+  },
+  "/clients/sree-surya-infra": {
+    "brand": "Sree Surya Infra",
+    "items": [
+      {
+        "id": "existing-1",
+        "type": "image",
+        "src": "/assets/postors/sg.jpg",
+        "title": "Creative 01",
+        "alt": "Sree Surya Infra campaign artwork"
+      },
+      {
+        "id": "existing-2",
+        "type": "video",
+        "src": "/clients/videos/sri surya.mp4",
+        "title": "Brand film 01",
+        "alt": "Sree Surya Infra campaign video",
+        "poster": "/assets/client-media/previews/sree-surya-infra-existing-2.webp"
+      }
+    ]
+  },
+  "/clients/sri-conventions": {
+    "brand": "Sri Conventions",
+    "items": [
+      {
+        "id": "existing-1",
+        "type": "image",
+        "src": "/assets/poster2/sc2.jpg",
+        "title": "Creative 01",
+        "alt": "Sri Convention creative work 01"
+      },
+      {
+        "id": "existing-2",
+        "type": "image",
+        "src": "/assets/poster2/sc3.jpg",
+        "title": "Creative 02",
+        "alt": "Sri Convention creative work 02"
+      },
+      {
+        "id": "existing-3",
+        "type": "video",
+        "src": "/assets/poster2/sc4.mp4",
+        "title": "Brand film 01",
+        "alt": "Sri Convention creative video 03",
+        "poster": "/assets/client-media/previews/sri-conventions-existing-3.webp"
+      },
+      {
+        "id": "existing-4",
+        "type": "image",
+        "src": "/assets/poster2/sc5.jpg",
+        "title": "Creative 03",
+        "alt": "Sri Convention creative work 04"
+      }
+    ]
+  },
+  "/clients/sri-venkateswara-constructions": {
+    "brand": "Sri Venkateswara Constructions",
+    "items": [
+      {
+        "id": "existing-1",
+        "type": "image",
+        "src": "/assets/client-case-studies/svc-1.jpg",
+        "title": "Creative 01",
+        "alt": "Sri Venkateswara Constructions showcase artwork 1"
+      },
+      {
+        "id": "existing-2",
+        "type": "image",
+        "src": "/assets/client-case-studies/svc-2.jpg",
+        "title": "Creative 02",
+        "alt": "Sri Venkateswara Constructions showcase artwork 2"
+      },
+      {
+        "id": "existing-3",
+        "type": "image",
+        "src": "/assets/client-case-studies/svc-3.jpg",
+        "title": "Creative 03",
+        "alt": "Sri Venkateswara Constructions showcase artwork 3"
+      },
+      {
+        "id": "existing-4",
+        "type": "image",
+        "src": "/assets/client-case-studies/svc-4.jpg",
+        "title": "Creative 04",
+        "alt": "Sri Venkateswara Constructions showcase artwork 4"
+      }
+    ]
+  },
+  "/clients/ssm-construction": {
+    "brand": "SSM Construction",
+    "items": [
+      {
+        "id": "existing-1",
+        "type": "video",
+        "src": "/clients/videos/ssm%20video.mp4",
+        "title": "Brand film 01",
+        "alt": "SSM Construction work showcase video",
+        "poster": "/assets/client-media/previews/ssm-construction-existing-1.webp"
+      }
+    ]
+  },
+  "/clients/sri-parasakthi-peetam": {
+    "brand": "Sri Parasakthi Peetam",
+    "items": [
+      {
+        "id": "existing-1",
+        "type": "image",
+        "src": "/assets/poster2/sp12.png",
+        "title": "Creative 01",
+        "alt": "Sri Parasakthi Peetam hero artwork"
+      }
+    ]
+  },
+  "/clients/ubic": {
+    "brand": "UBIC",
+    "items": [
+      {
+        "id": "existing-1",
+        "type": "image",
+        "src": "/assets/poster2/ubich.png",
+        "title": "Creative 01",
+        "alt": "Hand-drawn entrepreneur conference scene with the UBIC logo"
+      }
+    ]
+  },
+  "/clients/tirumalasetty": {
+    "brand": "Tirumalasetty Projects LLP",
+    "items": [
+      {
+        "src": "/assets/postors/tg.png",
+        "alt": "Tirumalasetty Projects LLP creative work - TG artwork",
+        "type": "image",
+        "id": "existing-1",
+        "title": "Creative 01"
+      },
+      {
+        "src": "/assets/postors/ts1.jpg",
+        "alt": "Tirumalasetty Projects LLP creative work - TS1 artwork",
+        "type": "image",
+        "id": "existing-2",
+        "title": "Creative 02"
+      },
+      {
+        "src": "/assets/postors/ts2.jpg",
+        "alt": "Tirumalasetty Projects LLP creative work - TS2 artwork",
+        "type": "image",
+        "id": "existing-3",
+        "title": "Creative 03"
+      }
+    ]
+  },
+  "/clients/adhithya-sai-promoters": {
+    "brand": "Adhithya Sai Promoters",
+    "items": [
+      {
+        "src": "/assets/postors/aditya.png",
+        "alt": "Adhithya Sai Promoters residential property creative",
+        "type": "image",
+        "id": "existing-1",
+        "title": "Creative 01"
+      },
+      {
+        "src": "/assets/logo/adithya sai.jpeg",
+        "alt": "Adhithya Sai Promoters brand mark",
+        "type": "image",
+        "id": "existing-2",
+        "title": "Creative 02"
+      },
+      {
+        "id": "existing-film",
+        "type": "video",
+        "src": "/clients/videos/aditya.mp4",
+        "poster": "/assets/client-media/previews/adhithya-sai-promoters-existing-film.webp",
+        "title": "Brand film",
+        "alt": "Adhithya Sai Promoters property film"
+      }
+    ]
+  }
+}
